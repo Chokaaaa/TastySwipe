@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */; };
 		84227B5C2A2CA0EA001CAAD8 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */; };
 		84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5D2A2CA0EA001CAAD8 /* GoogleSignInSwift */; };
 		84227B602A2CA373001CAAD8 /* GAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */; };
@@ -31,6 +32,9 @@
 		84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */; };
 		84348F7829CB35250017ED7E /* HomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7529CB35250017ED7E /* HomeVIew.swift */; };
 		84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7629CB35250017ED7E /* MenuActionButton.swift */; };
+		84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */; };
+		84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */; };
+		84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B852A73B405005AE71C /* HomeViewModel.swift */; };
 		84DCAD2929F5DCCB007D6E4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */; };
 		84DCAD3429F5DF55007D6E4C /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCAD3329F5DF55007D6E4C /* AuthViewModel.swift */; };
 		84DCAD3629F5EE6C007D6E4C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCAD3529F5EE6C007D6E4C /* User.swift */; };
@@ -53,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.release.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.release.xcconfig"; sourceTree = "<group>"; };
 		84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		84227B622A2CA42B001CAAD8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		84348F3329CB33420017ED7E /* TastySwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastySwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +82,9 @@
 		84348F7529CB35250017ED7E /* HomeVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVIew.swift; sourceTree = "<group>"; };
 		84348F7629CB35250017ED7E /* MenuActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuActionButton.swift; sourceTree = "<group>"; };
 		8442D91B29D51544005FE419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesResponseModel.swift; sourceTree = "<group>"; };
+		84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleClientRequest.swift; sourceTree = "<group>"; };
+		84CF7B852A73B405005AE71C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84DCAD3329F5DF55007D6E4C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		84DCAD3529F5EE6C007D6E4C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -92,6 +100,8 @@
 		84E2637929F40A2900847C16 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		84E2637B29F428F500847C16 /* seperatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seperatorView.swift; sourceTree = "<group>"; };
 		84E2637D29F42B3800847C16 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastySwipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.debug.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,16 +115,27 @@
 				84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */,
 				84DCAD3D29F5F595007D6E4C /* FirebaseAuth in Frameworks */,
 				84DCAD3F29F5F59D007D6E4C /* FirebaseFirestoreSwift in Frameworks */,
+				36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22AB7441AD29D55839752A19 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */,
+				6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		84227B612A2CA3FE001CAAD8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				84227B622A2CA42B001CAAD8 /* Utilities.swift */,
+				84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -128,6 +149,7 @@
 				84348F3529CB33420017ED7E /* TastySwipe */,
 				84348F3429CB33420017ED7E /* Products */,
 				84DCAD3729F5F1BB007D6E4C /* Frameworks */,
+				22AB7441AD29D55839752A19 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +244,7 @@
 				84348F5229CB34740017ED7E /* MapViewState.swift */,
 				84E2635C29F20C5700847C16 /* OnBoardingItem.swift */,
 				84DCAD3529F5EE6C007D6E4C /* User.swift */,
+				84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +350,7 @@
 		84348F7329CB351C0017ED7E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				84CF7B852A73B405005AE71C /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -334,6 +358,7 @@
 		84DCAD3729F5F1BB007D6E4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -379,9 +404,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84348F4129CB33450017ED7E /* Build configuration list for PBXNativeTarget "TastySwipe" */;
 			buildPhases = (
+				27D5338EBE891F5CBCAD2488 /* [CP] Check Pods Manifest.lock */,
 				84348F2F29CB33420017ED7E /* Sources */,
 				84348F3029CB33420017ED7E /* Frameworks */,
 				84348F3129CB33420017ED7E /* Resources */,
+				669788C1185B466943A05C72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -454,12 +481,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27D5338EBE891F5CBCAD2488 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TastySwipe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		669788C1185B466943A05C72 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84348F2F29CB33420017ED7E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				84E2635D29F20C5700847C16 /* OnBoardingItem.swift in Sources */,
+				84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */,
 				84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */,
 				84348F5529CB34740017ED7E /* ExploreLocation.swift in Sources */,
 				84348F5B29CB34A20017ED7E /* LoginView.swift in Sources */,
@@ -474,6 +544,8 @@
 				84348F5029CB34670017ED7E /* LocationManager.swift in Sources */,
 				84348F4A29CB341F0017ED7E /* CustomInputField.swift in Sources */,
 				84E2637C29F428F500847C16 /* seperatorView.swift in Sources */,
+				84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */,
+				84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */,
 				84E2637529F3ED9800847C16 /* loggedOutView.swift in Sources */,
 				84348F3729CB33420017ED7E /* TastySwipeApp.swift in Sources */,
 				84E2636629F213CA00847C16 /* PageIndicator.swift in Sources */,
@@ -612,6 +684,7 @@
 		};
 		84348F4229CB33450017ED7E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -643,6 +716,7 @@
 		};
 		84348F4329CB33450017ED7E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

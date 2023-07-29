@@ -55,14 +55,16 @@ struct CardMain: View {
     
     @State private var lastIndex = 1
     
-    @State var cardViews : [CardView] = {
-        var views = [CardView]()
-        
-        for index in 0..<2 {
-            views.append(CardView(title: Places[index].title, location: "Jumeirah 1", image:Places[index].image, category: Places[index].category))
-        }
-        return views
-    }()
+//    @State var cardViews : [CardView] = {
+//        var views = [CardView]()
+//
+//        for index in 0..<2 {
+//            views.append(CardView(title: Places[index].title, location: "Jumeirah 1", image:Places[index].image, category: Places[index].category))
+//        }
+//        return views
+//    }()
+    
+    @Binding var cardViews : [CardView]
     
     
     private func moveCard() {
@@ -161,11 +163,11 @@ struct CardMain: View {
     
 }
 
-struct CardMain_Previews: PreviewProvider {
-    static var previews: some View {
-        CardMain()
-    }
-}
+//struct CardMain_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardMain()
+//    }
+//}
 
 
 extension AnyTransition {

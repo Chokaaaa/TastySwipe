@@ -24,9 +24,10 @@ struct CardView: View, Identifiable {
                 
                 //MARK: - Image
                 ZStack(alignment: .top) {
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
+                    AsyncImage(url: URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=\(image)&key=AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4"))
+//                    Image(image)
+//                        .resizable()
+//                        .scaledToFill()
                     HStack(spacing: 0) {
                         Image("nearkm")
                             .scaledToFit()
@@ -54,18 +55,18 @@ struct CardView: View, Identifiable {
                 //MARK: - Text(title,category,location)
                 VStack(alignment: .leading) {
                     Text(title)
-                        .font(.system(size: 25, design: .rounded))
+                        .font(.system(size: 15, design: .rounded))
                         .fontWeight(.bold)
                         .padding(.horizontal, 15)
                         .padding(.top,10)
                    
                     Text(category)
-                        .font(.system(size: 18, design: .rounded))
+                        .font(.system(size: 14, design: .rounded))
                         .fontWeight(.regular)
                         .padding(.horizontal, 15)
                     
                     Text(location)
-                        .font(.system(size: 14, design: .rounded))
+                        .font(.system(size: 12, design: .rounded))
                         .foregroundColor(.gray)
                         .fontWeight(.regular)
                         .padding(.horizontal, 15)
@@ -81,7 +82,7 @@ struct CardView: View, Identifiable {
                 Rectangle()
                     .fill(Color.white)
                     .cornerRadius(40)
-                    .shadow(color: .gray.opacity(0.5), radius: 10,x: 0,y: 0)
+                    .shadow(color: .gray.opacity(0.1), radius: 2.5,x: 0,y: 0)
             )
 //            .overlay(
             HStack {

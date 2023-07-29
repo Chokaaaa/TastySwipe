@@ -7,12 +7,15 @@
 
 import SwiftUI
 import Firebase
+import GooglePlaces
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
 
+      GMSPlacesClient.provideAPIKey("AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4")
+      
     return true
   }
 }

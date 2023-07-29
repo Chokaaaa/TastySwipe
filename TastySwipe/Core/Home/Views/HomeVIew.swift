@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import GooglePlaces
 
 struct HomeVIew: View {
     
     @State private var mapState = MapViewState.noInput
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     @EnvironmentObject var authViewModel : AuthViewModel
+    private var placesClient: GMSPlacesClient = GMSPlacesClient.shared()
+    @StateObject var viewModel = HomeViewModel()
+    @State var fetcher: GMSAutocompleteFetcher?
+    private var searchPredictions = [GMSAutocompletePrediction]()
     
 //    init() {
 //        UITabBar.appearance().isTranslucent = false
 //    }
+    
+    
     
     var body: some View {
         
@@ -53,7 +60,7 @@ struct HomeVIew: View {
                 
                 
                 if mapState == .noInput {
-                    CardMain()
+                    CardMain(cardViews: $viewModel.cardViews)
                         .padding(.top, 310)
                 }
             }
@@ -90,7 +97,27 @@ struct HomeVIew: View {
                         let navigationBarAppearance = UINavigationBarAppearance()
                         navigationBarAppearance.configureWithOpaqueBackground()
                         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-
+        
+            
+//            let placeFields: GMSPlaceField = [.name, .formattedAddress]
+//                placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { (placeLikelihoods, error) in
+//                
+//
+//                  guard error == nil else {
+//                    print("Current place error: \(error?.localizedDescription ?? "")")
+//                    return
+//                  }
+//                    
+//                    if let placeLikelihoodList = placeLikelihoods {
+//                        for likelihood in placeLikelihoodList {
+//                          let place = likelihood.place
+//                          print("Current Place name \(String(describing: place.name)) at likelihood \(likelihood.likelihood)")
+//                          print("Current PlaceID \(String(describing: place.placeID))")
+//                        }
+//                      }
+//                    
+//                    
+//                }
                     }
 //        .accentColor()
         
@@ -104,6 +131,9 @@ struct HomeVIew: View {
             }
         }
     }
+    
+   
+    
 }
 
 struct HomeVIew_Previews: PreviewProvider {
