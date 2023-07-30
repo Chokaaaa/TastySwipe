@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct CardMain: View {
     
@@ -66,15 +67,15 @@ struct CardMain: View {
     
     @Binding var cardViews : [CardView]
     
-    
     private func moveCard() {
         cardViews.removeFirst()
         
         self.lastIndex += 1
-        let places = Places[lastIndex % Places.count]
+        let cardView = cardViews[lastIndex % cardViews.count]
         
-        let newCardView = CardView(title: places.title, location: "Jumeirah 1", image:places.image, category: places.category)
-        cardViews.append(newCardView)
+//        let newCardView = CardView(title: cardView.title, location: "Jumeirah 1", image:cardView.image, category: cardView.category, distance: 2)
+        
+        cardViews.append(cardView)
     }
     
     var body: some View {
@@ -139,9 +140,6 @@ struct CardMain: View {
                                         self.moveCard()
                                     }
                                 })
-                                 
-                                
-                                 
                         )
                 }
             }

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CardView: View, Identifiable {
     
-    var title : String
-    var location : String
-    var image : String
-    var category : String
-    
+    let title : String
+    let location : String
+    let image : String
+    let category : String
+    let distance : Int
     let id = UUID()
     
     @State private var showingLoginView = false
@@ -24,20 +24,44 @@ struct CardView: View, Identifiable {
                 
                 //MARK: - Image
                 ZStack(alignment: .top) {
-                    AsyncImage(url: URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=\(image)&key=AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4"))
-//                    Image(image)
+                    AsyncImage(url: URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=\(image)&key=AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4")) { phase in
+                          switch phase {
+                          case .empty:
+                              Image("Starbucks")
+                                  .resizable()
+                                  .scaledToFill()
+                                  .frame(width: 240, height: 250)
+                                  .clipped()
+                          case .success(let image):
+                              image.resizable()
+                                  .resizable()
+                                  .scaledToFill()
+                                  .frame(width: 240, height: 250)
+                                  .clipped()
+                          case .failure:
+                              Image("Starbucks")
+                                  .resizable()
+                                  .scaledToFill()
+                                  .frame(width: 240, height: 250)
+                                  .clipped()
+                          @unknown default:
+                              EmptyView()
+                                  .frame(width: 60, height: 60)
+                          }
+                      }
+//                    Image("Starbucks")
 //                        .resizable()
 //                        .scaledToFill()
                     HStack(spacing: 0) {
                         Image("nearkm")
                             .scaledToFit()
                             .padding(.leading,5)
-                        Text("3 km")
+                        Text("\(distance / 1000) km")
                             .font(.system(size: 15, design: .rounded))
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
                             .padding(.trailing,5)
-                            .frame(width: 45, height: 35)
+                            .frame(width: 60, height: 35)
                     }
                     .background(
                         .thinMaterial,
@@ -50,7 +74,7 @@ struct CardView: View, Identifiable {
 //                    )
                         .padding(.top,15)
                         .padding(.trailing,140)
-                }
+                }//MARK: - End of ZStack
                 .frame(width: 240, height: 250, alignment: .center)
                 //MARK: - Text(title,category,location)
                 VStack(alignment: .leading) {
@@ -127,6 +151,6 @@ struct CardView: View, Identifiable {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(title: "PF.Changs", location: "Jumeirah 1", image: "PF.Changs", category: "Restraunt")
+        CardView(title: "PF.Changs", location: "Jumeirah 1", image: "PF.Changs", category: "Restraunt", distance: 2)
     }
 }

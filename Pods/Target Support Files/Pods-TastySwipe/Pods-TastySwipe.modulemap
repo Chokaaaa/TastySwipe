@@ -1,0 +1,6 @@
+framework module Pods_TastySwipe {
+  umbrella header "Pods-TastySwipe-umbrella.h"
+
+  export *
+  module * { export * }
+}

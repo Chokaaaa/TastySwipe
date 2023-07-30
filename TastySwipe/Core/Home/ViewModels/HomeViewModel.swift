@@ -29,10 +29,17 @@ class HomeViewModel : NSObject, ObservableObject {
             for item in response.results {
                 if let photos = item.photos,
                    let firstPhoto = photos.first {
-                    self.cardViews.append(CardView(title: item.name, location: item.address, image: firstPhoto.photoReference, category: "Restraunts"))
+                    let endLocation = CLLocation(latitude: item.geometry.location.latitude, longitude: item.geometry.location.longitude)
+                    let distance = self.getDistance(startLocation: location, endLocation: endLocation)
+                    self.cardViews.append(CardView(title: item.name, location: item.address, image: firstPhoto.photoReference, category: "Restraunts", distance: distance))
                 }
             }
         }
+    }
+    
+    func getDistance(startLocation : CLLocation, endLocation : CLLocation) -> Int {
+         let distance: CLLocationDistance = startLocation.distance(from: endLocation)
+        return Int(distance.magnitude)
     }
     
 }
@@ -40,7 +47,6 @@ class HomeViewModel : NSObject, ObservableObject {
 extension HomeViewModel : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        print("Did get location\(location.coordinate.latitude)")
         fetchPlaces(location: location)
         locationManager.stopUpdatingLocation()
     }
