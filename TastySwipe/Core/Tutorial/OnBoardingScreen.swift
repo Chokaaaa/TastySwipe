@@ -22,6 +22,7 @@ struct OnBoardingScreen: View {
         .init(title: "Big list of",
               focusWord: "choice🤤", subTitle: "Effortlessly glide through our handpicked assortment of choices, connecting with options that perfectly align with your palate, all with a single swipe!",
               lottieView: .init(name: "thinking",bundle: .main))
+        
     ]
     @State private var showingLoginView = false
     @EnvironmentObject var authViewModel : AuthViewModel
@@ -148,7 +149,9 @@ struct OnBoardingScreen: View {
                                     currentIndex = onboardingItems.count - 1
                                     playAnimation()
                                     if isLastSlide {
-                                        if authViewModel.userSession == nil {
+//                                        isOnboarding = false
+                                        if $authViewModel.userSession == nil {
+                                            
                                             showingLoginView.toggle()
                                         } else {
                                             print("User is logged in already")
@@ -174,7 +177,7 @@ struct OnBoardingScreen: View {
                             .offset(y: 5)
                         }
                     }
-                    .sheet(isPresented: $showingLoginView) {
+                    .fullScreenCover(isPresented: $showingLoginView) {
                         LoginView()
                     }
                     .animation(.easeInOut, value: isLastSlide)
@@ -185,6 +188,7 @@ struct OnBoardingScreen: View {
             .frame(width: size.width * CGFloat(onboardingItems.count),alignment: .leading)
         }
     }
+    
     
     func playAnimation(){
         onboardingItems[currentIndex].lottieView.currentProgress = 0

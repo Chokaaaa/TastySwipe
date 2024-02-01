@@ -40,6 +40,6 @@ struct LocationSearchResultCell: View {
 
 struct LocationSearchResultCell_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchResultCell(title: "Starbucks", subtitle: "Ground Floor, Mercato Shopping Mall - Jumeirahw")
+        LocationSearchResultCell(title: "loading", subtitle: "Ground Floor, Mercato Shopping Mall - Jumeirahw")
     }
 }

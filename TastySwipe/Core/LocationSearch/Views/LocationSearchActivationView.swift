@@ -27,7 +27,7 @@ struct LocationSearchActivationView: View {
                 
                 Spacer()
                 
-                Image(systemName: "bell")
+                Image(systemName: "person.3")
                     .foregroundColor(.white)
 //                    .padding(.trailing, 20)
                 

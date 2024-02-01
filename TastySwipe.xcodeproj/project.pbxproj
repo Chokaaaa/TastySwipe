@@ -8,10 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */; };
+		8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */; };
+		8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2212B472ADA00CAE616 /* TagModel.swift */; };
+		8407D2262B47314600CAE616 /* LocationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2252B47314600CAE616 /* LocationRequestManager.swift */; };
+		8407D2292B48309900CAE616 /* CirlceButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2282B48309900CAE616 /* CirlceButtonModifier.swift */; };
+		8407D22C2B488C1D00CAE616 /* EmptyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22B2B488C1D00CAE616 /* EmptyCardView.swift */; };
+		8407D22E2B488DE400CAE616 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22D2B488DE400CAE616 /* Config.swift */; };
+		8407D2302B488E1F00CAE616 /* PurchasesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22F2B488E1F00CAE616 /* PurchasesManager.swift */; };
+		8407D2362B4932F600CAE616 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8407D2352B4932F600CAE616 /* Shimmer */; };
+		8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2382B496ABB00CAE616 /* dismissButton.swift */; };
+		8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D23A2B49894200CAE616 /* ListRowModifier.swift */; };
+		8407D23E2B49A30700CAE616 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8407D23D2B49A30700CAE616 /* Localizable.xcstrings */; };
 		84227B5C2A2CA0EA001CAAD8 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */; };
 		84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5D2A2CA0EA001CAAD8 /* GoogleSignInSwift */; };
 		84227B602A2CA373001CAAD8 /* GAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */; };
 		84227B632A2CA42B001CAAD8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84227B622A2CA42B001CAAD8 /* Utilities.swift */; };
+		8431D78C2B4E58B9006FE611 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8431D78B2B4E58B9006FE611 /* GoogleSignIn */; };
+		8431D78E2B4E58B9006FE611 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8431D78D2B4E58B9006FE611 /* GoogleSignInSwift */; };
 		84348F3729CB33420017ED7E /* TastySwipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F3629CB33420017ED7E /* TastySwipeApp.swift */; };
 		84348F3B29CB33450017ED7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84348F3A29CB33450017ED7E /* Assets.xcassets */; };
 		84348F3E29CB33450017ED7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84348F3D29CB33450017ED7E /* Preview Assets.xcassets */; };
@@ -30,8 +43,46 @@
 		84348F6F29CB350C0017ED7E /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F6C29CB350C0017ED7E /* LocationSearchResultCell.swift */; };
 		84348F7029CB350C0017ED7E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F6D29CB350C0017ED7E /* LocationSearchView.swift */; };
 		84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */; };
-		84348F7829CB35250017ED7E /* HomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7529CB35250017ED7E /* HomeVIew.swift */; };
 		84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7629CB35250017ED7E /* MenuActionButton.swift */; };
+		84693EE92B4B0AE8001E0783 /* EmptyWishList.json in Resources */ = {isa = PBXBuildFile; fileRef = 84693EE82B4B0AE7001E0783 /* EmptyWishList.json */; };
+		847037B32B409BC3004C7A06 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = 847037B22B409BC3004C7A06 /* CardStack */; };
+		847037B62B40AA9A004C7A06 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847037B52B40AA9A004C7A06 /* MainView.swift */; };
+		847037B82B4145CE004C7A06 /* SettingsRowWithToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */; };
+		847352ED2B49D4CD00C39DA8 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847352EC2B49D4CD00C39DA8 /* ColorSchemeManager.swift */; };
+		847352EF2B49E50600C39DA8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847352EE2B49E50600C39DA8 /* EmailManager.swift */; };
+		847352F12B49E85B00C39DA8 /* SettingsRowWithPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847352F02B49E85B00C39DA8 /* SettingsRowWithPicker.swift */; };
+		847352F42B49EE6400C39DA8 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847352F32B49EE6400C39DA8 /* CustomAlertView.swift */; };
+		847352F82B4A9B8500C39DA8 /* PreferedPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847352F72B4A9B8500C39DA8 /* PreferedPlaceModel.swift */; };
+		84755DE92B519E7B0057CA5F /* PremiumPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DE62B519E7A0057CA5F /* PremiumPlan.swift */; };
+		84755DEA2B519E7B0057CA5F /* YearlyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DE72B519E7A0057CA5F /* YearlyPlanView.swift */; };
+		84755DEB2B519E7B0057CA5F /* MonthlyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */; };
+		84755DEE2B51BD480057CA5F /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DED2B51BD480057CA5F /* PlanView.swift */; };
+		84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */; };
+		84866A162B5FB8E00096695E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 84866A152B5FB8E00096695E /* FirebaseFirestore */; };
+		84866A182B5FBAC00096695E /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A172B5FBAC00096695E /* VotingView.swift */; };
+		84866A1A2B5FBB290096695E /* VotingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A192B5FBB290096695E /* VotingModel.swift */; };
+		84866A1B2B618DE40096695E /* CirlceButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2282B48309900CAE616 /* CirlceButtonModifier.swift */; };
+		84866A212B63C9DB0096695E /* TastySwipeEntitlement.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84866A202B63C9DB0096695E /* TastySwipeEntitlement.plist */; };
+		84866A292B650B300096695E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84866A282B650B300096695E /* GoogleService-Info.plist */; };
+		84866A2B2B6512CA0096695E /* VotingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A192B5FBB290096695E /* VotingModel.swift */; };
+		84866A2C2B657A9B0096695E /* dismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2382B496ABB00CAE616 /* dismissButton.swift */; };
+		84866A2F2B664AEC0096695E /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A2E2B664AEC0096695E /* VoteModel.swift */; };
+		84866A312B6798970096695E /* VoteHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A302B6798970096695E /* VoteHistoryModel.swift */; };
+		84AE7E812B41F2FD00175EE4 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 84AE7E802B41F2FD00175EE4 /* RevenueCat */; };
+		84AE7E832B41F2FD00175EE4 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 84AE7E822B41F2FD00175EE4 /* RevenueCatUI */; };
+		84AE7E8F2B42EC6300175EE4 /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E8D2B42EC6300175EE4 /* ImageExt.swift */; };
+		84AE7E902B42EC6300175EE4 /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E8E2B42EC6300175EE4 /* ColorExt.swift */; };
+		84AE7E922B42EC7100175EE4 /* InfiniteScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E912B42EC7100175EE4 /* InfiniteScroller.swift */; };
+		84AE7E972B42EC8200175EE4 /* FeatureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E942B42EC8200175EE4 /* FeatureCardView.swift */; };
+		84AE7E982B42EC8200175EE4 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E952B42EC8200175EE4 /* PaywallView.swift */; };
+		84AE7E992B42EC8200175EE4 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E962B42EC8200175EE4 /* FeatureCard.swift */; };
+		84CB7FA92B45556400E1CE79 /* WishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FA82B45556300E1CE79 /* WishListView.swift */; };
+		84CB7FAC2B45558E00E1CE79 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FAB2B45558E00E1CE79 /* WishListViewModel.swift */; };
+		84CB7FAF2B4555AF00E1CE79 /* WishListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FAE2B4555AF00E1CE79 /* WishListModel.swift */; };
+		84CB7FB32B45B7CF00E1CE79 /* FavoriteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FB22B45B7CF00E1CE79 /* FavoriteCardView.swift */; };
+		84CB7FB62B469E5500E1CE79 /* PlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FB52B469E5500E1CE79 /* PlacesListView.swift */; };
+		84CB7FB92B46B07D00E1CE79 /* StarRatingViewSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */; };
+		84CB7FBC2B46D04E00E1CE79 /* ChipsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FBB2B46D04E00E1CE79 /* ChipsStack.swift */; };
 		84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */; };
 		84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */; };
 		84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B852A73B405005AE71C /* HomeViewModel.swift */; };
@@ -41,6 +92,17 @@
 		84DCAD3D29F5F595007D6E4C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 84DCAD3C29F5F595007D6E4C /* FirebaseAuth */; };
 		84DCAD3F29F5F59D007D6E4C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84DCAD3E29F5F59D007D6E4C /* FirebaseFirestoreSwift */; };
 		84DCAD4129F5F5B9007D6E4C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 84DCAD4029F5F5B9007D6E4C /* FirebaseStorage */; };
+		84DE462D2B565CF8009123AD /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE462C2B565CF8009123AD /* Intro.swift */; };
+		84DE462F2B569525009123AD /* LoginButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE462E2B569525009123AD /* LoginButtons.swift */; };
+		84DE46332B569657009123AD /* ButtonFillExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE46322B569657009123AD /* ButtonFillExt.swift */; };
+		84DE463B2B56C6DE009123AD /* TastyClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE463A2B56C6DE009123AD /* TastyClipApp.swift */; };
+		84DE463D2B56C6DE009123AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE463C2B56C6DE009123AD /* ContentView.swift */; };
+		84DE463F2B56C6E0009123AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DE463E2B56C6E0009123AD /* Assets.xcassets */; };
+		84DE46422B56C6E0009123AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DE46412B56C6E0009123AD /* Preview Assets.xcassets */; };
+		84DE46472B56C6E0009123AD /* TastyClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 84DE46382B56C6DE009123AD /* TastyClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84DE464E2B58556F009123AD /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE464D2B58556E009123AD /* ArrayExtension.swift */; };
+		84DE46512B585978009123AD /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE46502B585978009123AD /* StartView.swift */; };
+		84DE46542B585AD1009123AD /* NavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE46532B585AD1009123AD /* NavigationConfigurator.swift */; };
 		84E2635629F20BB500847C16 /* thinking.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E2635529F20BB500847C16 /* thinking.json */; };
 		84E2635929F20C2600847C16 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 84E2635829F20C2600847C16 /* Lottie */; };
 		84E2635D29F20C5700847C16 /* OnBoardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2635C29F20C5700847C16 /* OnBoardingItem.swift */; };
@@ -54,10 +116,49 @@
 		84E2637A29F40A2900847C16 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2637929F40A2900847C16 /* SettingsView.swift */; };
 		84E2637C29F428F500847C16 /* seperatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2637B29F428F500847C16 /* seperatorView.swift */; };
 		84E2637E29F42B3800847C16 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2637D29F42B3800847C16 /* SettingsRow.swift */; };
+		84EAD9B32B5B14BF000B1E83 /* loadingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9B22B5B14BF000B1E83 /* loadingCircle.swift */; };
+		84EAD9BA2B5BC121000B1E83 /* LoadingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */; };
+		84EAD9BC2B5BC249000B1E83 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */; };
+		84EAD9BE2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */; };
+		84EAD9C12B5E3F70000B1E83 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84DE46452B56C6E0009123AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84348F2B29CB33420017ED7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84DE46372B56C6DE009123AD;
+			remoteInfo = TastyClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84DE46482B56C6E0009123AD /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				84DE46472B56C6E0009123AD /* TastyClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.release.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.release.xcconfig"; sourceTree = "<group>"; };
+		8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
+		8407D2212B472ADA00CAE616 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		8407D2252B47314600CAE616 /* LocationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestManager.swift; sourceTree = "<group>"; };
+		8407D2282B48309900CAE616 /* CirlceButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirlceButtonModifier.swift; sourceTree = "<group>"; };
+		8407D22B2B488C1D00CAE616 /* EmptyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardView.swift; sourceTree = "<group>"; };
+		8407D22D2B488DE400CAE616 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8407D22F2B488E1F00CAE616 /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
+		8407D2382B496ABB00CAE616 /* dismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dismissButton.swift; sourceTree = "<group>"; };
+		8407D23A2B49894200CAE616 /* ListRowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowModifier.swift; sourceTree = "<group>"; };
+		8407D23D2B49A30700CAE616 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		84227B622A2CA42B001CAAD8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		84348F3329CB33420017ED7E /* TastySwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastySwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,15 +180,59 @@
 		84348F6C29CB350C0017ED7E /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
 		84348F6D29CB350C0017ED7E /* LocationSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMapViewRepresentable.swift; sourceTree = "<group>"; };
-		84348F7529CB35250017ED7E /* HomeVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVIew.swift; sourceTree = "<group>"; };
 		84348F7629CB35250017ED7E /* MenuActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuActionButton.swift; sourceTree = "<group>"; };
 		8442D91B29D51544005FE419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		84693EE82B4B0AE7001E0783 /* EmptyWishList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyWishList.json; sourceTree = "<group>"; };
+		847037B52B40AA9A004C7A06 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowWithToggle.swift; sourceTree = "<group>"; };
+		847352EC2B49D4CD00C39DA8 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
+		847352EE2B49E50600C39DA8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
+		847352F02B49E85B00C39DA8 /* SettingsRowWithPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowWithPicker.swift; sourceTree = "<group>"; };
+		847352F32B49EE6400C39DA8 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		847352F72B4A9B8500C39DA8 /* PreferedPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferedPlaceModel.swift; sourceTree = "<group>"; };
+		84755DE62B519E7A0057CA5F /* PremiumPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiumPlan.swift; sourceTree = "<group>"; };
+		84755DE72B519E7A0057CA5F /* YearlyPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearlyPlanView.swift; sourceTree = "<group>"; };
+		84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyPlanView.swift; sourceTree = "<group>"; };
+		84755DED2B51BD480057CA5F /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPackage.swift; sourceTree = "<group>"; };
+		84866A172B5FBAC00096695E /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
+		84866A192B5FBB290096695E /* VotingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingModel.swift; sourceTree = "<group>"; };
+		84866A202B63C9DB0096695E /* TastySwipeEntitlement.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TastySwipeEntitlement.plist; sourceTree = "<group>"; };
+		84866A222B6434510096695E /* TastySwipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TastySwipe.entitlements; sourceTree = "<group>"; };
+		84866A282B650B300096695E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84866A2E2B664AEC0096695E /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
+		84866A302B6798970096695E /* VoteHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteHistoryModel.swift; sourceTree = "<group>"; };
+		84AE7E8D2B42EC6300175EE4 /* ImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
+		84AE7E8E2B42EC6300175EE4 /* ColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		84AE7E912B42EC7100175EE4 /* InfiniteScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScroller.swift; sourceTree = "<group>"; };
+		84AE7E942B42EC8200175EE4 /* FeatureCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCardView.swift; sourceTree = "<group>"; };
+		84AE7E952B42EC8200175EE4 /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		84AE7E962B42EC8200175EE4 /* FeatureCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
+		84CB7FA82B45556300E1CE79 /* WishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListView.swift; sourceTree = "<group>"; };
+		84CB7FAB2B45558E00E1CE79 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
+		84CB7FAE2B4555AF00E1CE79 /* WishListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListModel.swift; sourceTree = "<group>"; };
+		84CB7FB22B45B7CF00E1CE79 /* FavoriteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCardView.swift; sourceTree = "<group>"; };
+		84CB7FB52B469E5500E1CE79 /* PlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListView.swift; sourceTree = "<group>"; };
+		84CB7FBB2B46D04E00E1CE79 /* ChipsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsStack.swift; sourceTree = "<group>"; };
 		84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesResponseModel.swift; sourceTree = "<group>"; };
 		84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleClientRequest.swift; sourceTree = "<group>"; };
 		84CF7B852A73B405005AE71C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84DCAD3329F5DF55007D6E4C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		84DCAD3529F5EE6C007D6E4C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84DE462C2B565CF8009123AD /* Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
+		84DE462E2B569525009123AD /* LoginButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtons.swift; sourceTree = "<group>"; };
+		84DE46322B569657009123AD /* ButtonFillExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFillExt.swift; sourceTree = "<group>"; };
+		84DE46382B56C6DE009123AD /* TastyClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastyClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84DE463A2B56C6DE009123AD /* TastyClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastyClipApp.swift; sourceTree = "<group>"; };
+		84DE463C2B56C6DE009123AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		84DE463E2B56C6E0009123AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84DE46412B56C6E0009123AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		84DE46432B56C6E0009123AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84DE46442B56C6E0009123AD /* TastyClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TastyClip.entitlements; sourceTree = "<group>"; };
+		84DE464D2B58556E009123AD /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		84DE46502B585978009123AD /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		84DE46532B585AD1009123AD /* NavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationConfigurator.swift; sourceTree = "<group>"; };
 		84E2635529F20BB500847C16 /* thinking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = thinking.json; sourceTree = "<group>"; };
 		84E2635C29F20C5700847C16 /* OnBoardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingItem.swift; sourceTree = "<group>"; };
 		84E2636029F20E0300847C16 /* ResizableLottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableLottieView.swift; sourceTree = "<group>"; };
@@ -100,6 +245,10 @@
 		84E2637929F40A2900847C16 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		84E2637B29F428F500847C16 /* seperatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seperatorView.swift; sourceTree = "<group>"; };
 		84E2637D29F42B3800847C16 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		84EAD9B22B5B14BF000B1E83 /* loadingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadingCircle.swift; sourceTree = "<group>"; };
+		84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCardView.swift; sourceTree = "<group>"; };
+		84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectProgressViewStyle.swift; sourceTree = "<group>"; };
 		BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastySwipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.debug.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,13 +258,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8407D2362B4932F600CAE616 /* Shimmer in Frameworks */,
 				84227B5C2A2CA0EA001CAAD8 /* GoogleSignIn in Frameworks */,
+				847037B32B409BC3004C7A06 /* CardStack in Frameworks */,
+				8431D78C2B4E58B9006FE611 /* GoogleSignIn in Frameworks */,
 				84E2635929F20C2600847C16 /* Lottie in Frameworks */,
 				84DCAD4129F5F5B9007D6E4C /* FirebaseStorage in Frameworks */,
 				84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */,
+				84AE7E812B41F2FD00175EE4 /* RevenueCat in Frameworks */,
+				84CB7FB92B46B07D00E1CE79 /* StarRatingViewSwiftUI in Frameworks */,
+				8431D78E2B4E58B9006FE611 /* GoogleSignInSwift in Frameworks */,
 				84DCAD3D29F5F595007D6E4C /* FirebaseAuth in Frameworks */,
 				84DCAD3F29F5F59D007D6E4C /* FirebaseFirestoreSwift in Frameworks */,
+				84EAD9C12B5E3F70000B1E83 /* GoogleMobileAds in Frameworks */,
+				84AE7E832B41F2FD00175EE4 /* RevenueCatUI in Frameworks */,
 				36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84DE46352B56C6DE009123AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84866A162B5FB8E00096695E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,11 +296,65 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8407D2192B472A6C00CAE616 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8407D21E2B472AC700CAE616 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8407D2212B472ADA00CAE616 /* TagModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8407D2272B48308100CAE616 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				8407D2282B48309900CAE616 /* CirlceButtonModifier.swift */,
+				8407D23A2B49894200CAE616 /* ListRowModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		8407D22A2B488C0E00CAE616 /* EmptyCardView */ = {
+			isa = PBXGroup;
+			children = (
+				8407D22B2B488C1D00CAE616 /* EmptyCardView.swift */,
+			);
+			path = EmptyCardView;
+			sourceTree = "<group>";
+		};
+		8407D2372B496AA800CAE616 /* DismissButton */ = {
+			isa = PBXGroup;
+			children = (
+				8407D2382B496ABB00CAE616 /* dismissButton.swift */,
+			);
+			path = DismissButton;
+			sourceTree = "<group>";
+		};
+		8407D23C2B49A1BF00CAE616 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8407D23D2B49A30700CAE616 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		84227B612A2CA3FE001CAAD8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				84EAD9AD2B5B12D9000B1E83 /* CustomLoader */,
+				847352F22B49EE5900C39DA8 /* CustomAlert */,
+				8407D2272B48308100CAE616 /* Modifiers */,
+				84AE7E912B42EC7100175EE4 /* InfiniteScroller.swift */,
 				84227B622A2CA42B001CAAD8 /* Utilities.swift */,
 				84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */,
+				84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -146,7 +365,10 @@
 				84E2636D29F2189B00847C16 /* map.json */,
 				84E2636F29F219BE00847C16 /* options.json */,
 				84E2635529F20BB500847C16 /* thinking.json */,
+				84693EE82B4B0AE7001E0783 /* EmptyWishList.json */,
 				84348F3529CB33420017ED7E /* TastySwipe */,
+				84DE464C2B5706B3009123AD /* Shared */,
+				84DE46392B56C6DE009123AD /* TastyClip */,
 				84348F3429CB33420017ED7E /* Products */,
 				84DCAD3729F5F1BB007D6E4C /* Frameworks */,
 				22AB7441AD29D55839752A19 /* Pods */,
@@ -157,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				84348F3329CB33420017ED7E /* TastySwipe.app */,
+				84DE46382B56C6DE009123AD /* TastyClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,15 +387,19 @@
 		84348F3529CB33420017ED7E /* TastySwipe */ = {
 			isa = PBXGroup;
 			children = (
+				84866A222B6434510096695E /* TastySwipe.entitlements */,
+				84DE46522B585AB8009123AD /* Representables */,
 				8442D91B29D51544005FE419 /* Info.plist */,
 				84348F5129CB346C0017ED7E /* Models */,
 				84348F4E29CB34600017ED7E /* Managers */,
 				84348F4B29CB344C0017ED7E /* Extensions */,
 				84348F4429CB33E70017ED7E /* Core */,
 				84348F4829CB34100017ED7E /* ReusableItems */,
+				8407D23C2B49A1BF00CAE616 /* Resources */,
 				84348F4729CB33F90017ED7E /* App */,
 				84348F3A29CB33450017ED7E /* Assets.xcassets */,
 				84348F3C29CB33450017ED7E /* Preview Content */,
+				8407D22D2B488DE400CAE616 /* Config.swift */,
 			);
 			path = TastySwipe;
 			sourceTree = "<group>";
@@ -188,6 +415,10 @@
 		84348F4429CB33E70017ED7E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				84DE464F2B585947009123AD /* StartView */,
+				84CB7FB42B469E3900E1CE79 /* PlacesListView */,
+				84AE7E932B42EC7800175EE4 /* PayWall */,
+				847037B42B40AA89004C7A06 /* MainView */,
 				84E2637829F409F900847C16 /* SettingsView */,
 				84E2637229F3ED1400847C16 /* favorites */,
 				84E2635A29F20C3100847C16 /* Tutorial */,
@@ -205,6 +436,7 @@
 			children = (
 				84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */,
 				84348F3629CB33420017ED7E /* TastySwipeApp.swift */,
+				84866A202B63C9DB0096695E /* TastySwipeEntitlement.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -212,10 +444,16 @@
 		84348F4829CB34100017ED7E /* ReusableItems */ = {
 			isa = PBXGroup;
 			children = (
+				8407D2372B496AA800CAE616 /* DismissButton */,
+				8407D22A2B488C0E00CAE616 /* EmptyCardView */,
+				84CB7FBA2B46D04000E1CE79 /* ChipStackTag */,
+				84CB7FB12B45B7BA00E1CE79 /* FavoriteCardView */,
 				84348F4929CB341F0017ED7E /* CustomInputField.swift */,
 				84E2637629F3F30F00847C16 /* TopHeaderView.swift */,
 				84E2637B29F428F500847C16 /* seperatorView.swift */,
 				84E2637D29F42B3800847C16 /* SettingsRow.swift */,
+				847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */,
+				847352F02B49E85B00C39DA8 /* SettingsRowWithPicker.swift */,
 			);
 			path = ReusableItems;
 			sourceTree = "<group>";
@@ -223,7 +461,12 @@
 		84348F4B29CB344C0017ED7E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				84AE7E8E2B42EC6300175EE4 /* ColorExt.swift */,
+				84AE7E8D2B42EC6300175EE4 /* ImageExt.swift */,
 				84348F4C29CB345A0017ED7E /* Color.swift */,
+				84DE46322B569657009123AD /* ButtonFillExt.swift */,
+				84DE464D2B58556E009123AD /* ArrayExtension.swift */,
+				84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +475,10 @@
 			isa = PBXGroup;
 			children = (
 				84348F4F29CB34670017ED7E /* LocationManager.swift */,
+				8407D2252B47314600CAE616 /* LocationRequestManager.swift */,
+				8407D22F2B488E1F00CAE616 /* PurchasesManager.swift */,
+				847352EC2B49D4CD00C39DA8 /* ColorSchemeManager.swift */,
+				847352EE2B49E50600C39DA8 /* EmailManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -245,6 +492,7 @@
 				84E2635C29F20C5700847C16 /* OnBoardingItem.swift */,
 				84DCAD3529F5EE6C007D6E4C /* User.swift */,
 				84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */,
+				847352F72B4A9B8500C39DA8 /* PreferedPlaceModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +500,7 @@
 		84348F5629CB34830017ED7E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				84DE462B2B565CEA009123AD /* Models */,
 				84348F5829CB34980017ED7E /* Views */,
 				84348F5729CB34950017ED7E /* ViewModels */,
 			);
@@ -272,6 +521,7 @@
 			children = (
 				84348F5929CB34A20017ED7E /* LoginView.swift */,
 				84348F5A29CB34A20017ED7E /* RegistrationView.swift */,
+				84DE462E2B569525009123AD /* LoginButtons.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,7 +591,6 @@
 			isa = PBXGroup;
 			children = (
 				84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */,
-				84348F7529CB35250017ED7E /* HomeVIew.swift */,
 				84348F7629CB35250017ED7E /* MenuActionButton.swift */,
 			);
 			path = Views;
@@ -355,12 +604,193 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		847037B42B40AA89004C7A06 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				847037B52B40AA9A004C7A06 /* MainView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		847352F22B49EE5900C39DA8 /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				847352F32B49EE6400C39DA8 /* CustomAlertView.swift */,
+			);
+			path = CustomAlert;
+			sourceTree = "<group>";
+		};
+		84755DE52B519E320057CA5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */,
+				84755DE62B519E7A0057CA5F /* PremiumPlan.swift */,
+				84755DE72B519E7A0057CA5F /* YearlyPlanView.swift */,
+				84AE7E952B42EC8200175EE4 /* PaywallView.swift */,
+				84755DED2B51BD480057CA5F /* PlanView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84755DEF2B51BF100057CA5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84866A2D2B664AD50096695E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84866A2E2B664AEC0096695E /* VoteModel.swift */,
+				84866A302B6798970096695E /* VoteHistoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84AE7E932B42EC7800175EE4 /* PayWall */ = {
+			isa = PBXGroup;
+			children = (
+				84755DEF2B51BF100057CA5F /* Model */,
+				84755DE52B519E320057CA5F /* View */,
+				84AE7E9A2B4346E100175EE4 /* ViewModel */,
+				84AE7E962B42EC8200175EE4 /* FeatureCard.swift */,
+				84AE7E942B42EC8200175EE4 /* FeatureCardView.swift */,
+			);
+			path = PayWall;
+			sourceTree = "<group>";
+		};
+		84AE7E9A2B4346E100175EE4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		84CB7FA72B45555600E1CE79 /* WishList */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FB02B45B1DC00E1CE79 /* View */,
+				84CB7FAD2B4555A700E1CE79 /* Model */,
+				84CB7FAA2B45558500E1CE79 /* ViewModel */,
+			);
+			path = WishList;
+			sourceTree = "<group>";
+		};
+		84CB7FAA2B45558500E1CE79 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FAB2B45558E00E1CE79 /* WishListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		84CB7FAD2B4555A700E1CE79 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FAE2B4555AF00E1CE79 /* WishListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84CB7FB02B45B1DC00E1CE79 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FA82B45556300E1CE79 /* WishListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84CB7FB12B45B7BA00E1CE79 /* FavoriteCardView */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FB22B45B7CF00E1CE79 /* FavoriteCardView.swift */,
+			);
+			path = FavoriteCardView;
+			sourceTree = "<group>";
+		};
+		84CB7FB42B469E3900E1CE79 /* PlacesListView */ = {
+			isa = PBXGroup;
+			children = (
+				8407D21E2B472AC700CAE616 /* Model */,
+				8407D2192B472A6C00CAE616 /* ViewModel */,
+				84CB7FB52B469E5500E1CE79 /* PlacesListView.swift */,
+			);
+			path = PlacesListView;
+			sourceTree = "<group>";
+		};
+		84CB7FBA2B46D04000E1CE79 /* ChipStackTag */ = {
+			isa = PBXGroup;
+			children = (
+				84CB7FBB2B46D04E00E1CE79 /* ChipsStack.swift */,
+			);
+			path = ChipStackTag;
+			sourceTree = "<group>";
+		};
 		84DCAD3729F5F1BB007D6E4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84DE462B2B565CEA009123AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84DE462C2B565CF8009123AD /* Intro.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84DE46392B56C6DE009123AD /* TastyClip */ = {
+			isa = PBXGroup;
+			children = (
+				84866A2D2B664AD50096695E /* Model */,
+				84DE463A2B56C6DE009123AD /* TastyClipApp.swift */,
+				84DE463C2B56C6DE009123AD /* ContentView.swift */,
+				84866A172B5FBAC00096695E /* VotingView.swift */,
+				84DE463E2B56C6E0009123AD /* Assets.xcassets */,
+				84DE46432B56C6E0009123AD /* Info.plist */,
+				84866A282B650B300096695E /* GoogleService-Info.plist */,
+				84DE46442B56C6E0009123AD /* TastyClip.entitlements */,
+				84DE46402B56C6E0009123AD /* Preview Content */,
+				84866A192B5FBB290096695E /* VotingModel.swift */,
+			);
+			path = TastyClip;
+			sourceTree = "<group>";
+		};
+		84DE46402B56C6E0009123AD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				84DE46412B56C6E0009123AD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		84DE464C2B5706B3009123AD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		84DE464F2B585947009123AD /* StartView */ = {
+			isa = PBXGroup;
+			children = (
+				84EAD9B82B5BC056000B1E83 /* View */,
+				84DE46502B585978009123AD /* StartView.swift */,
+			);
+			path = StartView;
+			sourceTree = "<group>";
+		};
+		84DE46522B585AB8009123AD /* Representables */ = {
+			isa = PBXGroup;
+			children = (
+				84DE46532B585AD1009123AD /* NavigationConfigurator.swift */,
+			);
+			path = Representables;
 			sourceTree = "<group>";
 		};
 		84E2635A29F20C3100847C16 /* Tutorial */ = {
@@ -376,6 +806,7 @@
 		84E2637229F3ED1400847C16 /* favorites */ = {
 			isa = PBXGroup;
 			children = (
+				84CB7FA72B45555600E1CE79 /* WishList */,
 				84E2637329F3ED2400847C16 /* noAccountView */,
 			);
 			path = favorites;
@@ -397,6 +828,22 @@
 			path = SettingsView;
 			sourceTree = "<group>";
 		};
+		84EAD9AD2B5B12D9000B1E83 /* CustomLoader */ = {
+			isa = PBXGroup;
+			children = (
+				84EAD9B22B5B14BF000B1E83 /* loadingCircle.swift */,
+			);
+			path = CustomLoader;
+			sourceTree = "<group>";
+		};
+		84EAD9B82B5BC056000B1E83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -409,10 +856,12 @@
 				84348F3029CB33420017ED7E /* Frameworks */,
 				84348F3129CB33420017ED7E /* Resources */,
 				669788C1185B466943A05C72 /* [CP] Copy Pods Resources */,
+				84DE46482B56C6E0009123AD /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84DE46462B56C6E0009123AD /* PBXTargetDependency */,
 			);
 			name = TastySwipe;
 			packageProductDependencies = (
@@ -422,10 +871,38 @@
 				84DCAD4029F5F5B9007D6E4C /* FirebaseStorage */,
 				84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */,
 				84227B5D2A2CA0EA001CAAD8 /* GoogleSignInSwift */,
+				847037B22B409BC3004C7A06 /* CardStack */,
+				84AE7E802B41F2FD00175EE4 /* RevenueCat */,
+				84AE7E822B41F2FD00175EE4 /* RevenueCatUI */,
+				84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */,
+				8407D2352B4932F600CAE616 /* Shimmer */,
+				8431D78B2B4E58B9006FE611 /* GoogleSignIn */,
+				8431D78D2B4E58B9006FE611 /* GoogleSignInSwift */,
+				84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */,
 			);
 			productName = TastySwipe;
 			productReference = 84348F3329CB33420017ED7E /* TastySwipe.app */;
 			productType = "com.apple.product-type.application";
+		};
+		84DE46372B56C6DE009123AD /* TastyClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84DE464B2B56C6E0009123AD /* Build configuration list for PBXNativeTarget "TastyClip" */;
+			buildPhases = (
+				84DE46342B56C6DE009123AD /* Sources */,
+				84DE46352B56C6DE009123AD /* Frameworks */,
+				84DE46362B56C6DE009123AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TastyClip;
+			packageProductDependencies = (
+				84866A152B5FB8E00096695E /* FirebaseFirestore */,
+			);
+			productName = TastyClip;
+			productReference = 84DE46382B56C6DE009123AD /* TastyClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -434,11 +911,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					84348F3229CB33420017ED7E = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					84DE46372B56C6DE009123AD = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -449,18 +929,25 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 84348F2A29CB33420017ED7E;
 			packageReferences = (
 				84E2635729F20C2600847C16 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
+				84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				84CB7FB72B46B07C00E1CE79 /* XCRemoteSwiftPackageReference "StarRatingViewSwiftUI" */,
+				8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 84348F3429CB33420017ED7E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				84348F3229CB33420017ED7E /* TastySwipe */,
+				84DE46372B56C6DE009123AD /* TastyClip */,
 			);
 		};
 /* End PBXProject section */
@@ -475,7 +962,20 @@
 				84E2637029F219BE00847C16 /* options.json in Resources */,
 				84348F3E29CB33450017ED7E /* Preview Assets.xcassets in Resources */,
 				84348F3B29CB33450017ED7E /* Assets.xcassets in Resources */,
+				8407D23E2B49A30700CAE616 /* Localizable.xcstrings in Resources */,
 				84E2636E29F2189B00847C16 /* map.json in Resources */,
+				84866A212B63C9DB0096695E /* TastySwipeEntitlement.plist in Resources */,
+				84693EE92B4B0AE8001E0783 /* EmptyWishList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84DE46362B56C6DE009123AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84DE46422B56C6E0009123AD /* Preview Assets.xcassets in Resources */,
+				84DE463F2B56C6E0009123AD /* Assets.xcassets in Resources */,
+				84866A292B650B300096695E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,44 +1028,110 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847352ED2B49D4CD00C39DA8 /* ColorSchemeManager.swift in Sources */,
+				847352EF2B49E50600C39DA8 /* EmailManager.swift in Sources */,
 				84E2635D29F20C5700847C16 /* OnBoardingItem.swift in Sources */,
+				84755DE92B519E7B0057CA5F /* PremiumPlan.swift in Sources */,
+				8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */,
+				84CB7FAC2B45558E00E1CE79 /* WishListViewModel.swift in Sources */,
+				84AE7E902B42EC6300175EE4 /* ColorExt.swift in Sources */,
 				84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */,
 				84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */,
+				84DE462F2B569525009123AD /* LoginButtons.swift in Sources */,
+				84AE7E982B42EC8200175EE4 /* PaywallView.swift in Sources */,
 				84348F5529CB34740017ED7E /* ExploreLocation.swift in Sources */,
+				84755DEA2B519E7B0057CA5F /* YearlyPlanView.swift in Sources */,
 				84348F5B29CB34A20017ED7E /* LoginView.swift in Sources */,
+				84CB7FBC2B46D04E00E1CE79 /* ChipsStack.swift in Sources */,
 				84227B632A2CA42B001CAAD8 /* Utilities.swift in Sources */,
+				84755DEB2B519E7B0057CA5F /* MonthlyPlanView.swift in Sources */,
+				84EAD9BA2B5BC121000B1E83 /* LoadingCardView.swift in Sources */,
+				8407D2292B48309900CAE616 /* CirlceButtonModifier.swift in Sources */,
 				84348F6429CB34E00017ED7E /* CardMain.swift in Sources */,
 				84E2637729F3F30F00847C16 /* TopHeaderView.swift in Sources */,
+				84CB7FA92B45556400E1CE79 /* WishListView.swift in Sources */,
+				847352F12B49E85B00C39DA8 /* SettingsRowWithPicker.swift in Sources */,
+				8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */,
+				8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */,
+				847037B62B40AA9A004C7A06 /* MainView.swift in Sources */,
 				84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */,
 				84E2636329F20E0300847C16 /* OnBoardingScreen.swift in Sources */,
+				84DE46512B585978009123AD /* StartView.swift in Sources */,
+				84DE464E2B58556F009123AD /* ArrayExtension.swift in Sources */,
+				847352F42B49EE6400C39DA8 /* CustomAlertView.swift in Sources */,
 				84DCAD3629F5EE6C007D6E4C /* User.swift in Sources */,
 				84348F6A29CB35030017ED7E /* LocationSearchViewModel.swift in Sources */,
+				84755DEE2B51BD480057CA5F /* PlanView.swift in Sources */,
 				84348F5F29CB34CC0017ED7E /* PlacesModel.swift in Sources */,
+				84AE7E992B42EC8200175EE4 /* FeatureCard.swift in Sources */,
+				84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */,
 				84348F5029CB34670017ED7E /* LocationManager.swift in Sources */,
+				8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */,
 				84348F4A29CB341F0017ED7E /* CustomInputField.swift in Sources */,
+				84DE46332B569657009123AD /* ButtonFillExt.swift in Sources */,
+				84AE7E972B42EC8200175EE4 /* FeatureCardView.swift in Sources */,
+				84EAD9B32B5B14BF000B1E83 /* loadingCircle.swift in Sources */,
 				84E2637C29F428F500847C16 /* seperatorView.swift in Sources */,
+				847037B82B4145CE004C7A06 /* SettingsRowWithToggle.swift in Sources */,
 				84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */,
+				8407D22E2B488DE400CAE616 /* Config.swift in Sources */,
 				84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */,
 				84E2637529F3ED9800847C16 /* loggedOutView.swift in Sources */,
+				8407D22C2B488C1D00CAE616 /* EmptyCardView.swift in Sources */,
+				8407D2262B47314600CAE616 /* LocationRequestManager.swift in Sources */,
 				84348F3729CB33420017ED7E /* TastySwipeApp.swift in Sources */,
+				84CB7FB32B45B7CF00E1CE79 /* FavoriteCardView.swift in Sources */,
 				84E2636629F213CA00847C16 /* PageIndicator.swift in Sources */,
+				84EAD9BC2B5BC249000B1E83 /* ViewExtension.swift in Sources */,
+				84CB7FB62B469E5500E1CE79 /* PlacesListView.swift in Sources */,
 				84227B602A2CA373001CAAD8 /* GAuthenticationViewModel.swift in Sources */,
 				84E2637A29F40A2900847C16 /* SettingsView.swift in Sources */,
 				84E2637E29F42B3800847C16 /* SettingsRow.swift in Sources */,
 				84348F5429CB34740017ED7E /* MapViewState.swift in Sources */,
 				84348F6F29CB350C0017ED7E /* LocationSearchResultCell.swift in Sources */,
+				84EAD9BE2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift in Sources */,
 				84348F7029CB350C0017ED7E /* LocationSearchView.swift in Sources */,
 				84348F4D29CB345A0017ED7E /* Color.swift in Sources */,
 				84348F6529CB34E00017ED7E /* CardView.swift in Sources */,
+				847352F82B4A9B8500C39DA8 /* PreferedPlaceModel.swift in Sources */,
+				84DE462D2B565CF8009123AD /* Intro.swift in Sources */,
+				8407D2302B488E1F00CAE616 /* PurchasesManager.swift in Sources */,
 				84348F6E29CB350C0017ED7E /* LocationSearchActivationView.swift in Sources */,
+				84AE7E8F2B42EC6300175EE4 /* ImageExt.swift in Sources */,
 				84DCAD3429F5DF55007D6E4C /* AuthViewModel.swift in Sources */,
 				84E2636229F20E0300847C16 /* ResizableLottieView.swift in Sources */,
+				84AE7E922B42EC7100175EE4 /* InfiniteScroller.swift in Sources */,
+				84866A2B2B6512CA0096695E /* VotingModel.swift in Sources */,
+				84DE46542B585AD1009123AD /* NavigationConfigurator.swift in Sources */,
+				84CB7FAF2B4555AF00E1CE79 /* WishListModel.swift in Sources */,
 				84348F5C29CB34A20017ED7E /* RegistrationView.swift in Sources */,
-				84348F7829CB35250017ED7E /* HomeVIew.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84DE46342B56C6DE009123AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84866A1B2B618DE40096695E /* CirlceButtonModifier.swift in Sources */,
+				84866A1A2B5FBB290096695E /* VotingModel.swift in Sources */,
+				84866A312B6798970096695E /* VoteHistoryModel.swift in Sources */,
+				84866A2C2B657A9B0096695E /* dismissButton.swift in Sources */,
+				84866A182B5FBAC00096695E /* VotingView.swift in Sources */,
+				84DE463D2B56C6DE009123AD /* ContentView.swift in Sources */,
+				84866A2F2B664AEC0096695E /* VoteModel.swift in Sources */,
+				84DE463B2B56C6DE009123AD /* TastyClipApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84DE46462B56C6E0009123AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84DE46372B56C6DE009123AD /* TastyClip */;
+			targetProxy = 84DE46452B56C6E0009123AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		84348F3F29CB33450017ED7E /* Debug */ = {
@@ -686,10 +1252,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TastySwipe/TastySwipe.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
@@ -701,6 +1270,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -708,6 +1278,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -718,10 +1289,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TastySwipe/TastySwipe.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
@@ -733,12 +1307,91 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		84DE46492B56C6E0009123AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TastyClip/TastyClip.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4.3;
+				DEVELOPMENT_ASSET_PATHS = "\"TastyClip/Preview Content\"";
+				DEVELOPMENT_TEAM = 9PS527BMRT;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TastyClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TastySwipe;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84DE464A2B56C6E0009123AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TastyClip/TastyClip.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4.3;
+				DEVELOPMENT_ASSET_PATHS = "\"TastyClip/Preview Content\"";
+				DEVELOPMENT_TEAM = 9PS527BMRT;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TastyClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TastySwipe;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -767,15 +1420,56 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		84DE464B2B56C6E0009123AD /* Build configuration list for PBXNativeTarget "TastyClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84DE46492B56C6E0009123AD /* Debug */,
+				84DE464A2B56C6E0009123AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 		84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 7.0.0;
+			};
+		};
+		847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dadalar/SwiftUI-CardStackView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
+		84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.31.6;
+			};
+		};
+		84CB7FB72B46B07C00E1CE79 /* XCRemoteSwiftPackageReference "StarRatingViewSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/magickworx/StarRatingViewSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
 			};
 		};
 		84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -794,9 +1488,22 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.14.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8407D2352B4932F600CAE616 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
 		84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -806,6 +1513,41 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		8431D78B2B4E58B9006FE611 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		8431D78D2B4E58B9006FE611 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		847037B22B409BC3004C7A06 /* CardStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
+			productName = CardStack;
+		};
+		84866A152B5FB8E00096695E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		84AE7E802B41F2FD00175EE4 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		84AE7E822B41F2FD00175EE4 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
+		};
+		84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84CB7FB72B46B07C00E1CE79 /* XCRemoteSwiftPackageReference "StarRatingViewSwiftUI" */;
+			productName = StarRatingViewSwiftUI;
 		};
 		84DCAD3C29F5F595007D6E4C /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -826,6 +1568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84E2635729F20C2600847C16 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

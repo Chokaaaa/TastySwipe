@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import RevenueCat
+import RevenueCatUI
 
 struct TopHeaderView: View {
     
     var headingText : String
+    
+    @State private var isShowingPayWall = false
+    @State private var isSubscribed = false
     
     var body: some View {
         // MARK: Top Nav Bar
@@ -28,6 +33,32 @@ struct TopHeaderView: View {
             }
             
             Spacer(minLength: 0)
+
+            if !isSubscribed {
+                
+                Button(action: {
+                    isShowingPayWall = true
+                }, label: {
+                    Text("Buttons")
+                })
+                .fullScreenCover(isPresented: $isShowingPayWall) {
+                    PaywallView()
+                        .padding([.leading, .trailing], -100)
+//                        .paywallFooter(condensed: false)
+                }
+                
+            } else {
+                Button(action: {
+                    isShowingPayWall = false
+                }, label: {
+                    Text("Subscribed ✅")
+                })
+            }
+            
+            
+            
+            //            .padding()
+            
             
             Button(action: {
                 
@@ -40,14 +71,35 @@ struct TopHeaderView: View {
                     .opacity(0.6)
             })
             
-
-     
+            
+            
         }
-//        .padding(.top, -100)
+        //        .padding(.top, -100)
         .padding([.leading,.trailing], 10)
         .tint(Color.accentColor)
         .fontWeight(.bold)
+        
+        .onAppear {
+            checkSubscriptionStatus()
+            print("Is Subscribed \(isSubscribed)")
+        }
+        
+        
     }
+    
+    func checkSubscriptionStatus() {
+        Purchases.shared.getCustomerInfo { (purchaserInfo, error) in
+            if let purchaserInfo = purchaserInfo {
+                // Check if user is subscribed
+                isSubscribed = purchaserInfo.entitlements.all["your_entitlement_identifier"]?.isActive ?? false
+            }
+            if let error = error {
+                print("Error fetching subscription info: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    
 }
 
 struct TopHeaderView_Previews: PreviewProvider {

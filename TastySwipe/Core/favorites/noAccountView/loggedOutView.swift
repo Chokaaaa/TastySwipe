@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import RevenueCat
+import RevenueCatUI
 
 struct loggedOutView: View {
     @State private var showingLoginView = false
+    @State private var isShowingPayWall = false
     @EnvironmentObject var authViewModel : AuthViewModel
+    
+    @ObservedObject var purchasesManager = PurchasesManager()
+    
     var body: some View {
 //        HStack(spacing: 0){
+        
+        NavigationStack {
             VStack(spacing: 60){
-             
-                TopHeaderView(headingText: "Profile")
                     
                     // MARK: Movable Slides
                     VStack(spacing: 15){
@@ -37,7 +43,7 @@ struct loggedOutView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal,15)
                             .foregroundColor(.gray)
-                            .padding(.bottom, 10)
+//                            .padding(.bottom, 10)
                         
                     }
                     
@@ -67,12 +73,60 @@ struct loggedOutView: View {
 
                     }
                     .padding(.bottom, 50)
-                    .sheet(isPresented: $showingLoginView) {
+                    .fullScreenCover(isPresented: $showingLoginView) {
                         LoginView()
                     }
                 }
+            .padding(.top,50)
                 .padding(10)
-//            }
+                .navigationTitle("Favourite")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    
+                    ToolbarItem(placement: .topBarLeading) {
+                      
+                    }
+                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        
+                        HStack {
+                            if purchasesManager.isSubscriptionActive == false {
+                                Button {
+                                    isShowingPayWall = true
+                                } label: {
+                                    HStack(spacing: 0) {
+                                        Text("💎")
+                                            .foregroundStyle(Color.yellow)
+                                            .frame(width: 25, height: 0)
+                                        Text("PRO")
+                                            .fontWeight(.bold)
+                                    }
+                                    .padding(5)
+                                    .foregroundColor(.white)
+                                    .background(Color.accentColor)
+                                    .clipShape(
+                                        Capsule()
+                                    )
+                                }
+                                .fullScreenCover(isPresented: $isShowingPayWall) {
+                                    PaywallView()
+                                        .padding([.leading, .trailing], -100)
+//                                        .paywallFooter(condensed: false)
+                                }
+                            } else {
+                                
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "person.3")
+                                    .foregroundStyle(Color.accentColor)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

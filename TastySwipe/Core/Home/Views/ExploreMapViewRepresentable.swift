@@ -19,9 +19,16 @@ struct ExploreMapViewRepresentable : UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
-        
+        mapView.userTrackingMode = .none
+
         return mapView
+    }
+    
+    func addAnnotation(latitude: Double, longitude: Double) {
+        let tastyAnnoation = MKPointAnnotation()
+        tastyAnnoation.title = "MyLocation"
+        tastyAnnoation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        mapView.addAnnotation(tastyAnnoation)
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -65,31 +72,36 @@ extension ExploreMapViewRepresentable {
             super.init()
         }
         
+        func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+            if let userLocation = mapView.view(for: mapView.userLocation) {
+                    userLocation.isHidden = true
+               }
+        }
         
-        //MARK: - MKMapView Delegate
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+                annotationView.markerTintColor = UIColor.blue
+                return annotationView
+        }
+
+        
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
             self.userLocationCoordinate = userLocation.coordinate
+            
+            let adjustedCenter = CLLocationCoordinate2D(
+                latitude: userLocation.coordinate.latitude - 0.008, // Change this value to move the map up or down (When u decrease the map goes down if u increase the map goes up
+                longitude: userLocation.coordinate.longitude
+            )
+            
             let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                center: adjustedCenter,
+                span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
             )
             
             self.currentRegion = region
-            
-            //MARK: - Need to add a logic to zoom in the first time when the app is loaded and stop when its not
-            
-            
             parent.mapView.setRegion(region, animated: true)
-            
-            
         }
-        
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            let polyline = MKPolylineRenderer(overlay: overlay)
-            polyline.strokeColor = .systemBlue
-            polyline.lineWidth = 6
-            return polyline
-        }
+
         
         //MARK: - Helpers
         
@@ -99,8 +111,20 @@ extension ExploreMapViewRepresentable {
             
             let anno = MKPointAnnotation()
             anno.coordinate = coordinate
+            
+            let customAnnotation = Annotation("Marker", coordinate: anno.coordinate) {
+                   ZStack {
+                       Image(systemName: "applelogo")
+                           .font(.title)
+                   }
+               }
+                        
             parent.mapView.addAnnotation(anno)
             parent.mapView.selectAnnotation(anno, animated: true)
+            
+            // Use the customAnnotation if needed
+               _ = customAnnotation
+            
         }
         
         func configurePolyline(withDestinationCoordinate coordinate : CLLocationCoordinate2D) {

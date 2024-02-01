@@ -9,27 +9,34 @@ import Foundation
 
 struct GooglePlacesResponse : Codable {
     let results : [Place]
+    var next_page_token : String?
+    
     enum CodingKeys : String, CodingKey {
+        case next_page_token = "next_page_token"
         case results = "results"
     }
+    
 }
 
 struct Place : Codable {
-    
+    let place_id : String
     let geometry : Location
     let name : String
     let openingHours : OpenNow?
     var photos : [PhotoInfo]?
     let types : [String]
     let address : String
+    let rating : Double
     
     enum CodingKeys : String, CodingKey {
+        case place_id = "place_id"
         case geometry = "geometry"
         case name = "name"
         case openingHours = "opening_hours"
         case photos = "photos"
         case types = "types"
         case address = "vicinity"
+        case rating = "rating"
     }
     
     struct Location : Codable {
@@ -73,4 +80,17 @@ struct Place : Codable {
             case photoReference = "photo_reference"
         }
     }
+}
+
+
+extension Place : Hashable {
+    static func == (lhs: Place, rhs: Place) -> Bool {
+        return lhs.place_id == rhs.place_id
+    }
+    
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(place_id)
+    }
+    
 }

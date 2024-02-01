@@ -14,7 +14,7 @@ struct PlacesModel {
     var category : String
 }
 
-var Places = [ PlacesModel(title: "Starbucks", image: "Starbucks", category: "CoffeShop"),
+var Places = [ PlacesModel(title: "loading", image: "loading", category: "CoffeShop"),
              PlacesModel(title: "McDonalds", image: "McDonalds", category: "Food"),
              PlacesModel(title: "Nusr-Et", image: "NusrEt", category: "Restraunt"),
              PlacesModel(title: "PF.Changs", image: "PF.Changs", category: "Restraunt"),

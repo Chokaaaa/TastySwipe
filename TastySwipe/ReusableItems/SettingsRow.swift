@@ -8,34 +8,36 @@
 import SwiftUI
 
 struct SettingsRow: View {
-    var image: String
-    var text: String
+    let title: String
+    let imageName: String
+    let bgColor : Color
     var body: some View {
-        HStack(spacing: 12) {
-                Image(image)
-                .imageScale(.medium)
-                .font(.title)
+        HStack(spacing: 25) {
+            ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(bgColor)
+                        
+                        HStack(spacing: 15) {
+                            Image(systemName: imageName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Color.white)
+                            
+                          
+                        }
+                        .padding(5)
+                    }
+            .frame(width: 15, height: 10)
             
-            Text(text)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
-            
-            Spacer()
-            
-            Image(systemName: "chevron.right")
-                .imageScale(.small)
-                .font(.title2)
-                .foregroundColor(.gray)
-            
-            
+            Text(title)
+                .font(.body)
         }
-        .padding([.leading,.trailing], 20)
-        .padding([.bottom,.top],7.5)
     }
 }
 
 struct SettingsRow_Previews: PreviewProvider {
     static var previews: some View {
-//        SettingsRow(image: "settingsProfile", text: "Profile")
         SettingsView()
     }
 }
