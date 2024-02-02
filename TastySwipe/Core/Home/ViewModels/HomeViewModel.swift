@@ -19,6 +19,7 @@ class HomeViewModel : NSObject, ObservableObject {
     @Published var activeCard : CardView?
     var currentLocation : CLLocation?
     var token : String?
+    var fetchLocationCompletion: ((_ latitude: Double, _ longitude: Double) -> Void)?
     
     override init() {
         super.init()
@@ -126,8 +127,8 @@ class HomeViewModel : NSObject, ObservableObject {
         return Int(distance.magnitude)
     }
     
-    func fetchLocation() {
-        print("Fetching location")
+    func fetchLocation(fetchLocationCompletion: ((_ latitude: Double, _ longitude: Double) -> Void)?) {
+        self.fetchLocationCompletion = fetchLocationCompletion
         locationManager.requestLocation()
     }
     
@@ -141,8 +142,8 @@ extension HomeViewModel : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        fetchLocationCompletion?(location.coordinate.latitude, location.coordinate.longitude)
         fetchPlaces(location: location)
-        print("Found fetching location")
         locationManager.stopUpdatingLocation()
     }
 }

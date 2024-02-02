@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B02CF2B6D749200F832B0 /* ExploreMapView.swift */; };
 		8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */; };
 		8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2212B472ADA00CAE616 /* TagModel.swift */; };
 		8407D2262B47314600CAE616 /* LocationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2252B47314600CAE616 /* LocationRequestManager.swift */; };
@@ -147,6 +148,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		209B02CF2B6D749200F832B0 /* ExploreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMapView.swift; sourceTree = "<group>"; };
 		8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
 		8407D2212B472ADA00CAE616 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		8407D2252B47314600CAE616 /* LocationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestManager.swift; sourceTree = "<group>"; };
@@ -353,7 +355,6 @@
 				84E2635529F20BB500847C16 /* thinking.json */,
 				84693EE82B4B0AE7001E0783 /* EmptyWishList.json */,
 				84348F3529CB33420017ED7E /* TastySwipe */,
-				84DE464C2B5706B3009123AD /* Shared */,
 				84DE46392B56C6DE009123AD /* TastyClip */,
 				84348F3429CB33420017ED7E /* Products */,
 			);
@@ -745,13 +746,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		84DE464C2B5706B3009123AD /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		84DE464F2B585947009123AD /* StartView */ = {
 			isa = PBXGroup;
 			children = (
@@ -765,6 +759,7 @@
 			isa = PBXGroup;
 			children = (
 				84DE46532B585AD1009123AD /* NavigationConfigurator.swift */,
+				209B02CF2B6D749200F832B0 /* ExploreMapView.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -1005,6 +1000,7 @@
 				84EAD9B32B5B14BF000B1E83 /* loadingCircle.swift in Sources */,
 				84E2637C29F428F500847C16 /* seperatorView.swift in Sources */,
 				847037B82B4145CE004C7A06 /* SettingsRowWithToggle.swift in Sources */,
+				209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */,
 				84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */,
 				8407D22E2B488DE400CAE616 /* Config.swift in Sources */,
 				84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */,
@@ -1191,7 +1187,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PS527BMRT;
+				DEVELOPMENT_TEAM = W85GJYFB35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;
@@ -1228,7 +1224,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.3;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PS527BMRT;
+				DEVELOPMENT_TEAM = W85GJYFB35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;

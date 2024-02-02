@@ -14,7 +14,7 @@ import SwiftData
 import GoogleMobileAds
 
 struct StartView: View {
-    
+    let mapView = ExploreMapView()
     @State private var showingLoginView = false
     @State private var mapState = MapViewState.noInput
     @State private var isShowingPayWall = false
@@ -44,7 +44,7 @@ struct StartView: View {
                     
                     
                     //MARK: - MapView
-                    ExploreMapViewRepresentable(mapState: $mapState)
+                    ExploreMapViewRepresentable(mapView: mapView)
                         .ignoresSafeArea()
                     
                 }
@@ -224,7 +224,9 @@ struct StartView: View {
                 let locationName = preferedPlaces.map { $0.place.apiName }.joined(separator: " OR ")
                 viewModel.locationName = locationName
             }
-            viewModel.fetchLocation()
+            viewModel.fetchLocation { latitude, longitude in
+                self.mapView.addAnnotation(latitude: latitude, longitude: longitude)
+            }
             
         })
         

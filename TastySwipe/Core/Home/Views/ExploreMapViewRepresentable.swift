@@ -10,45 +10,19 @@ import MapKit
 
 struct ExploreMapViewRepresentable : UIViewRepresentable {
     
-    let mapView = MKMapView()
-//    let locationManager = LocationManager.shared
-    @Binding var mapState : MapViewState
-    @EnvironmentObject var locationViewModel : LocationSearchViewModel
+    let mapView: ExploreMapView
     
     func makeUIView(context: Context) -> some UIView {
-        mapView.delegate = context.coordinator
-        mapView.isRotateEnabled = false
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .none
+        mapView.mapView.delegate = context.coordinator
+        mapView.mapView.isRotateEnabled = false
+        mapView.mapView.showsUserLocation = true
+        mapView.mapView.userTrackingMode = .none
 
-        return mapView
-    }
-    
-    func addAnnotation(latitude: Double, longitude: Double) {
-        let tastyAnnoation = MKPointAnnotation()
-        tastyAnnoation.title = "MyLocation"
-        tastyAnnoation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        mapView.addAnnotation(tastyAnnoation)
+        return mapView.mapView
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        switch mapState {
-        case .noInput:
-            context.coordinator.clearMapViewAndRecenterOnUserLocation()
-            break
-        case .searchingForLocation:
-            break
-        case .locationSelected:
-            if let coordinate = locationViewModel.selectedExploreLocation?.coordinate {
-                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
-                context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
-            }
-            break
-        case .showMenu:
-            break
-        case .polylineAdded:
-            break
-        }
+        
     }
     
     func makeCoordinator() -> MapCoordinator {
@@ -99,51 +73,7 @@ extension ExploreMapViewRepresentable {
             )
             
             self.currentRegion = region
-            parent.mapView.setRegion(region, animated: true)
-        }
-
-        
-        //MARK: - Helpers
-        
-        func addAndSelectAnnotation(withCoordinate coordinate : CLLocationCoordinate2D) {
-            //MARK: - Need to apply remove annotations logic when the map changed to .no input and new lcoation is selected
-            parent.mapView.removeAnnotations(parent.mapView.annotations)
-            
-            let anno = MKPointAnnotation()
-            anno.coordinate = coordinate
-            
-            let customAnnotation = Annotation("Marker", coordinate: anno.coordinate) {
-                   ZStack {
-                       Image(systemName: "applelogo")
-                           .font(.title)
-                   }
-               }
-                        
-            parent.mapView.addAnnotation(anno)
-            parent.mapView.selectAnnotation(anno, animated: true)
-            
-            // Use the customAnnotation if needed
-               _ = customAnnotation
-            
-        }
-        
-        func configurePolyline(withDestinationCoordinate coordinate : CLLocationCoordinate2D) {
-            guard let userLocationCoordinate = self.userLocationCoordinate else {return}
-            parent.locationViewModel.getDestinationRoute(from: userLocationCoordinate, to: coordinate) { route in
-                self.parent.mapView.addOverlay(route.polyline)
-                self.parent.mapState = .polylineAdded
-                let rect = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 64, left: 32, bottom: 150, right: 32))
-                self.parent.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-            }
-        }
-        
-        
-        func clearMapViewAndRecenterOnUserLocation() {
-            parent.mapView.removeAnnotations(parent.mapView.annotations)
-            parent.mapView.removeOverlays(parent.mapView.overlays)
-            if let currentRegion = currentRegion {
-                parent.mapView.setRegion(currentRegion, animated: true)
-            }
+            parent.mapView.mapView.setRegion(region, animated: true)
         }
         
     }
