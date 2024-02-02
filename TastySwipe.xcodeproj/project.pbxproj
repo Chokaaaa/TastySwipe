@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */; };
 		8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */; };
 		8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2212B472ADA00CAE616 /* TagModel.swift */; };
 		8407D2262B47314600CAE616 /* LocationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2252B47314600CAE616 /* LocationRequestManager.swift */; };
@@ -148,7 +147,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.release.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.release.xcconfig"; sourceTree = "<group>"; };
 		8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
 		8407D2212B472ADA00CAE616 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		8407D2252B47314600CAE616 /* LocationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestManager.swift; sourceTree = "<group>"; };
@@ -249,8 +247,6 @@
 		84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCardView.swift; sourceTree = "<group>"; };
 		84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectProgressViewStyle.swift; sourceTree = "<group>"; };
-		BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastySwipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastySwipe.debug.xcconfig"; path = "Target Support Files/Pods-TastySwipe/Pods-TastySwipe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +268,6 @@
 				84DCAD3F29F5F59D007D6E4C /* FirebaseFirestoreSwift in Frameworks */,
 				84EAD9C12B5E3F70000B1E83 /* GoogleMobileAds in Frameworks */,
 				84AE7E832B41F2FD00175EE4 /* RevenueCatUI in Frameworks */,
-				36C1C948ECA1CBCC6EEDD75F /* Pods_TastySwipe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,15 +282,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		22AB7441AD29D55839752A19 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */,
-				6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		8407D2192B472A6C00CAE616 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,8 +356,6 @@
 				84DE464C2B5706B3009123AD /* Shared */,
 				84DE46392B56C6DE009123AD /* TastyClip */,
 				84348F3429CB33420017ED7E /* Products */,
-				84DCAD3729F5F1BB007D6E4C /* Frameworks */,
-				22AB7441AD29D55839752A19 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -728,14 +712,6 @@
 			path = ChipStackTag;
 			sourceTree = "<group>";
 		};
-		84DCAD3729F5F1BB007D6E4C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BA3E9A7D1875835A8C1FFC7C /* Pods_TastySwipe.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		84DE462B2B565CEA009123AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,11 +827,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84348F4129CB33450017ED7E /* Build configuration list for PBXNativeTarget "TastySwipe" */;
 			buildPhases = (
-				27D5338EBE891F5CBCAD2488 /* [CP] Check Pods Manifest.lock */,
 				84348F2F29CB33420017ED7E /* Sources */,
 				84348F3029CB33420017ED7E /* Frameworks */,
 				84348F3129CB33420017ED7E /* Resources */,
-				669788C1185B466943A05C72 /* [CP] Copy Pods Resources */,
 				84DE46482B56C6E0009123AD /* Embed App Clips */,
 			);
 			buildRules = (
@@ -980,48 +954,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		27D5338EBE891F5CBCAD2488 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TastySwipe-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		669788C1185B466943A05C72 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TastySwipe/Pods-TastySwipe-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84348F2F29CB33420017ED7E /* Sources */ = {
@@ -1250,7 +1182,6 @@
 		};
 		84348F4229CB33450017ED7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4FB96CFC83294484AF8BB60 /* Pods-TastySwipe.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1276,6 +1207,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1287,7 +1219,6 @@
 		};
 		84348F4329CB33450017ED7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A7C587847F0BC4A47F371D7 /* Pods-TastySwipe.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1313,6 +1244,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

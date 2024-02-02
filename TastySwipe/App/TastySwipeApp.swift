@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Firebase
-import GooglePlaces
+import FirebaseAuth
 import RevenueCat
 import SwiftData
 import GoogleMobileAds
@@ -22,7 +22,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //      GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
 //          [ "2077ef9a63d2b398840261c8221a0c9b" ] // Sample device ID
       
-      GMSPlacesClient.provideAPIKey("AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4")
       
     return true
   }

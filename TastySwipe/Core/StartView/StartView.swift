@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import GooglePlaces
 import CardStack
 import Firebase
 import FirebaseAuth
@@ -21,10 +20,7 @@ struct StartView: View {
     @State private var isShowingPayWall = false
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     @EnvironmentObject var authViewModel : AuthViewModel
-    private var placesClient: GMSPlacesClient = GMSPlacesClient.shared()
     @EnvironmentObject var viewModel : HomeViewModel
-    @State var fetcher: GMSAutocompleteFetcher?
-    private var searchPredictions = [GMSAutocompletePrediction]()
     @Query var preferedPlaces : [PreferedPlaceModel]
     @EnvironmentObject var purchasesManager : PurchasesManager
     @State private var timer = Timer.publish(every: 8, on: .main, in: .common)

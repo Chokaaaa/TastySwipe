@@ -6,9 +6,6 @@
 //
 
 import Foundation
-
-//MARK: - Revenue cat Manager
-
 import Foundation
 import RevenueCat
 import SwiftUI
@@ -18,6 +15,7 @@ class PurchasesManager: ObservableObject {
     
     @Published var packages: [Package] = [Package]()
     @Published var isSubscriptionActive = false
+    
     var products : [PremiumPackage] {
         return packages.map { PremiumPackage(package: $0) }
     }
