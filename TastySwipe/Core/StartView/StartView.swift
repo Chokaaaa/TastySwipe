@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SwiftData
 import GoogleMobileAds
+import MapKit
 
 struct StartView: View {
     let mapView = ExploreMapView()
@@ -28,6 +29,8 @@ struct StartView: View {
     @State var rotateentire  = false
     @State private var leftSwipeCount = 0
     @State private var rightSwipeCount = 0
+    @State private var location: CLLocationCoordinate2D?
+    @State private var position: MapCameraPosition = .automatic
     private let swipeThreshold = 10
     
     
@@ -40,24 +43,27 @@ struct StartView: View {
                 MenuActionButton(mapState: $mapState)
                 
                 ZStack(alignment: .top) {
+                    Map(position: $position)
                     
-                    
-                    
+//                    if let location = location {
+//                        Map(initialPosition: <#T##MapCameraPosition#>)
+//                    }
                     //MARK: - MapView
-                    ExploreMapViewRepresentable(mapView: mapView)
-                        .ignoresSafeArea()
+                    
+//                    ExploreMapViewRepresentable(mapView: mapView)
+//                        .ignoresSafeArea()
                     
                 }
                 
                 VStack {
                     Spacer()
                    
-                    
+                    //removed loading
                     if viewModel.cardViews.count == 0 {
-                        CardView(title: "Hello", location: "Loading location", image:"https://unsplash.com/photos/white-and-black-printer-paper-WyxqQpyFNk8", category: "Food", distance: 0, rating: 0.0, id: "0", latitude: 0, longitude: 0)
-                            .scaledToFit()
-                            .frame(width: 350, alignment: .center)
-                            .padding(.bottom, 50)
+//                        CardView(title: "Hello", location: "Loading location", image:"https://unsplash.com/photos/white-and-black-printer-paper-WyxqQpyFNk8", category: "Food", distance: 0, rating: 0.0, id: "0", latitude: 0, longitude: 0)
+//                            .scaledToFit()
+//                            .frame(width: 350, alignment: .center)
+//                            .padding(.bottom, 50)
                     } else {
                         CardStack(
                             direction: LeftRight.direction,
@@ -113,18 +119,19 @@ struct StartView: View {
                     loadInterstitialAds()
                 }
                 
+                //removed loading
                 if viewModel.cardViews.count == 0 {
-                    Color.clear.ignoresSafeArea().background(
-                        
-                        .ultraThinMaterial
-                    
-                    )
-                    VStack(alignment: .center, spacing: 15) {
-    
-                        Text("Loading...")
-                        
-                       ProgressView()
-                    }
+//                    Color.clear.ignoresSafeArea().background(
+//                        
+//                        .ultraThinMaterial
+//                    
+//                    )
+//                    VStack(alignment: .center, spacing: 15) {
+//    
+//                        Text("Loading...")
+//                        
+//                       ProgressView()
+//                    }
                 }
                 
             }
@@ -225,7 +232,9 @@ struct StartView: View {
                 viewModel.locationName = locationName
             }
             viewModel.fetchLocation { latitude, longitude in
-                self.mapView.addAnnotation(latitude: latitude, longitude: longitude)
+                //self.mapView.addAnnotation(latitude: latitude, longitude: longitude)
+                
+                position = .item(MKMapItem(placemark: .init(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))))
             }
             
         })
