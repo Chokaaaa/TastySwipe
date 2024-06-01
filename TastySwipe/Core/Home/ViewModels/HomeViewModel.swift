@@ -7,6 +7,14 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
+
+enum FetchLocationError: Error {
+    case permissionDenied
+}
 
 class HomeViewModel : NSObject, ObservableObject {
     
@@ -17,26 +25,36 @@ class HomeViewModel : NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     @Published var cardViews : [CardView] = []
     @Published var activeCard : CardView?
+    @Published var isFetching = false
+    @Published var showNoLocationView = false
+    var didFetchLocations = false
     var currentLocation : CLLocation?
     var token : String?
-    var fetchLocationCompletion: ((_ latitude: Double, _ longitude: Double) -> Void)?
+    typealias FetchLocation = (Result<(latitude: Double, longitude: Double), FetchLocationError>) -> Void
+    var fetchLocationCompletion: FetchLocation?
+    @AppStorage("filterByRating") var filterByRating = 3
     
     override init() {
         super.init()
         locationManager.delegate = self
     }
     
-    //MARK: - Chanig the category api call
-    func fetchPlaces(locationName: String) {
+    //MARK: - Changing the category api call
+    func fetchPlaces(locationName: String, filterByRating : Int) {
         guard let location = currentLocation else { return }
         print("Calling fetch places 1")
         self.locationName = locationName
         print("Location name \(locationName)")
         cardViews.removeAll()
+        self.filterByRating = filterByRating
+        isFetching = true
         googleClient.getGooglePlacesData(forKeyword: locationName, location: location, withinMeters: searchRadius, token: nil) { response in
 //            self.currentLocation = location
             self.token = response.next_page_token
-            guard response.results.count > 0 else { return }
+            guard response.results.count > 0 else {
+                self.isFetching = false
+                return
+            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.fetchNextPlaces(location: location, results: response.results)
@@ -46,7 +64,7 @@ class HomeViewModel : NSObject, ObservableObject {
     
     //MARK: - First Time Load
     func fetchPlaces(location: CLLocation) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        isFetching = true
             self.googleClient.getGooglePlacesData(forKeyword: self.locationName, location: location, withinMeters: self.searchRadius, token: nil) { response in
                 
                 print("Calling fetch places 2")
@@ -57,7 +75,6 @@ class HomeViewModel : NSObject, ObservableObject {
                     self.fetchNextPlaces(location: location, results: response.results)
                 }
             }
-        }
     }
     
     
@@ -83,6 +100,7 @@ class HomeViewModel : NSObject, ObservableObject {
     
     
     func sortAndDisplayResults(results: [Place], location: CLLocation) {
+        isFetching = false
         let orderedResults = results.sorted { place1, place2 in
             let endLocation1 = CLLocation(latitude: place1.geometry.location.latitude, longitude: place1.geometry.location.longitude)
             let distance1 = self.getDistance(startLocation: location, endLocation: endLocation1)
@@ -94,13 +112,16 @@ class HomeViewModel : NSObject, ObservableObject {
             
         }
         
-        let filteredResults = orderedResults.unique()
         self.cardViews.removeAll()
         for item in orderedResults {
             
             //                if item.rating < 4  {
             //                    continue
             //                }
+           
+            guard item.rating >= Double(filterByRating) else {
+                continue
+            }
             
             if let photos = item.photos,
                let firstPhoto = photos.first {
@@ -127,9 +148,26 @@ class HomeViewModel : NSObject, ObservableObject {
         return Int(distance.magnitude)
     }
     
-    func fetchLocation(fetchLocationCompletion: ((_ latitude: Double, _ longitude: Double) -> Void)?) {
+    func fetchLocation(fetchLocationCompletion: @escaping FetchLocation) {
         self.fetchLocationCompletion = fetchLocationCompletion
         locationManager.requestLocation()
+        
+        switch locationManager.authorizationStatus {
+            
+        case .notDetermined :
+            locationManager.requestWhenInUseAuthorization()
+            
+        case .restricted, .denied:
+            fetchLocationCompletion(.failure(.permissionDenied))
+            
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+            
+        @unknown default:
+            print("error getting location")
+        }
+        
+        
     }
     
 }
@@ -141,10 +179,22 @@ extension HomeViewModel : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard !didFetchLocations else { return }
         guard let location = locations.first else { return }
-        fetchLocationCompletion?(location.coordinate.latitude, location.coordinate.longitude)
+        print("# updateLocations")
+        didFetchLocations = true
+        fetchLocationCompletion?(.success((location.coordinate.latitude, location.coordinate.longitude)))
         fetchPlaces(location: location)
         locationManager.stopUpdatingLocation()
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        } else {
+            showNoLocationView = true
+        }
+    }
+    
 }
 

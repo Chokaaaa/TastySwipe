@@ -15,6 +15,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2127236424500505~1877500901</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -22,8 +24,6 @@
 		<string>comgooglemaps</string>
 		<string>comgooglemaps-x-callback</string>
 	</array>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-2127236424500505~1877500901</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

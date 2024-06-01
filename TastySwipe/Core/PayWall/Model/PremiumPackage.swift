@@ -13,7 +13,7 @@ struct PremiumPackage : Identifiable {
     
     let id : String
     let name : String
-    
+
     let price : String
     
     init(package : Package) {
@@ -21,7 +21,7 @@ struct PremiumPackage : Identifiable {
         print("Premium Package Id \(package.identifier)")
         if package.identifier == "$rc_monthly" {
             //MARK: - Name of the monthly package
-            name = "Monthly"
+            name = "7-Day free trial"
         } else if package.identifier == "$rc_annual" {
             //MARK: - Name of the yearly package
             name = "Yearly"

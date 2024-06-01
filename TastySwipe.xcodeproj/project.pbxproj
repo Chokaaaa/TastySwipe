@@ -19,6 +19,8 @@
 		8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2382B496ABB00CAE616 /* dismissButton.swift */; };
 		8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D23A2B49894200CAE616 /* ListRowModifier.swift */; };
 		8407D23E2B49A30700CAE616 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8407D23D2B49A30700CAE616 /* Localizable.xcstrings */; };
+		84121E552B74103200D4A5AC /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84121E542B74103200D4A5AC /* SessionManager.swift */; };
+		84121E572B7774BB00D4A5AC /* CardsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84121E562B7774BA00D4A5AC /* CardsManager.swift */; };
 		84227B5C2A2CA0EA001CAAD8 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */; };
 		84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84227B5D2A2CA0EA001CAAD8 /* GoogleSignInSwift */; };
 		84227B602A2CA373001CAAD8 /* GAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */; };
@@ -44,6 +46,8 @@
 		84348F7029CB350C0017ED7E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F6D29CB350C0017ED7E /* LocationSearchView.swift */; };
 		84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */; };
 		84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7629CB35250017ED7E /* MenuActionButton.swift */; };
+		846558242BF38F0100E422F4 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558232BF38F0100E422F4 /* MainTabbedView.swift */; };
+		846558272BFBD0B000E422F4 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558262BFBD0B000E422F4 /* BlurView.swift */; };
 		84693EE92B4B0AE8001E0783 /* EmptyWishList.json in Resources */ = {isa = PBXBuildFile; fileRef = 84693EE82B4B0AE7001E0783 /* EmptyWishList.json */; };
 		847037B32B409BC3004C7A06 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = 847037B22B409BC3004C7A06 /* CardStack */; };
 		847037B62B40AA9A004C7A06 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847037B52B40AA9A004C7A06 /* MainView.swift */; };
@@ -58,6 +62,12 @@
 		84755DEB2B519E7B0057CA5F /* MonthlyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */; };
 		84755DEE2B51BD480057CA5F /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DED2B51BD480057CA5F /* PlanView.swift */; };
 		84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */; };
+		847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B022B7E633600B0C30E /* SelectKeeper.swift */; };
+		847C6B052B7E9AB800B0C30E /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B042B7E9AB800B0C30E /* HapticsManager.swift */; };
+		847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */; };
+		847C6B0B2B7F97AE00B0C30E /* NoLocationSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B0A2B7F97AE00B0C30E /* NoLocationSharedView.swift */; };
+		847C6B0E2B80DE3F00B0C30E /* LastCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B0D2B80DE3F00B0C30E /* LastCardView.swift */; };
+		847C6B102B82093B00B0C30E /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B0F2B82093B00B0C30E /* SFSafariViewWrapper.swift */; };
 		84866A162B5FB8E00096695E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 84866A152B5FB8E00096695E /* FirebaseFirestore */; };
 		84866A182B5FBAC00096695E /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A172B5FBAC00096695E /* VotingView.swift */; };
 		84866A1A2B5FBB290096695E /* VotingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A192B5FBB290096695E /* VotingModel.swift */; };
@@ -76,6 +86,7 @@
 		84AE7E972B42EC8200175EE4 /* FeatureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E942B42EC8200175EE4 /* FeatureCardView.swift */; };
 		84AE7E982B42EC8200175EE4 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E952B42EC8200175EE4 /* PaywallView.swift */; };
 		84AE7E992B42EC8200175EE4 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E962B42EC8200175EE4 /* FeatureCard.swift */; };
+		84B6516F2B70181800AD652C /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6516E2B70181700AD652C /* PulseAnimation.swift */; };
 		84CB7FA92B45556400E1CE79 /* WishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FA82B45556300E1CE79 /* WishListView.swift */; };
 		84CB7FAC2B45558E00E1CE79 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FAB2B45558E00E1CE79 /* WishListViewModel.swift */; };
 		84CB7FAF2B4555AF00E1CE79 /* WishListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB7FAE2B4555AF00E1CE79 /* WishListModel.swift */; };
@@ -159,6 +170,8 @@
 		8407D2382B496ABB00CAE616 /* dismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dismissButton.swift; sourceTree = "<group>"; };
 		8407D23A2B49894200CAE616 /* ListRowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowModifier.swift; sourceTree = "<group>"; };
 		8407D23D2B49A30700CAE616 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		84121E542B74103200D4A5AC /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		84121E562B7774BA00D4A5AC /* CardsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsManager.swift; sourceTree = "<group>"; };
 		84227B5F2A2CA373001CAAD8 /* GAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		84227B622A2CA42B001CAAD8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		84348F3329CB33420017ED7E /* TastySwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastySwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +195,8 @@
 		84348F7429CB35250017ED7E /* ExploreMapViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMapViewRepresentable.swift; sourceTree = "<group>"; };
 		84348F7629CB35250017ED7E /* MenuActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuActionButton.swift; sourceTree = "<group>"; };
 		8442D91B29D51544005FE419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		846558232BF38F0100E422F4 /* MainTabbedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
+		846558262BFBD0B000E422F4 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		84693EE82B4B0AE7001E0783 /* EmptyWishList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyWishList.json; sourceTree = "<group>"; };
 		847037B52B40AA9A004C7A06 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowWithToggle.swift; sourceTree = "<group>"; };
@@ -195,6 +210,12 @@
 		84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyPlanView.swift; sourceTree = "<group>"; };
 		84755DED2B51BD480057CA5F /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPackage.swift; sourceTree = "<group>"; };
+		847C6B022B7E633600B0C30E /* SelectKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectKeeper.swift; sourceTree = "<group>"; };
+		847C6B042B7E9AB800B0C30E /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		847C6B0A2B7F97AE00B0C30E /* NoLocationSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLocationSharedView.swift; sourceTree = "<group>"; };
+		847C6B0D2B80DE3F00B0C30E /* LastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCardView.swift; sourceTree = "<group>"; };
+		847C6B0F2B82093B00B0C30E /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
 		84866A172B5FBAC00096695E /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
 		84866A192B5FBB290096695E /* VotingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingModel.swift; sourceTree = "<group>"; };
 		84866A202B63C9DB0096695E /* TastySwipeEntitlement.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TastySwipeEntitlement.plist; sourceTree = "<group>"; };
@@ -208,6 +229,7 @@
 		84AE7E942B42EC8200175EE4 /* FeatureCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCardView.swift; sourceTree = "<group>"; };
 		84AE7E952B42EC8200175EE4 /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		84AE7E962B42EC8200175EE4 /* FeatureCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
+		84B6516E2B70181700AD652C /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		84CB7FA82B45556300E1CE79 /* WishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListView.swift; sourceTree = "<group>"; };
 		84CB7FAB2B45558E00E1CE79 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
 		84CB7FAE2B4555AF00E1CE79 /* WishListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListModel.swift; sourceTree = "<group>"; };
@@ -343,6 +365,8 @@
 				84227B622A2CA42B001CAAD8 /* Utilities.swift */,
 				84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */,
 				84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */,
+				847C6B022B7E633600B0C30E /* SelectKeeper.swift */,
+				847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -385,6 +409,7 @@
 				84348F3A29CB33450017ED7E /* Assets.xcassets */,
 				84348F3C29CB33450017ED7E /* Preview Content */,
 				8407D22D2B488DE400CAE616 /* Config.swift */,
+				84B6516E2B70181700AD652C /* PulseAnimation.swift */,
 			);
 			path = TastySwipe;
 			sourceTree = "<group>";
@@ -429,6 +454,8 @@
 		84348F4829CB34100017ED7E /* ReusableItems */ = {
 			isa = PBXGroup;
 			children = (
+				846558232BF38F0100E422F4 /* MainTabbedView.swift */,
+				847C6B0C2B80DE3200B0C30E /* LastCardView */,
 				8407D2372B496AA800CAE616 /* DismissButton */,
 				8407D22A2B488C0E00CAE616 /* EmptyCardView */,
 				84CB7FBA2B46D04000E1CE79 /* ChipStackTag */,
@@ -439,6 +466,7 @@
 				84E2637D29F42B3800847C16 /* SettingsRow.swift */,
 				847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */,
 				847352F02B49E85B00C39DA8 /* SettingsRowWithPicker.swift */,
+				846558262BFBD0B000E422F4 /* BlurView.swift */,
 			);
 			path = ReusableItems;
 			sourceTree = "<group>";
@@ -452,6 +480,7 @@
 				84DE46322B569657009123AD /* ButtonFillExt.swift */,
 				84DE464D2B58556E009123AD /* ArrayExtension.swift */,
 				84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */,
+				847C6B0F2B82093B00B0C30E /* SFSafariViewWrapper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -464,6 +493,9 @@
 				8407D22F2B488E1F00CAE616 /* PurchasesManager.swift */,
 				847352EC2B49D4CD00C39DA8 /* ColorSchemeManager.swift */,
 				847352EE2B49E50600C39DA8 /* EmailManager.swift */,
+				84121E542B74103200D4A5AC /* SessionManager.swift */,
+				84121E562B7774BA00D4A5AC /* CardsManager.swift */,
+				847C6B042B7E9AB800B0C30E /* HapticsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -623,6 +655,14 @@
 				84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		847C6B0C2B80DE3200B0C30E /* LastCardView */ = {
+			isa = PBXGroup;
+			children = (
+				847C6B0D2B80DE3F00B0C30E /* LastCardView.swift */,
+			);
+			path = LastCardView;
 			sourceTree = "<group>";
 		};
 		84866A2D2B664AD50096695E /* Model */ = {
@@ -811,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */,
+				847C6B0A2B7F97AE00B0C30E /* NoLocationSharedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -961,6 +1002,7 @@
 				84755DE92B519E7B0057CA5F /* PremiumPlan.swift in Sources */,
 				8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */,
 				84CB7FAC2B45558E00E1CE79 /* WishListViewModel.swift in Sources */,
+				847C6B0E2B80DE3F00B0C30E /* LastCardView.swift in Sources */,
 				84AE7E902B42EC6300175EE4 /* ColorExt.swift in Sources */,
 				84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */,
 				84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */,
@@ -976,10 +1018,13 @@
 				8407D2292B48309900CAE616 /* CirlceButtonModifier.swift in Sources */,
 				84348F6429CB34E00017ED7E /* CardMain.swift in Sources */,
 				84E2637729F3F30F00847C16 /* TopHeaderView.swift in Sources */,
+				84121E572B7774BB00D4A5AC /* CardsManager.swift in Sources */,
 				84CB7FA92B45556400E1CE79 /* WishListView.swift in Sources */,
 				847352F12B49E85B00C39DA8 /* SettingsRowWithPicker.swift in Sources */,
+				847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */,
 				8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */,
 				8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */,
+				846558272BFBD0B000E422F4 /* BlurView.swift in Sources */,
 				847037B62B40AA9A004C7A06 /* MainView.swift in Sources */,
 				84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */,
 				84E2636329F20E0300847C16 /* OnBoardingScreen.swift in Sources */,
@@ -1002,6 +1047,7 @@
 				847037B82B4145CE004C7A06 /* SettingsRowWithToggle.swift in Sources */,
 				209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */,
 				84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */,
+				84B6516F2B70181800AD652C /* PulseAnimation.swift in Sources */,
 				8407D22E2B488DE400CAE616 /* Config.swift in Sources */,
 				84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */,
 				84E2637529F3ED9800847C16 /* loggedOutView.swift in Sources */,
@@ -1016,8 +1062,10 @@
 				84E2637A29F40A2900847C16 /* SettingsView.swift in Sources */,
 				84E2637E29F42B3800847C16 /* SettingsRow.swift in Sources */,
 				84348F5429CB34740017ED7E /* MapViewState.swift in Sources */,
+				846558242BF38F0100E422F4 /* MainTabbedView.swift in Sources */,
 				84348F6F29CB350C0017ED7E /* LocationSearchResultCell.swift in Sources */,
 				84EAD9BE2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift in Sources */,
+				847C6B102B82093B00B0C30E /* SFSafariViewWrapper.swift in Sources */,
 				84348F7029CB350C0017ED7E /* LocationSearchView.swift in Sources */,
 				84348F4D29CB345A0017ED7E /* Color.swift in Sources */,
 				84348F6529CB34E00017ED7E /* CardView.swift in Sources */,
@@ -1029,10 +1077,14 @@
 				84DCAD3429F5DF55007D6E4C /* AuthViewModel.swift in Sources */,
 				84E2636229F20E0300847C16 /* ResizableLottieView.swift in Sources */,
 				84AE7E922B42EC7100175EE4 /* InfiniteScroller.swift in Sources */,
+				847C6B0B2B7F97AE00B0C30E /* NoLocationSharedView.swift in Sources */,
 				84866A2B2B6512CA0096695E /* VotingModel.swift in Sources */,
 				84DE46542B585AD1009123AD /* NavigationConfigurator.swift in Sources */,
+				847C6B052B7E9AB800B0C30E /* HapticsManager.swift in Sources */,
 				84CB7FAF2B4555AF00E1CE79 /* WishListModel.swift in Sources */,
+				84121E552B74103200D4A5AC /* SessionManager.swift in Sources */,
 				84348F5C29CB34A20017ED7E /* RegistrationView.swift in Sources */,
+				847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,18 +1237,19 @@
 				CODE_SIGN_ENTITLEMENTS = TastySwipe/TastySwipe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = W85GJYFB35;
+				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LocaleLink;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please \"Allow while Using App\" for a Tasty Swipe to use your location to provide more accurate data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1222,18 +1275,19 @@
 				CODE_SIGN_ENTITLEMENTS = TastySwipe/TastySwipe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = W85GJYFB35;
+				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LocaleLink;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please \"Allow while Using App\" for a Tasty Swipe to use your location to provide more accurate data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1259,7 +1313,7 @@
 				CODE_SIGN_ENTITLEMENTS = TastyClip/TastyClip.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastyClip/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
@@ -1267,12 +1321,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastyClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TastySwipe;
+				INFOPLIST_KEY_CFBundleDisplayName = LocaleLink;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1298,7 +1352,7 @@
 				CODE_SIGN_ENTITLEMENTS = TastyClip/TastyClip.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastyClip/Preview Content\"";
 				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
@@ -1306,12 +1360,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastyClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TastySwipe;
+				INFOPLIST_KEY_CFBundleDisplayName = LocaleLink;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

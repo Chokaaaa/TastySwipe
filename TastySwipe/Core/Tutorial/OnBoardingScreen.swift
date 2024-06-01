@@ -9,12 +9,12 @@ import SwiftUI
 import Lottie
 
 struct OnBoardingScreen: View {
-    @AppStorage("isOnboarding") var isOnboarding : Bool?
+    @AppStorage("isOnboarding") var isOnboarding : Bool = false
     
     // MARK: OnBoarding Slides Model Data
     @State var onboardingItems: [OnBoardingItem] = [
         .init(title: "Welcome to",
-              focusWord: "Tasty Swipe 👋", subTitle: "Discover the ultimate app for locating incredible dining experiences and delicious cuisine with a single swipe!",
+              focusWord: "Locale Link 👋", subTitle: "Discover the ultimate app for locating incredible dining experiences and delicious cuisine with a single swipe!",
               lottieView: .init(name: "options",bundle: .main)),
         .init(title: "Get ready to",
               focusWord: "explore😋", subTitle: "Uncover top-notch eateries in your vicinity with a simple swipe! Glide right to bookmark your favorites, and left to skip.",
@@ -26,8 +26,12 @@ struct OnBoardingScreen: View {
     ]
     @State private var showingLoginView = false
     @EnvironmentObject var authViewModel : AuthViewModel
+    @EnvironmentObject var sessionManager : SessionManager
     // MARK: Current Slide Index
     @State var currentIndex: Int = 0
+    
+    @State var showLogin = false
+    
     var body: some View {
         GeometryReader{
             let size = $0.size
@@ -107,65 +111,59 @@ struct OnBoardingScreen: View {
                         
                         // MARK: Next / Login Button
                         VStack(spacing: 15){
-                            Text(isLastSlide ? "Start" : "Next")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-//                                .padding(.vertical,isLastSlide ? 13 : 12)
-                                .padding(.vertical,15)
-                                .frame(maxWidth: .infinity)
-                                .background {
-                                    Capsule()
-                                        .fill(Color.accentColor)
-                                }
-//                                .padding(.horizontal,isLastSlide ? 30 : 100)
-                                .padding(.horizontal,20)
-                                .onTapGesture {
-                                    // MARK: Updating to Next Index
-                                    if currentIndex < onboardingItems.count - 1{
-                                        // MARK: Pausing Previous Animation
-                                        let currentProgress = onboardingItems[currentIndex].lottieView.currentProgress
-                                        onboardingItems[currentIndex].lottieView.currentProgress = (currentProgress == 0 ? 0.7 : currentProgress)
-                                        currentIndex += 1
-                                        // MARK: Playing Next Animation from Start
-                                        playAnimation()
-                                    } else if isLastSlide {
-                                        isOnboarding = false
-                                    }
-                                }
                             
-                            Text(isLastSlide ? "Login" : "Skip")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.accentColor)
-//                                .padding(.vertical,isLastSlide ? 13 : 12)
-                                .padding(.vertical,15)
-                                .frame(maxWidth: .infinity)
-                                .background {
-                                    Capsule()
-                                        .fill(Color("bgButton"))
+                            Button {
+                                // MARK: Updating to Next Index
+                                if currentIndex < onboardingItems.count - 1{
+                                    // MARK: Pausing Previous Animation
+                                    let currentProgress = onboardingItems[currentIndex].lottieView.currentProgress
+                                    onboardingItems[currentIndex].lottieView.currentProgress = (currentProgress == 0 ? 0.7 : currentProgress)
+                                    currentIndex += 1
+                                    // MARK: Playing Next Animation from Start
+                                    playAnimation()
+                                } else if isLastSlide {
+                                    isOnboarding = false
+//                                    isOnboarding = false
                                 }
-//                                .padding(.horizontal,isLastSlide ? 30 : 100)
-                                .padding(.horizontal,20)
-                                .onTapGesture {
+                            } label: {
+                                Text(isLastSlide ? "Start" : "Next")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+    //                                .padding(.vertical,isLastSlide ? 13 : 12)
+                                    .padding(.vertical,15)
+                                    .frame(maxWidth: .infinity)
+                                    .background {
+                                        Capsule()
+                                            .fill(Color.accentColor)
+                                    }
+    //                                .padding(.horizontal,isLastSlide ? 30 : 100)
+                                    .padding(.horizontal,20)
+                            }
+
+                            Button {
+                                if !isLastSlide {
+                                    showLogin = false
                                     currentIndex = onboardingItems.count - 1
                                     playAnimation()
-                                    if isLastSlide {
-//                                        isOnboarding = false
-                                        if $authViewModel.userSession == nil {
-                                            
-                                            showingLoginView.toggle()
-                                        } else {
-                                            print("User is logged in already")
-                                        }
-                                    }
-//                                    if currentIndex < onboardingItems.count - 1{
-//                                        // MARK: Pausing Previous Animation
-//                                        let currentProgress = onboardingItems[currentIndex].lottieView.currentProgress
-//                                        onboardingItems[currentIndex].lottieView.currentProgress = (currentProgress == 0 ? 0.7 : currentProgress)
-//                                        currentIndex += 1
-//                                        // MARK: Playing Next Animation from Start
-//                                        playAnimation()
-//                                    }
                                 }
+                                if isLastSlide {
+                                    showLogin = true
+//                                    isOnboarding = false
+                                }
+                            } label: {
+                                Text(isLastSlide ? "Login" : "Skip")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.accentColor)
+    //                                .padding(.vertical,isLastSlide ? 13 : 12)
+                                    .padding(.vertical,15)
+                                    .frame(maxWidth: .infinity)
+                                    .background {
+                                        Capsule()
+                                            .fill(Color("bgButton"))
+                                    }
+    //                                .padding(.horizontal,isLastSlide ? 30 : 100)
+                                    .padding(.horizontal,20)
+                            }
                             
                             HStack{
                                 Text("Terms of Service")
@@ -186,6 +184,9 @@ struct OnBoardingScreen: View {
                 }
             }
             .frame(width: size.width * CGFloat(onboardingItems.count),alignment: .leading)
+        }
+        .fullScreenCover(isPresented: $showLogin) {
+            LoginView()
         }
     }
     

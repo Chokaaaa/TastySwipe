@@ -16,6 +16,15 @@ struct WishListModel : Identifiable {
     let rating : Double
     let id : String
     
+    init(title: String, location: String, image: String, category: String, rating: Double, id: String) {
+        self.title = title
+        self.location = location
+        self.image = image
+        self.category = category
+        self.rating = rating
+        self.id = id
+    }
+    
     init?(snapshot : QueryDocumentSnapshot) {
         
         let data = snapshot.data()
@@ -35,5 +44,9 @@ struct WishListModel : Identifiable {
         self.id = id
         
     }
+    
+}
+
+extension WishListModel: Hashable, Equatable {
     
 }

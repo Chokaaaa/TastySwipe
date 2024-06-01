@@ -12,19 +12,25 @@ import FirebaseFirestore
 
 class WishListViewModel : ObservableObject {
     
-    @Published var wishList : [WishListModel] = []
+    @Published var wishList: [WishListModel] = []
+    var listner: ListenerRegistration?
     
     init() {
-        getWishList()
+        createWishListObserver()
     }
     
-    func getWishList() {
+    func removeWishListObserver() {
+        listner?.remove()
+    }
+    
+    
+    func createWishListObserver() {
         
         guard let currentUserId = Auth.auth().currentUser?.uid else {
             return
         }
         
-        Firestore.firestore().collection("users").document(currentUserId).collection("wishlist").addSnapshotListener { snapshot, error in
+        listner = Firestore.firestore().collection("users").document(currentUserId).collection("wishlist").addSnapshotListener { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
                 return

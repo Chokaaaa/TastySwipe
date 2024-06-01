@@ -14,11 +14,16 @@ import SwiftData
 struct PlacesListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var purchasesManager : PurchasesManager
+    @EnvironmentObject var cardsManager : CardsManager
     @StateObject var viewModel = PlacesListViewModel()
     @EnvironmentObject var homeViewModel : HomeViewModel
     @Environment(\.modelContext) private var context
     @Query var preferedPlaces : [PreferedPlaceModel]
     @State private var isShowingPayWall = false
+//    @State private var selectedRating:
+    @State private var selectedRating = 4
+    @AppStorage("filterByRating") var filterByRating = 3
+      let rate = [3, 4, 5]
     
     let columns : [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -28,13 +33,13 @@ struct PlacesListView: View {
             ScrollView {
                 
                 VStack(alignment: .leading,spacing: 10) {
-                    Text("Select Places")
+                    Text("Place & Rating")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .tint(.accentColor)
                     
                     VStack {
-                        Text("Please select your category")
+                        Text("Please select your place and rating")
                             .foregroundStyle(Color.gray)
                             .multilineTextAlignment(.leading)
                         
@@ -43,8 +48,17 @@ struct PlacesListView: View {
                     .foregroundStyle(Color.blue)
                     
                     
-                    LazyVGrid(columns: columns) {
+                    
+                        Picker("", selection: $selectedRating) {
+                            ForEach(rate, id: \.self) { number in
+                                    Text("\(number)")
+                            }
+                        }
+                        .pickerStyle(.segmented)
                         
+                        
+                    LazyVGrid(columns: columns) {
+                            
                         ForEach(Array(TagModel.allCases.enumerated()), id: \.1) { index, tag in
                             Button(action: {
                                 viewModel.tagSelected(tag: tag)
@@ -56,7 +70,8 @@ struct PlacesListView: View {
                                     Text(tag.title)
                                         .fontWeight(.medium)
                                         .font(.system(size: 13))
-                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color.black : Color.white)
+                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.white)
+//                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
                                     
                                 }
                                     .frame(width: 75, height: 75)
@@ -117,6 +132,10 @@ struct PlacesListView: View {
         
         .onAppear {
             viewModel.selectedTags = preferedPlaces.map { $0.place }
+            if viewModel.selectedTags.count == 0 {
+                viewModel.tagSelected(tag: .cafe)
+            }
+            selectedRating = filterByRating
         }
         
         .navigationTitle("Places")
@@ -165,11 +184,14 @@ struct PlacesListView: View {
                             context.insert(newPreferedPlace)
                         }
                         let locationName = viewModel.selectedTags.map({ $0.apiName }).joined(separator: " OR ")
-                        homeViewModel.fetchPlaces(locationName: locationName)
+                        homeViewModel.fetchPlaces(locationName: locationName, filterByRating: selectedRating)
+                        cardsManager.showLastCard = false
+                        cardsManager.totalCardSwiped = 0
                         self.presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("Save")
+                        Text(homeViewModel.isFetching ? "Fetching..." : "Save")
                     }
+                    .disabled(homeViewModel.isFetching)
                 }
             }
         }
@@ -178,11 +200,11 @@ struct PlacesListView: View {
     func getStatusColor(tag: TagModel, index: Int) -> Color {
         if !purchasesManager.isSubscriptionActive {
             if index > 2 {
-                return Color.gray.opacity(0.12)
+                return Color.gray.opacity(0.15)
             }
-            return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.white
+            return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
         }
-        return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.white
+        return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
     }
     
     func disableButton(index: Int) -> Bool {

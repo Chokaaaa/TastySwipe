@@ -8,6 +8,23 @@
 import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
+import AuthenticationServices
+
+
+struct SignInWithAppleButtonRepresentable : UIViewRepresentable {
+    
+    let type : ASAuthorizationAppleIDButton.ButtonType
+    let style : ASAuthorizationAppleIDButton.Style
+    
+    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
+        ASAuthorizationAppleIDButton(authorizationButtonType: type, authorizationButtonStyle: style)
+    }
+    
+    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
+        
+    }
+    
+}
 
 struct LoginView: View {
     
@@ -17,67 +34,15 @@ struct LoginView: View {
     
     @State var email = ""
     @State var password = ""
-    
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var alertTitle = ""
+    @AppStorage("isOnboarding") var isOnboarding = true
     @EnvironmentObject var viewModel : AuthViewModel
+    @EnvironmentObject var sessionManager : SessionManager
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        
-        
-//        GeometryReader {
-//            let size = $0.size
-//            let safeArea = $0.safeAreaInsets
-//                
-//                VStack(spacing: 0) {
-//                    if let activeIntros {
-//                        Rectangle()
-//                            .fill(activeIntros.bgColor)
-//                            .padding(.bottom, -30)
-//                            .overlay {
-//                                Circle()
-//                                    .fill(.clear)
-//                                Image(activeIntros.emoji)
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .frame(width: 38, height: 38)
-//                                    .background(alignment: .leading, content: {
-//                                        Capsule()
-//                                            .fill(activeIntros.bgColor)
-//                                            .frame(width: size.width)
-//                                    })
-//                                    .background(alignment:.leading) {
-//                                        Text(activeIntros.text)
-//                                            .font(.largeTitle)
-//                                            .foregroundStyle(activeIntros.textColor)
-//                                            .frame(width: textSize(activeIntros.text))
-//                                            .offset(x: 10)
-//                                            .offset(x: activeIntros.textOffset)
-//                                    }
-//                                    .offset(x: -activeIntros.circleOffset)
-//                            }
-//                    }
-//                    
-//                    LoginButtons()
-//                        .padding(.bottom,safeArea.bottom)
-//                        .padding(.top,10)
-//                        .background(.black, in: .rect(topLeadingRadius: 25, topTrailingRadius: 25))
-//                        .shadow(color: .black.opacity(0.1), radius: 5, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 8)
-//                    
-//                }
-//            .ignoresSafeArea()
-//        }
-        
-//        
-//        .task {
-//            if activeIntros == nil {
-//                activeIntros = sampleIntros.first
-//                let nanoSecond = UInt64(1_000_000_000 * 0.5)
-//                try? await Task.sleep(nanoseconds: nanoSecond)
-//                animate(0)
-//            }
-//        }
-        
-        
         
         NavigationStack {
             
@@ -87,7 +52,11 @@ struct LoginView: View {
                         HStack {
                             Spacer()
                             Button {
-                                dismiss()
+                                if !isOnboarding {
+                                    dismiss()
+                                } else {
+                                    isOnboarding = false
+                                }
                             } label: {
                                 dismissButton()
                             }
@@ -96,49 +65,94 @@ struct LoginView: View {
                         
                         //MARK: - Image and title
                         
-                        Text("Login to your Account")
-                            .font(.system(size: 32, weight: .semibold, design: .rounded))
-                            .padding(.top, 40)
+                        HStack {
+                            Text("Login")
+                                .font(.system(size: 32, weight: .semibold, design: .rounded))
+                            Spacer()
+                        }
+                        .padding(.leading, 20)
+                        .padding(.top, 20)
                         
                         //MARK: - Input fields
                         
-                        VStack(spacing: 24) {
+                        VStack(spacing: 34) {
                             //Email
-                            CustomInputField(text: $email, title: "Email", image: "email", placeHolder: "Email")
-                                .font(.system(size: 14))
+                            VStack {
+                                HStack {
+                                    Text("Email")
+                                        .foregroundStyle(Color("PrimaryTextColor"))
+                                        .font(.system(size: 14))
+                                    Spacer()
+                                }
+                                .padding(.leading, 12)
+                                CustomInputField(text: $email, title: "Email", image: "email", placeHolder: "Enter your email")
+                                    .font(.system(size: 14))
+                            }
                             //Password
-                            CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Password", isSecured: true)
-                                .font(.system(size: 14))
-                            
-                            
+                            VStack {
+                                
+                                HStack {
+                                    Text("Password")
+                                        .foregroundStyle(Color("PrimaryTextColor"))
+                                        .font(.system(size: 14))
+                                    Spacer()
+                                }
+                                .padding(.leading, 12)
+                                
+                                CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Enter your password", isSecured: true)
+                                    .font(.system(size: 14))
+                            }
                             
                             //MARK: - Sign in Button
                             
                             Button {
-                                viewModel.signIn(withEmail: email, password: password)
-                                
+                                viewModel.signIn(withEmail: email, password: password) { user in
+                                    if let user = user {
+                                        sessionManager.currentUser = user
+                                        isOnboarding = false
+                                        dismiss()
+                                    } else {
+                                        
+                                        
+                                        if email == "" {
+                                            alertTitle = "Sorry"
+                                            alertMessage = "Email is an empty field"
+                                            alertMessage = "Sorry you cannot leave an email empty"
+                                        }
+                                        
+                                        if password == "" {
+                                            alertTitle = "Sorry"
+                                            alertMessage = "Password is an empty field"
+                                            alertMessage = "Sorry you cannot leave a password empty"
+                                        }
+                                        
+                                        alertTitle = "Sorry"
+                                        alertMessage = "Email or Password is wrong"
+                                        showAlert = true
+                                    }
+                                }
                             } label: {
                                 Text("Log in")
                                     .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                                    .frame(width: UIScreen.main.bounds.width - 32, height: 55)
                             }
-                            .background(RoundedRectangle(cornerRadius: 20).fill(Color.accentColor))
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.accentColor))
                             .padding(.top,30)
                             
                         }
                         .padding(.horizontal)
-                        .padding(.top,44)
+                        .padding(.top,35)
                         
                         
                         
                         Button {
                             
                         } label: {
-                            Text("Forgot Password?")
+                            Text("Forgot Password ?")
+                                .foregroundStyle(Color("PrimaryTextColor"))
                                 .font(.system(size: 13,weight: .bold))
-                                .padding(.top)
+                                .padding(.top, 25)
                         }
-                        //                        .frame(maxWidth: .infinity, alignment: .leading)
                         
                         
                         
@@ -155,57 +169,57 @@ struct LoginView: View {
                                 Rectangle().frame(width: 76, height: 1)
                                     .opacity(0.1)
                             }
-                            .padding(.top, 34)
+                            .padding(.top, 10)
                             
                             
-                            HStack(spacing: 20) {
+                            VStack(spacing: 20) {
                                 
-                                Button {
-                                    
-                                } label: {
-                                    ZStack {
-                                        Image("mSignIn")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 24, height: 24)
-                                    }
-                                    .frame(width: 87, height: 60)
-                                    .background(Color("TextFieldBg").cornerRadius(10))
-                                }
-                                
-                                GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .icon, state: .normal)) {
-                                    
-                                }
-                                
-                                
-//                                Button {
-                                    
-                           
-//                                    
-//                                } label: {
-//                                    ZStack {
-//                                        Image("GSignIn")
-//                                            .resizable()
-//                                            .aspectRatio(contentMode: .fit)
-//                                            .frame(width: 24, height: 24)
-//                                    }
-//                                    .frame(width: 87, height: 60)
-//                                    .background(Color("TextFieldBg").cornerRadius(10))
+                            
+//                                //MARK: - Google sign IN
+//                                GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .icon, state: .normal)) {
+//                                   
 //                                }
                                 
-                                
+                                //MARK: - Google Sign-In
                                 Button {
-                                    
+                                    sessionManager.googleSignIn { success in
+                                        if success {
+                                            dismiss()
+                                        }
+                                    }
                                 } label: {
                                     ZStack {
-                                        Image("fSignIn")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 24, height: 24)
+                                        HStack {
+                                            Image("GSignIn")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 24, height: 24)
+                                            
+                                            Text("Sign in with Google")
+                                                .foregroundStyle(Color("PrimaryTextColor"))
+                                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                        }
                                     }
-                                    .frame(width: 87, height: 60)
-                                    .background(Color("TextFieldBg").cornerRadius(10))
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 55)
+//                                    .frame(width: .infinity, height: 60)
+                                    .background(Color("googleButtonBg").opacity(1).cornerRadius(10))
+//                                    .background(Color.gray.cornerRadius(10))
+                                    .padding(.horizontal, 15)
                                 }
+                                
+                                //MARK: - Apple Sign-In
+                                
+                                Button {
+                                    sessionManager.startSignInWithAppleFlow()
+                                } label: {
+                                    SignInWithAppleButtonRepresentable(type: .signIn, style: .black)
+                                    .allowsTightening(false)
+                                }
+                                .frame(height: 55)
+                                .padding(.horizontal, 15)
+
+                                
                             }
                             .padding(.top, 30)
                             
@@ -229,49 +243,18 @@ struct LoginView: View {
                                     .font(.system(size: 12, weight: .bold))
                             }
                         }
-                        
-                        
-                        //MARK: - Sign up Button
-                        
-                        
-                        
                     }
                 }
-                //            .ignoresSafeArea(.keyboard, edges: .all)
             }
             
         }
+        
+        .onChange(of: sessionManager.appleSignInCompleted) { oldValue, newValue in
+            if newValue {
+                dismiss()
+            }
+        }
     }
-//    
-//    func animate(_ index: Int, _ loop: Bool = true) {
-//        if intros.indices.contains(index + 1) {
-//            activeIntros?.text = intros[index].text
-//            activeIntros?.textColor = intros[index].textColor
-//            
-//            withAnimation(.snappy(duration: 1), completionCriteria: .removed) {
-//                activeIntros?.textOffset = -(textSize(intros[index].text) + 20)
-//                activeIntros?.circleOffset = -(textSize(intros[index].text) + 20) / 2
-//            } completion: {
-//                withAnimation(.snappy(duration: 0.8), completionCriteria: .logicallyComplete) {
-//                    activeIntros?.textOffset = 0
-//                    activeIntros?.circleOffset = 0
-//                    activeIntros?.emoji = intros[index + 1].emoji
-//                    activeIntros?.bgColor = intros[index + 1].bgColor
-//                } completion: {
-//                    animate(index + 1, loop)
-//                }
-//            }
-//        } else {
-//            if loop {
-//                animate(0, loop)
-//            }
-//        }
-//    }
-//    
-//    func textSize(_ text: String) -> CGFloat {
-//        return NSString(string: text).size(withAttributes: [.font: UIFont.preferredFont(forTextStyle: .largeTitle)]).width
-//    }
-//    
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -279,3 +262,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+

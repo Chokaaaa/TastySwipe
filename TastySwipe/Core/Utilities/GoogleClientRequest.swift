@@ -21,7 +21,7 @@ class GoogleClient: GoogleClientRequest {
     func getGooglePlacesData(forKeyword keyword: String, location: CLLocation, withinMeters radius: Int, token : String? = nil,  using completionHandler: @escaping (GooglePlacesResponse) -> ())  {
          print("Did get first results")
         let url = googlePlacesDataURL(forKey: googlePlacesKey, location: location, keyword: keyword, token: token)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             let task = self.session.dataTask(with: url) { (responseData, _, error) in
                 
                 if let error = error {

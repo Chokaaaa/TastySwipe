@@ -14,7 +14,7 @@ import SwiftUI
 class PurchasesManager: ObservableObject {
     
     @Published var packages: [Package] = [Package]()
-    @Published var isSubscriptionActive = false
+    @Published var isSubscriptionActive = true
     
     var products : [PremiumPackage] {
         return packages.map { PremiumPackage(package: $0) }
@@ -69,7 +69,9 @@ class PurchasesManager: ObservableObject {
             completion(false, nil)
             return
         }
+        print("Starting Purchases")
         Purchases.shared.purchase(package: purchasedPackage) { (transaction, customerInfo, error, userCancelled) in
+            print("Ending Purchases")
             if let error = error {
                 print("Purchase Error: \(error.localizedDescription)")
                 completion(false, "There was an error completing your purchase. Please try again later.")

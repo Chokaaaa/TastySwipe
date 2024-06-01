@@ -12,17 +12,34 @@
       }
     },
     "($4.16/mo)" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "($4.16/mo)"
+          }
+        }
+      }
     },
     "%@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "%@ & more" : {
 
     },
-    "%@ - %@" : {
+    "%lld" : {
       "localizations" : {
-        "en" : {
+        "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ - %2$@"
+            "state" : "translated",
+            "value" : ""
           }
         }
       }
@@ -70,6 +87,9 @@
         }
       }
     },
+    "Allow Location" : {
+
+    },
     "Back" : {
       "localizations" : {
         "zh-Hans" : {
@@ -79,6 +99,12 @@
           }
         }
       }
+    },
+    "Become a PRO" : {
+
+    },
+    "Block Ads 🚫" : {
+
     },
     "Buttons" : {
       "localizations" : {
@@ -91,6 +117,7 @@
       }
     },
     "Category" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -145,6 +172,9 @@
     "Dark" : {
 
     },
+    "Discover" : {
+
+    },
     "Dont have an account?" : {
       "localizations" : {
         "zh-Hans" : {
@@ -154,6 +184,18 @@
           }
         }
       }
+    },
+    "Email" : {
+
+    },
+    "Enter your Email" : {
+
+    },
+    "Enter your Full Name" : {
+
+    },
+    "Enter your Password" : {
+
     },
     "Explore" : {
       "localizations" : {
@@ -169,6 +211,7 @@
 
     },
     "Favourite" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -178,7 +221,14 @@
         }
       }
     },
+    "Fetching..." : {
+
+    },
+    "Forgot Password ?" : {
+
+    },
     "Forgot Password?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -209,6 +259,7 @@
       }
     },
     "Generate unlimited routes. Unlock all content.\nRemove all ads." : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -218,10 +269,17 @@
         }
       }
     },
+    "Get More features 🍱" : {
+
+    },
+    "Haptic" : {
+
+    },
     "Hello, World!" : {
 
     },
     "Home" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -234,7 +292,25 @@
     "Light" : {
 
     },
+    "Loading..." : {
+
+    },
+    "Locale Link" : {
+
+    },
+    "LocaleLink" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LocaleLink"
+          }
+        }
+      }
+    },
     "Location" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -265,6 +341,7 @@
       }
     },
     "Login to your Account" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -311,6 +388,7 @@
       }
     },
     "Nursultan Yelemessov" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -321,6 +399,7 @@
       }
     },
     "NursultanYelemessov1@gmail.com" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -343,6 +422,12 @@
         }
       }
     },
+    "Password" : {
+
+    },
+    "Place & Rating" : {
+
+    },
     "Places" : {
       "localizations" : {
         "zh-Hans" : {
@@ -353,7 +438,7 @@
         }
       }
     },
-    "Please select your category" : {
+    "Please select your place and rating" : {
 
     },
     "Privacy Policy" : {
@@ -377,6 +462,7 @@
       }
     },
     "Profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -385,6 +471,9 @@
           }
         }
       }
+    },
+    "Register" : {
+
     },
     "Remove Item" : {
       "extractionState" : "stale",
@@ -424,6 +513,7 @@
       }
     },
     "Select Places" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -443,6 +533,9 @@
         }
       }
     },
+    "Sign in with Google" : {
+
+    },
     "Sign Up" : {
       "localizations" : {
         "zh-Hans" : {
@@ -454,6 +547,7 @@
       }
     },
     "SIGN UP" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -476,7 +570,14 @@
         }
       }
     },
+    "Sorry, we need your location to better enhance your experience" : {
+
+    },
+    "Sorry, you didn’t create an account yet, no worries you may open an account by clicking the button below." : {
+
+    },
     "Sorry, you didn’t create an account yet, no worries you may open an account by clicking the button below. " : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -485,6 +586,9 @@
           }
         }
       }
+    },
+    "Sorry, you didn’t like any shop yet, no worries you may like them after." : {
+
     },
     "Start" : {
       "localizations" : {
@@ -513,6 +617,7 @@
 
     },
     "Tasty Swipe" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -532,7 +637,11 @@
         }
       }
     },
+    "Terms of Use" : {
+
+    },
     "Text" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -543,6 +652,7 @@
       }
     },
     "Unlimited Access" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -552,7 +662,13 @@
         }
       }
     },
+    "Unlimited Access ✅" : {
+
+    },
     "We continuously supplement our category selection." : {
+
+    },
+    "We need your location" : {
 
     },
     "We will miss you, Please come back as soon as possible" : {
@@ -569,6 +685,7 @@
       }
     },
     "Wishlist" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -598,6 +715,9 @@
           }
         }
       }
+    },
+    "You have no favorites yet" : {
+
     },
     "You have successfully logged out!" : {
 

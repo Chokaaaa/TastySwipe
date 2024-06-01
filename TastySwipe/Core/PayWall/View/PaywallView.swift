@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
-    
+    @EnvironmentObject var csManager: ColorSchemeManager
     @EnvironmentObject var purchasesManager : PurchasesManager
 //    @State private var selectedPlan: PremiumPlan = .yearly
     let iPhone14ProMaxScreenSize: CGSize = CGSize(width: 430.0, height: 932.0)
@@ -20,57 +20,153 @@ struct PaywallView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showAlert = false
+    @State private var showPurchaseLoading = false
+    @State private var showPrivacyPolicy: Bool = false
+    @State private var showTC: Bool = false
     
     var body: some View {
         
         ZStack {
-            
-            VStack(spacing: 5) {
-                Text("Unlimited Access")
-                    .font(.system(size: 35, weight: .bold))
-                    .foregroundStyle(Color.accentColor)
-                Text("Generate unlimited routes. Unlock all content.\nRemove all ads.")
-                    .font(.system(size: 15, weight: .bold))
-                    .multilineTextAlignment(.center)
+            ZStack {
+                VStack(spacing: 5) {
+                    Text("Become a PRO")
+                        .font(.system(size: 35, weight: .bold))
+                        .foregroundStyle(Color.accentColor)
+                    
+                    VStack(spacing: 0) {
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .foregroundStyle(.yellow)
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            Text("Block Ads 🚫")
+                                .font(.system(size: 17.5, weight: .bold))
+                                .foregroundStyle(Color.black)
+                            Spacer()
+                        }
+                        .padding(.leading,25)
+                        
+                        
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .foregroundStyle(.yellow)
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            Text("Unlimited Access ✅")
+                                .font(.system(size: 17.5, weight: .bold))
+                                .foregroundStyle(Color.black)
+                            Spacer()
+                        }
+                        .padding(.leading,25)
+                        
+                        
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .foregroundStyle(.yellow)
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            Text("Get More features 🍱")
+                                .font(.system(size: 17.5, weight: .bold))
+                                .foregroundStyle(Color.black)
+                            Spacer()
+                        }
+                        .padding(.leading,25)
+                        
+                        
+                    }
+                    .padding([.top,.bottom], 10)
+                    
+                    //                Text("Generate unlimited routes Unlock all content.\nRemove all ads.")
+                    //                    .font(.system(size: 15, weight: .bold))
+                    //                    .multilineTextAlignment(.center)
+                    
+                    choosePlanSection()
+                    //                    .padding(.top, 15)
+                        .padding(.horizontal, 10)
+                    actionButton()
+                        .padding(.top, 15)
+                    
+                    
+                    
+                    HStack {
+                        
+                        Button {
+                            showPrivacyPolicy.toggle()
+                        } label: {
+                            Text("Privacy Policy")
+                                .font(.system(size: 12, weight: .medium))
+                        }
+                        
+                        
+                        Divider()
+                            .frame(height: 50)
+                        
+                        Button {
+                            showTC.toggle()
+                        } label: {
+                            Text("Terms of Use")
+                                .font(.system(size: 12, weight: .medium))
+                        }
+                        .padding([.leading, .trailing], 15)
+                        
+                        Divider()
+                            .frame(height: 50)
+                        restorePurchasesButton()
+                        
+                        
+                        
+                    }
+                    .padding(.top, 5)
+                    .padding(.leading, 10)
+                    
+                    
+                }
+                .padding(.top, 5)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .cornerRadius(20)
+                .padding(.horizontal, 85)
+                .blur(radius: 0.25)
+                .padding(.bottom, -580)
+                .zIndex(1)
                 
-                choosePlanSection()
-                    .padding(.top, 20)
-                    .padding(.horizontal, 10)
-                actionButton()
-                restorePurchasesButton()
+                VStack(alignment: .center, spacing: 16) {
+                    carouselSection()
+                    
+                }
+                .scaleEffect(CGSize(width: screenSize.width / iPhone14ProMaxScreenSize.width,
+                                    height: screenSize.height / iPhone14ProMaxScreenSize.height))
+                .padding(.vertical, isIPhone14ProMax() ? 0 : -20)
                 
-                
+                VStack {
+                    
+                    Spacer()
+                    
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.white)
+                        .frame(height: 500)
+                        .padding(.horizontal)
+                        .blur(radius: 30)
+                        .padding(.bottom, -60)
+                }
             }
-            .padding(.top, 5)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .cornerRadius(20)
-            .padding(.horizontal, 85)
-            .blur(radius: 0.25)
-            .padding(.bottom, -580)
-            .zIndex(1)
             
-            VStack(alignment: .center, spacing: 16) {
-                carouselSection()
-                
+            if showPurchaseLoading {
+                Color.clear.ignoresSafeArea().background(
+                    
+                    .ultraThinMaterial
+                    
+                )
+                VStack(alignment: .center, spacing: 15) {
+                    
+                    Text("Loading...")
+                    
+                    ProgressView()
+                }
             }
-            .scaleEffect(CGSize(width: screenSize.width / iPhone14ProMaxScreenSize.width,
-                                height: screenSize.height / iPhone14ProMaxScreenSize.height))
-            .padding(.vertical, isIPhone14ProMax() ? 0 : -20)
             
-            VStack {
-                
-                
-                
-                Spacer()
-                
-                
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(.white)
-                    .frame(height: 550)
-                    .padding(.horizontal)
-                    .blur(radius: 30)
-                    .padding(.bottom, -60)
-            }
         }
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button {
@@ -81,6 +177,13 @@ struct PaywallView: View {
 
         }, message: {
             Text(alertMessage)
+        })
+        .fullScreenCover(isPresented: $showPrivacyPolicy, content: {
+                SFSafariViewWrapper(url: URL(string: "https://www.termsfeed.com/live/57886249-1490-4e29-979f-cabc010d4b5a")!)
+        })
+        
+        .fullScreenCover(isPresented: $showTC, content: {
+                SFSafariViewWrapper(url: URL(string: "https://www.termsandconditionsgenerator.com/live.php?token=rKSQsIUOpaoKVSGenzM4t9ph2SOPYhBu")!)
         })
         .ignoresSafeArea()
     }
@@ -148,7 +251,7 @@ struct PaywallView: View {
     
     
     private func choosePlanSection() -> some View {
-        return VStack(alignment: .center, spacing: 0) {
+        return VStack(alignment: .center, spacing: 10) {
             
             ForEach(purchasesManager.products) { product in
                 
@@ -164,21 +267,23 @@ struct PaywallView: View {
     
     private func actionButton() -> some View {
         return Button {
+            showPurchaseLoading = true
             purchasesManager.purchasePremiumSubscription(identifier: selectedProductId) { success, error in
+                showPurchaseLoading = false
                 //MARK: - Alert
                 if let error = error {
                     print("Error is \(error)")
                 }
             }
         } label: {
-            Text(selectedProductId == "yearly_premium" ? "Start Free Trial" : "Continue")
+            Text(selectedProductId == "$rc_monthly" ? "Start Free Trial" : "Continue")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
-                .padding(20)
+                .padding(15)
                 .frame(maxWidth: .infinity)
                 .background(Color.accentColor)
                 .cornerRadius(10)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 25)
         }
     }
     
@@ -190,7 +295,7 @@ struct PaywallView: View {
         } label: {
             Text("Restore Purchases")
                 .font(.system(size: 12, weight: .medium))
-        }.padding(10)
+        }
     }
     
     
@@ -210,5 +315,6 @@ struct PaywallView: View {
 struct PaywallView_Previews: PreviewProvider {
     static var previews: some View {
         PaywallView()
+            .environmentObject(PurchasesManager())
     }
 }

@@ -27,24 +27,28 @@ struct CustomInputField: View {
             
             HStack {
                 
-                Image(image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 20, height: 20)
+//                Image(image)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 20, height: 20)
                 
                 
             
                 
                 if isSecured == false {
                     TextField(placeHolder, text: $text)
+                        
                 } else {
                     SecureField(placeHolder, text: $text)
                 }
             }
-            .padding()
-            .background(Color("TextFieldBg").cornerRadius(10))
-            
+//            .padding()
+            Divider()
+//            .background(Color("TextFieldBg").cornerRadius(10))
+        
         }
+        .padding([.leading, .trailing], 15)
+        
     }
 }
 

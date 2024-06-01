@@ -22,10 +22,14 @@ struct CardView: View, Identifiable {
     let latitude : Double
     let longitude : Double
     
-    @State private var showingLoginView = false
-    @StateObject var viewModel = WishListViewModel()
+    @EnvironmentObject var wishListViewModel: WishListViewModel
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isLoading = false
+    @State private var showingLoginView = false
+    private var isWishListed: Bool {
+        return wishListViewModel.wishList.contains(where: { $0.id == id })
+    }
+    @State private var isLoadingWishlist = false
     
     var body: some View {
         
@@ -33,171 +37,154 @@ struct CardView: View, Identifiable {
             VStack(spacing: 0) {
                 
                 //MARK: - Image
-                ZStack(alignment: .top) {
+                ZStack {
                     AsyncImage(url: URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=\(image)&key=AIzaSyAXwxcsli6DB69TDjE-I4ayPNyTTfMy5H4")) { phase in
                         switch phase {
                         case .empty:
-                            Image("loading")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .cornerRadius(20)
-                                .frame(width: 350,height: 280)
+                            Color.gray
                                 .clipped()
-                                .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20))
                             
                         case .success(let image):
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .cornerRadius(20)
-                                .frame(width: 350,height: 280)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
+//                                .cornerRadius(30)
+//                                .frame(width: 335,height: 438)
                                 .clipped()
-                                .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20))
+//                                .clipShape (UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20))
                             
                         case .failure:
-                            Image("loading")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .cornerRadius(20)
-                                .frame(width: 350,height: 280)
+                            Color.gray
                                 .clipped()
-                                .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20))
                             
                         @unknown default:
                             EmptyView()
                                 .frame(width: 60, height: 60)
                         }
                     }
+                   
                     //MARK: - Distance marker in glass bg
-                    HStack(spacing: 0) {
-                        Image(systemName: "location.fill")
-                            .scaledToFit()
-                            .padding(.leading,5)
-                        Text("\(distance) m")
-                            .font(.system(size: 15, design: .rounded))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("SystemTextColor"))
-//                            .padding(.trailing,0)
-                            .frame(width: 65, height: 45)
-                    }
-                    .background(
-                        .thinMaterial,
-                        in: RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    )
-                    .frame(width: 90, height: 35.35)
-                    .padding(.top,50)
-                    .padding(.trailing,250)
-                }//MARK: - End of ZStack
-                .frame(maxWidth: 350, maxHeight: 200)
-                .shadow(radius: 1.5)
-                //MARK: - Text(title,category,location)
-                VStack(alignment: .leading, spacing: 5) {
-                    HStack {
-                        Text(title)
-                            .lineLimit(1)
-                            .font(.system(size: 20, design: .rounded))
-                            .fontWeight(.bold)
-                            .padding(.horizontal, 15)
-                            
-                        
+                    VStack {
+                        HStack {
+                            HStack(spacing: 0) {
+                                Image("paperPlane")
+                                    .scaledToFit()
+                                    .padding(.leading,5)
+                                    .foregroundStyle(.white)
+                                Text("\(distance) m")
+                                    .font(.system(size: 15, design: .rounded))
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.white)
+                            }
+                            //MARK: - Paperline
+                            .padding(.vertical, 2)
+                            .padding(.horizontal, 3)
+                            .background(
+                                .ultraThinMaterial,
+                                in: RoundedRectangle(cornerRadius: 25, style: .continuous)
+                            )
+                            Spacer()
+                        }
                         Spacer()
-                        
-                        //MARK: - Raiting
-                        StarRatingView(rating: Float(rating), color: Color.yellow, maxRating: 5)
-                            .frame(width: 25, height: 15, alignment: .leading)
-                            .padding(.trailing, 60)
-                        Text(String(format: "%.1f", rating))
-                            .foregroundStyle(.yellow)
-                            .padding(.trailing, 5)
-                            
                     }
-                    .padding(.top,55)
+                    .padding(.top, 15)
                     
                     
-                    Text(category)
-                        .font(.system(size: 14, design: .rounded))
-                        .fontWeight(.regular)
-                        .padding(.horizontal, 15)
-                    
-                    Text(location)
-                        .lineLimit(1)
-                        .font(.system(size: 12, design: .rounded))
-                        .foregroundColor(.gray)
-                        .fontWeight(.regular)
-                        .padding(.horizontal, 15)
-                    
-                    
-                    //MARK: - Action Buttons
-                    HStack(spacing: 12) {
-                        
-                        //MARK: - Dislike
-                        Button {
-                            print("dislike")
-                            
-                            
-                            
-                        } label: {
-                            Image(systemName: "hand.thumbsdown")
-                                .modifier(CirlceButtonModifier(width: 55, height: 55, cornerRadius: 33))
-                        }
-                        
-                        
-                        //MARK: - Create route
-                        Button {
-                            openGoogleMaps(latitude: latitude, longitude: longitude)
-                        } label: {
-                            Image(systemName: "location")
-                                .modifier(CirlceButtonModifier(width: 55, height: 55, cornerRadius: 33))
-                        }
-                        
-                            //MARK: - Add to wishlist
-                            Button {
-                                if let currentUserId = Auth.auth().currentUser?.uid {
-                                    Firestore.firestore().collection("users").document(currentUserId).collection("wishlist").document(id).setData([
-                                        "title" : title,
-                                        "location" : location,
-                                        "image" : image,
-                                        "category" : category,
-                                        "rating" : rating,
-                                        "id" : id
-                                    ])
-                                } else {
-                                    showingLoginView.toggle()
+                    //MARK: - BOX bottom
+                    VStack {
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            Group {
+                                Text(title)
+                                    .lineLimit(1)
+                                    .font(.system(size: 20, design: .rounded))
+                                    .foregroundStyle(Color.white)
+                                    .fontWeight(.bold)
+                                    .padding(.top, 20)
+                                
+                                //MARK: - Raiting
+                                StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
+                                    .frame(width: 25, height: 20, alignment: .leading)
+                                
+                                
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("\(category) & more")
+                                            .font(.system(size: 15, design: .rounded))
+                                            .foregroundStyle(Color.white)
+                                            .fontWeight(.bold)
+                                        
+                                        Text(location)
+                                            .lineLimit(2)
+                                            .font(.system(size: 16, design: .rounded))
+                                            .foregroundColor(.white.opacity(0.9))
+                                            .fontWeight(.regular)
+                                    }
+                                    Spacer()
+                                    
+                                    //MARK: - Add to wishlist
+                                    Button {
+                                        print("Did tapped button")
+                                        guard let currentUserId = Auth.auth().currentUser?.uid else {
+                                            showingLoginView = true
+                                            return
+                                        }
+                                        print("User authenticated")
+                                        if let index = wishListViewModel.wishList.firstIndex(where: { $0.id == id }) {
+                                            wishListViewModel.wishList.remove(at: index)
+                                            isLoadingWishlist = true
+                                            Firestore.firestore().collection("users").document(currentUserId).collection("wishlist").document(id).delete { error in
+                                                isLoadingWishlist = false
+                                            }
+                                        } else {
+                                            let wishListItem = WishListModel(title: title, location: location, image: image, category: category, rating: rating, id: id)
+                                            wishListViewModel.wishList.append(wishListItem)
+                                            isLoadingWishlist = true
+                                            
+                                            Firestore.firestore().collection("users").document(currentUserId).collection("wishlist").document(id).setData([
+                                                "title" : title,
+                                                "location" : location,
+                                                "image" : image,
+                                                "category" : category,
+                                                "rating" : rating,
+                                                "id" : id
+                                            ]) { error in
+                                                isLoadingWishlist = false
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: isWishListed ? "heart.fill" : "heart")
+//                                            .font(.system(size: 25))
+                                            .foregroundStyle(.white)
+                                        
+                                    }
+                                    .padding()
+                                    .frame(width: 44, height: 44)
+                                    .background(Color.white.opacity(0.3))
+                                    .cornerRadius(33)
+                                    .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
+                                    
+                                    .disabled(isLoadingWishlist)
+                                    
+                                    
                                 }
-                            } label: {
-                                Image(systemName: "star")
-                                    .modifier(CirlceButtonModifier(width: 55, height: 55, cornerRadius: 33))
+                                .padding(.top)
+                                .padding(.bottom)
                             }
-    //                    }
-                        //MARK: - Web
-                        Button {
-                            
-                            if let url = getGoogleMapsShareLink(latitude: latitude, longitude: longitude) {
-                                            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                                            UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
-                            }
-                            
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .modifier(CirlceButtonModifier(width: 55, height: 55, cornerRadius: 33))
+                            .padding(.horizontal)
+                            .padding(.bottom, 5)
+                            .padding(.top, 5)
                         }
-                        
-                        
-                        //MARK: - Like
-                        Button {
-                            print("like")
-                        } label: {
-                            Image(systemName: "hand.thumbsup")
-                                .modifier(CirlceButtonModifier(width: 55, height: 55, cornerRadius: 33))
-                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.regularMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .padding(.horizontal, 2)
+                        .padding(.bottom, 2)
                     }
-                    .padding()
-
                     
-                }
-                
-                .frame(maxWidth: 350, maxHeight: 200)
-                
+                }//MARK: - End of ZStack
+                .shadow(radius: 1.5)
                 
             }
             .cornerRadius(20)
@@ -212,7 +199,7 @@ struct CardView: View, Identifiable {
                 LoginView()
             }
             
-//            .padding(.bottom,-380)
+            //            .padding(.bottom,-380)
         }
     }
     
@@ -246,3 +233,4 @@ struct CardView_Previews: PreviewProvider {
         CardView(title: "PF.Changs", location: "Jumeirah 1", image: "PF.Changs", category: "Restraunt", distance: 2, rating : 5, id: "1", latitude: 0.0, longitude: 0.0)
     }
 }
+

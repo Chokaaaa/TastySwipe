@@ -11,9 +11,11 @@ import StoreKit
 import MessageUI
 import RevenueCat
 import RevenueCatUI
+import GoogleSignIn
 
 struct SettingsView: View {
     @EnvironmentObject var viewModel : AuthViewModel
+    @EnvironmentObject var sessionManager: SessionManager
     @Environment(\.requestReview) var requestReview
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isSheetPresented = false
@@ -22,7 +24,12 @@ struct SettingsView: View {
     @State private var customAlert = false
     @State private var isLoginSheetPresented = false
     @State private var showingLoginView = false
+    @State private var showPrivacyPolicy: Bool = false
+    @State private var showTC: Bool = false
+    @State var hapticIsOn = false
     
+    
+    @AppStorage(UserDefaultsKey.hapticEnabled) private var isHapticEnabled: Bool = false
     
     var body: some View {
         
@@ -47,11 +54,11 @@ struct SettingsView: View {
                                     )
                                 
                                 VStack(alignment: .leading, spacing: 5) {
-                                    Text("Nursultan Yelemessov")
+                                    Text("\(sessionManager.currentUser?.fullName ?? "")")
                                         .font(.system(size: 15, weight: .bold))
                                     
                                     //                    Text(viewModel.userSession?.email ?? "No Email")
-                                    Text("NursultanYelemessov1@gmail.com")
+                                    Text("\(sessionManager.currentUser?.email ?? "")")
                                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                                         .foregroundColor(Color.red)
                                 }
@@ -176,20 +183,38 @@ struct SettingsView: View {
                         SettingsRow(title: "Review", imageName: "star", bgColor: Color.yellow)
                             .foregroundStyle(Color("SystemTextColor"))
                     })
+
+                    
+                    haptics
+                    
+//                    .sensoryFeedback(.success, trigger: hapticIsOn)
+                    
                     
                 }
                 
                 
                 Section {
                     
-                    NavigationLink(destination: GeneralSettingsView()) {
+                    
+                    Button {
+                        showPrivacyPolicy.toggle()
+                        
+                    } label: {
                         SettingsRow(title: "Privacy Policy", imageName: "shield.lefthalf.filled", bgColor: Color.teal)
+                            .foregroundStyle(Color("SystemTextColor"))
                     }
                     
-                    
-                    NavigationLink(destination: GeneralSettingsView()) {
-                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
+                    Button {
+                        showTC.toggle()
+                        
+                    } label: {
+                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.cyan)
+                            .foregroundStyle(Color("SystemTextColor"))
                     }
+                    
+//                    NavigationLink(destination: GeneralSettingsView()) {
+//                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
+//                    }
                 }
                 
                 //MARK: - Log Out
@@ -211,6 +236,8 @@ struct SettingsView: View {
                                 message: Text("We will miss you, Please come back as soon as possible"),
                                 dismissButton: .default(Text("Okay")) {
                                     viewModel.signOut()
+                                    GIDSignIn.sharedInstance.signOut()
+                                    sessionManager.currentUser = nil
                                 }
                             )
                         }
@@ -218,6 +245,13 @@ struct SettingsView: View {
                 }
                 
             }
+            .fullScreenCover(isPresented: $showPrivacyPolicy, content: {
+                    SFSafariViewWrapper(url: URL(string: "https://www.termsfeed.com/live/57886249-1490-4e29-979f-cabc010d4b5a")!)
+            })
+            
+            .fullScreenCover(isPresented: $showTC, content: {
+                    SFSafariViewWrapper(url: URL(string: "https://www.termsandconditionsgenerator.com/live.php?token=rKSQsIUOpaoKVSGenzM4t9ph2SOPYhBu")!)
+            })
             
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
@@ -257,22 +291,22 @@ struct SettingsView: View {
                             
                             
                         }
-                        Button {
-                            
-                            if Auth.auth().currentUser?.uid == nil {
-                                showingLoginView.toggle()
-                            } else {
-                                //MARK: - Login to open a view for whatsapp share
-                                
-                            }
-                            
-                        } label: {
-                            Image(systemName: "person.3")
-                                .foregroundStyle(Color.accentColor)
-                        }
-                        .fullScreenCover(isPresented: $showingLoginView) {
-                            LoginView()
-                        }
+//                        Button {
+//                            
+//                            if Auth.auth().currentUser?.uid == nil {
+//                                showingLoginView.toggle()
+//                            } else {
+//                                //MARK: - Login to open a view for whatsapp share
+//                                
+//                            }
+//                            
+//                        } label: {
+//                            Image(systemName: "person.3")
+//                                .foregroundStyle(Color.accentColor)
+//                        }
+                    }
+                    .fullScreenCover(isPresented: $showingLoginView) {
+                        LoginView()
                     }
                 }
             }
@@ -281,6 +315,7 @@ struct SettingsView: View {
  
         .onAppear {
             print("is Subscribed \(purchasesManager.isSubscriptionActive)")
+            
         }
         
     }
@@ -302,6 +337,39 @@ struct SettingsView: View {
 //        SettingsView()
 //    }
 //}
+
+private extension SettingsView {
+    var haptics: some View {
+        HStack(spacing: 25) {
+            ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.darkRed)
+                        
+                        HStack(spacing: 15) {
+                            Image(systemName: "slider.horizontal.2.square")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Color.white)
+                            
+                            
+                            
+                          
+                        }
+                        .padding(5)
+                
+                    }
+            .frame(width: 15, height: 10)
+            
+            Text("Haptic")
+                .font(.body)
+            
+            
+            Toggle("", isOn: $isHapticEnabled)
+            
+        }
+    }
+}
 
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {

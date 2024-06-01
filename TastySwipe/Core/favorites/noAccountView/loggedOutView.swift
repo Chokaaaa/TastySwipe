@@ -13,7 +13,7 @@ struct loggedOutView: View {
     @State private var showingLoginView = false
     @State private var isShowingPayWall = false
     @EnvironmentObject var authViewModel : AuthViewModel
-    
+    @EnvironmentObject var sessionManager : SessionManager
     @ObservedObject var purchasesManager = PurchasesManager()
     
     var body: some View {
@@ -38,9 +38,10 @@ struct loggedOutView: View {
                         
                         
                         
-                        Text("Sorry, you didn’t create an account yet, no worries you may open an account by clicking the button below. ")
+                        Text("Sorry, you didn’t create an account yet, no worries you may open an account by clicking the button below.")
                             .font(.system(size: 14))
                             .multilineTextAlignment(.center)
+                            .lineLimit(5)
                             .padding(.horizontal,15)
                             .foregroundColor(.gray)
 //                            .padding(.bottom, 10)
@@ -51,7 +52,7 @@ struct loggedOutView: View {
                     VStack(spacing: 15){
                         
                         Button {
-                            if authViewModel.userSession == nil {
+                            if sessionManager.currentUser == nil {
                                 showingLoginView.toggle()
                             } else {
                                 print("User is logged in already")
@@ -69,6 +70,7 @@ struct loggedOutView: View {
                                 }
     //                                .padding(.horizontal,isLastSlide ? 30 : 100)
                                 .padding(.horizontal,20)
+                                .padding(.top, 20)
                         }
 
                     }
@@ -79,7 +81,7 @@ struct loggedOutView: View {
                 }
             .padding(.top,50)
                 .padding(10)
-                .navigationTitle("Favourite")
+                .navigationTitle("Favorites")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     
@@ -116,13 +118,13 @@ struct loggedOutView: View {
                             } else {
                                 
                             }
-                            
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "person.3")
-                                    .foregroundStyle(Color.accentColor)
-                            }
+//                            
+//                            Button {
+//                                
+//                            } label: {
+//                                Image(systemName: "person.3")
+//                                    .foregroundStyle(Color.accentColor)
+//                            }
                         }
                     }
                 }
