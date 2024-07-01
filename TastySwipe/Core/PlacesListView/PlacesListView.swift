@@ -18,6 +18,7 @@ struct PlacesListView: View {
     @StateObject var viewModel = PlacesListViewModel()
     @EnvironmentObject var homeViewModel : HomeViewModel
     @Environment(\.modelContext) private var context
+    @EnvironmentObject var tabManager : TabManager
     @Query var preferedPlaces : [PreferedPlaceModel]
     @State private var isShowingPayWall = false
 //    @State private var selectedRating:
@@ -27,9 +28,11 @@ struct PlacesListView: View {
     
     let columns : [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
+    
+    
     var body: some View {
-        NavigationStack {
-            
+        ZStack {
+            Color.black.ignoresSafeArea()
             ScrollView {
                 
                 VStack(alignment: .leading,spacing: 10) {
@@ -70,7 +73,7 @@ struct PlacesListView: View {
                                     Text(tag.title)
                                         .fontWeight(.medium)
                                         .font(.system(size: 13))
-                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.white)
+                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
 //                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
                                     
                                 }
@@ -129,6 +132,27 @@ struct PlacesListView: View {
                 
             }
         }
+        
+        
+        .onDisappear(perform: {
+            print("did change selection \(tabManager.selectedTab)")
+            if tabManager.selectedTab == 0 {
+                if preferedPlaces.count > 0 {
+                    for preferedPlace in preferedPlaces {
+                        context.delete(preferedPlace)
+                    }
+                }
+                for tag in viewModel.selectedTags {
+                    let newPreferedPlace = PreferedPlaceModel(place: tag)
+                    context.insert(newPreferedPlace)
+                }
+                let locationName = viewModel.selectedTags.map({ $0.apiName }).joined(separator: " OR ")
+                homeViewModel.fetchPlaces(locationName: locationName, filterByRating: selectedRating)
+                cardsManager.showLastCard = false
+                cardsManager.totalCardSwiped = 0
+                
+            }
+        })
         
         .onAppear {
             viewModel.selectedTags = preferedPlaces.map { $0.place }

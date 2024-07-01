@@ -41,15 +41,14 @@ struct TastySwipeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("isOnboarding") var isOnboarding = true
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State var tabBarManager = TabManager()
+    @StateObject var tabBarManager = TabManager()
     @State var selection = 0
     
     var body: some Scene {
         WindowGroup {
           
                 MainTabbedView()
-                    .environment(tabBarManager)
-                
+                .environmentObject(tabBarManager)
                 .environmentObject(cardsManager)
                 .environmentObject(sessionManager)
                 .environmentObject(wishlistViewModel)
@@ -62,7 +61,7 @@ struct TastySwipeApp: App {
 //                    UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 //                    
 //                }
-                .background(Color.black)
+                .preferredColorScheme(.dark)
                     .environmentObject(locationViewModel)
                     .environmentObject(authViewModel)
                     .environmentObject(homeViewModel)

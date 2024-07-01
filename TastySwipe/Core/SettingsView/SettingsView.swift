@@ -37,11 +37,11 @@ struct SettingsView: View {
         NavigationStack {
             
             ZStack {
-                
                 UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
                     .fill(Color("settingTopBG"))
                     .frame(width: UIScreen.main.bounds.width, height: 235)
                     .ignoresSafeArea(.container, edges: .top)
+
                 
                 VStack {
                     
@@ -189,314 +189,317 @@ struct SettingsView: View {
                     LoginView()
                 }
             }
-            ScrollView {
-                VStack(spacing: 1) {
-                    
-                    Button {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                ScrollView {
+                    VStack(spacing: 1) {
                         
-                    } label: {
+                        Button {
+                            
+                        } label: {
+                            
+                            HStack(spacing: 30) {
+                                
+                                Image("medalIcon")
+                                
+                                Text("Become a PRO")
+                                    .font(.title2)
+                                    .foregroundStyle(.black)
+                                    .bold()
+                                
+                                Spacer()
+                                
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                        }
+                        .padding([.trailing, .leading], 10)
+                        //                    .padding(.top,15)
                         
-                        HStack(spacing: 30) {
-                            
-                            Image("medalIcon")
-                            
-                            Text("Become a PRO")
-                                .font(.title2)
-                                .foregroundStyle(.black)
-                                .bold()
-                            
-                            Spacer()
+                        
+                        
+                        
+                        //MARK: - General Section
+                        
+                        
+                        Button {
+                            showingAlert = true
+                        } label: {
+                            HStack {
+                                Image("globeSettings")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Language")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Text("\(Locale.current.localizedString(forIdentifier: Locale.current.language.languageCode?.identifier ?? "No Language Settled") ?? "None")")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.gray.opacity(0.6))
+                                
+                                
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
                             
                         }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                    }
-                    .padding([.trailing, .leading], 10)
-//                    .padding(.top,15)
-                    
-                    
-                    
-                    
-                    //MARK: - General Section
-                    
-                    
-                    Button {
-                        showingAlert = true
-                    } label: {
-                        HStack {
-                            Image("globeSettings")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
-                            
-                            
-                            Text("Language")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Text("\(Locale.current.localizedString(forIdentifier: Locale.current.language.languageCode?.identifier ?? "No Language Settled") ?? "None")")
-                                .font(.subheadline)
-                                .foregroundStyle(.gray.opacity(0.6))
-                            
-                            
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
+                        .alert(isPresented: $showingAlert) {
+                            Alert(
+                                title: Text("Change App Language?"),
+                                message: Text("You'll be directed to the app settings, allowing you to select your desired language."),
+                                primaryButton: .default(Text("Settings")) {
+                                    openSettings()
+                                },
+                                secondaryButton: .cancel()
+                            )
                         }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
+                        .padding([.trailing, .leading], 10)
+                        .padding(.top,20)
                         
-                    }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(
-                            title: Text("Change App Language?"),
-                            message: Text("You'll be directed to the app settings, allowing you to select your desired language."),
-                            primaryButton: .default(Text("Settings")) {
-                                openSettings()
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
-                    .padding([.trailing, .leading], 10)
-                    .padding(.top,20)
-                    
-                    
-                    
-                    NavigationLink {
-                        ContactUsView()
-                            .navigationBarBackButtonHidden(true)
                         
-                    } label: {
                         
-                        HStack {
-                            Image("envelopeIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
+                        NavigationLink {
+                            ContactUsView()
+                                .navigationBarBackButtonHidden(true)
                             
+                        } label: {
                             
-                            Text("Contact Us")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
-                        }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
-                        
-                    }
-                    .padding([.trailing, .leading], 10)
-                    
-                    
-                    
-                    
-                    
-                    
-                    //MARK: - Apperance
-                    
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image("sunIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
-                            
-                            
-                            Text("Collor Scheme")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Text("Dark")
-                                .font(.subheadline)
-                                .foregroundStyle(.gray.opacity(0.6))
-                            
-                            
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
-                        }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
-                    }
-                    .padding([.trailing, .leading], 10)
-                    .padding(.top,30)
-                    
-                    //                Section {
-                    //                    SettingsRowWithPicker(imageName: "circle.lefthalf.filled", text: "Color Scheme", bgColor: Color.black)
-                    //                }
-                    
-                    //MARK: - App Related
-                    
-                    
-                    Button {
-                        requestReview()
-                    } label: {
-                        HStack {
-                            Image("emptyStarIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
-                            
-                            
-                            Text("Review")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
-                        }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
-                        
-                    }
-                    .padding([.trailing, .leading], 10)
-                    .padding(.top,30)
-                    
-                    
-                    
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image("configIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
-                            
-                            
-                            Text("Haptic")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Toggle("", isOn: $isHapticEnabled)
-                                .tint(Color.accentColor)
+                            HStack {
+                                Image("envelopeIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Contact Us")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
                             
                         }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
+                        .padding([.trailing, .leading], 10)
                         
-                    }
-                    .padding([.trailing, .leading], 10)
-                    
-                    //                    haptics
-                    
-                    //                                        .sensoryFeedback(.success, trigger: hapticIsOn)
-                    
-                    
-                    Button {
-                        showPrivacyPolicy.toggle()
-                    } label: {
-                        HStack {
-                            Image("shieldTickIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
+                        
+                        
+                        
+                        
+                        
+                        //MARK: - Apperance
+                        
+                        Button {
                             
-                            
-                            Text("Privacy Policy")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
+                        } label: {
+                            HStack {
+                                Image("sunIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Collor Scheme")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Text("Dark")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.gray.opacity(0.6))
+                                
+                                
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
                         }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
+                        .padding([.trailing, .leading], 10)
+                        .padding(.top,30)
                         
-                    }
-                    .padding([.trailing, .leading], 10)
-                    .padding(.top,30)
-                    
-                    Button {
-                        showTC.toggle()
-                    } label: {
-                        HStack {
-                            Image("taskSquareIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                                .padding(.leading, -10)
+                        //                Section {
+                        //                    SettingsRowWithPicker(imageName: "circle.lefthalf.filled", text: "Color Scheme", bgColor: Color.black)
+                        //                }
+                        
+                        //MARK: - App Related
+                        
+                        
+                        Button {
+                            requestReview()
+                        } label: {
+                            HStack {
+                                Image("emptyStarIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Review")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
                             
-                            
-                            Text("Terms & Condition")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 17, weight: .bold))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            Image("chevron.Right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.leading, 0)
                         }
-                        .padding()
-                        .padding(.leading,10)
-                        .background(Color("settingsRowBg"))
-                        .cornerRadius(10)
+                        .padding([.trailing, .leading], 10)
+                        .padding(.top,30)
+                        
+                        
+                        
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Image("configIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Haptic")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Toggle("", isOn: $isHapticEnabled)
+                                    .tint(Color.accentColor)
+                                
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
+                            
+                        }
+                        .padding([.trailing, .leading], 10)
+                        
+                        //                    haptics
+                        
+                        //                                        .sensoryFeedback(.success, trigger: hapticIsOn)
+                        
+                        
+                        Button {
+                            showPrivacyPolicy.toggle()
+                        } label: {
+                            HStack {
+                                Image("shieldTickIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Privacy Policy")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
+                            
+                        }
+                        .padding([.trailing, .leading], 10)
+                        .padding(.top,30)
+                        
+                        Button {
+                            showTC.toggle()
+                        } label: {
+                            HStack {
+                                Image("taskSquareIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.leading, -10)
+                                
+                                
+                                Text("Terms & Condition")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Image("chevron.Right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .padding(.leading, 0)
+                            }
+                            .padding()
+                            .padding(.leading,10)
+                            .background(Color("settingsRowBg"))
+                            .cornerRadius(10)
+                            
+                        }
+                        .padding([.trailing, .leading], 10)
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        //                    NavigationLink(destination: GeneralSettingsView()) {
+                        //                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
+                        //                    }
+                        
+                        
                         
                     }
-                    .padding([.trailing, .leading], 10)
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //                    NavigationLink(destination: GeneralSettingsView()) {
-                    //                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
-                    //                    }
-                    
-                    
-                    
                 }
             }
             .padding(.top, -45)

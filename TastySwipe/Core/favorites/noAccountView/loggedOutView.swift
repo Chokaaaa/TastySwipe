@@ -20,6 +20,7 @@ struct loggedOutView: View {
 //        HStack(spacing: 0){
         
         NavigationStack {
+            
             VStack(spacing: 60){
                     
                     // MARK: Movable Slides

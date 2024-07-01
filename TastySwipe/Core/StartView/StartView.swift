@@ -53,7 +53,7 @@ struct StartView: View {
     @EnvironmentObject var wishListViewModel: WishListViewModel
     @EnvironmentObject var cardsManager: CardsManager
     @EnvironmentObject var purchasesManager : PurchasesManager
-    @Environment(TabManager.self) var tabManager : TabManager
+    @EnvironmentObject var tabManager : TabManager
     @AppStorage("isOnboarding") var isOnboarding : Bool = false
     @AppStorage("swipeAlertPresented") var swipeAlertPresented = 0
     
@@ -174,77 +174,80 @@ struct StartView: View {
                                             .transition(.customTransition)
                                     }
                                     
-                                    
-                                    CardStack(
-                                        direction: LeftRight.direction,
-                                        data: viewModel.cardViews,
-                                        onSwipe: { card, direction in
-                                            print("Swiped \(card.title) to \(direction)")
-                                            viewModel.activeCard = card
-                                            cardsManager.totalCardSwiped += 1
-                                            if direction == .left {
-                                                haptic(.success)
-                                                if purchasesManager.isSubscriptionActive == false {
-                                                    leftSwipeCount += 1
-                                                    print("Left swipes: \(leftSwipeCount)")
-                                                    checkAndShowAd()
-                                                    
-                                                } else {
-                                                    
+                                    HStack {
+                                        Spacer()
+                                        CardStack(
+                                            direction: LeftRight.direction,
+                                            data: viewModel.cardViews,
+                                            onSwipe: { card, direction in
+                                                print("Swiped \(card.title) to \(direction)")
+                                                viewModel.activeCard = card
+                                                cardsManager.totalCardSwiped += 1
+                                                if direction == .left {
+                                                    haptic(.success)
+                                                    if purchasesManager.isSubscriptionActive == false {
+                                                        leftSwipeCount += 1
+                                                        print("Left swipes: \(leftSwipeCount)")
+                                                        checkAndShowAd()
+                                                        
+                                                    } else {
+                                                        
+                                                    }
                                                 }
+                                                
+                                                if direction == .right {
+                                                    haptic(.success)
+                                                    if purchasesManager.isSubscriptionActive == false {
+                                                        
+                                                        rightSwipeCount += 1
+                                                        print("Right swipes: \(rightSwipeCount)")
+                                                        checkAndShowAd()
+                                                        
+                                                    } else {
+                                                        
+                                                    }
+                                                }
+                                                if cardsManager.totalCardSwiped == viewModel.cardViews.count {
+                                                    cardsManager.showLastCard = true
+                                                }
+                                            },
+                                            content: { place, _, _ in
+                                                CardView(title: place.title, location: place.location, image: place.image, category: place.category, distance: place.distance, rating: place.rating, id: place.id, latitude: place.latitude,longitude: place.longitude)
+                                                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3, alignment: .center)
+                                                    .onTapGesture {
+                                                        haptic(.error)
+                                                        
+                                                        selectedCardView = place
+                                                        tabManager.showHiddenTab = true
+                                                        withAnimation(.easeInOut(duration: 0.2)) {
+                                                            topDividerOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.4)
+                                                            imageOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
+                                                            distanceOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
+                                                            bottomOffsetValue = 127.5
+                                                        }
+                                                        
+                                                    }
                                             }
                                             
-                                            if direction == .right {
-                                                haptic(.success)
-                                                if purchasesManager.isSubscriptionActive == false {
-                                                    
-                                                    rightSwipeCount += 1
-                                                    print("Right swipes: \(rightSwipeCount)")
-                                                    checkAndShowAd()
-                                                    
-                                                } else {
-                                                    
-                                                }
-                                            }
-                                            if cardsManager.totalCardSwiped == viewModel.cardViews.count {
-                                                cardsManager.showLastCard = true
-                                            }
-                                        },
-                                        content: { place, _, _ in
-                                            CardView(title: place.title, location: place.location, image: place.image, category: place.category, distance: place.distance, rating: place.rating, id: place.id, latitude: place.latitude,longitude: place.longitude)
-                                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
-                                                .onTapGesture {
-                                                    haptic(.error)
-                                                    
-                                                    selectedCardView = place
-                                                    tabManager.showHiddenTab = true
-                                                    withAnimation(.easeInOut(duration: 0.2)) {
-                                                        topDividerOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.4)
-                                                        imageOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
-                                                        distanceOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
-                                                        bottomOffsetValue = 127.5
-                                                    }
-                                                    
-                                                }
-                                        }
-                                        
-                                        
-                                    )
-                                    .environment(
-                                        \.cardStackConfiguration,
-                                         
-                                         CardStackConfiguration(
-                                            maxVisibleCards: 3,
-                                            swipeThreshold: 0.1,
-                                            cardOffset: 10,
-                                            cardScale: 0.2,
-                                            animation: .linear
-                                         )
-                                    )
-                                    .scaledToFit()
-                                    .frame(width: 350, alignment: .center)
-                                    .padding(.bottom,200)
-                                    .opacity(selectedCardView == nil ? 1 : 0)
+                                        )
+                                        .environment(
+                                            \.cardStackConfiguration,
+                                             
+                                             CardStackConfiguration(
+                                                maxVisibleCards: 3,
+                                                swipeThreshold: 0.1,
+                                                cardOffset: 10,
+                                                cardScale: 0.2,
+                                                animation: .linear
+                                             )
+                                        )
+                                        .scaledToFit()
+                                        //.frame(width: 350, alignment: .center)
+                                        .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .center)
+                                        .padding(.bottom,200)
+                                        .opacity(selectedCardView == nil ? 1 : 0)
+                                        Spacer()
+                                    }
                                 }
                             }
                         }
@@ -253,151 +256,11 @@ struct StartView: View {
                     .onAppear {
                         loadInterstitialAds()
                     }
-                    
-                    
-                    
-                    //removed loading
-                    //                if viewModel.cardViews.count == 0 {
-                    //
-                    //
-                    //                    //                    Color.clear.ignoresSafeArea().background(
-                    //                    //
-                    //                    //                        .ultraThinMaterial
-                    //                    //
-                    //                    //                    )
-                    //                    //                    VStack(alignment: .center, spacing: 15) {
-                    //                    //
-                    //                    //                        Text("Loading...")
-                    //                    //
-                    //                    //                       ProgressView()
-                    //                    //                    }
-                    //                }
-                    
                 }
-                
-                //                if isOnboarding {
-                
-//                Color.black.ignoresSafeArea(edges: .all)
-//                    .opacity(0.7)
-                
-//                VStack(alignment: .center) {
-//                    
-//                    Text("Swipe right or left to see the next place")
-//                        .font(.title)
-//                        .bold()
-//                    
-//                    Spacer()
-//                    
-//                    Image("tutorialCardView")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(maxWidth: .infinity)
-//                    
-//                    Spacer()
-//                    
-//                    Button {
-//                        
-//                    } label: {
-//                        Text("Got it!")
-//                            .background {
-//                                Capsule()
-//                                    .frame(width: 80, height: 60)
-//                            }
-//                    }
-//
-//                    
-//                }
-                
-                //                }
-                
             }
-            
-            
         }
             
-            //            .if(viewModel.cardViews.count == 0) { view in
-//
-//            }
-//            .navigationTitle("LocaleLink")
-//            .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                
-//                ToolbarItem(placement: .topBarLeading) {
-//                    
-//                    
-//                    NavigationLink(destination: PlacesListView()) {
-//                        
-//                        
-//                        Image(systemName: "square.grid.2x2")
-//                            .foregroundStyle(Color.accentColor)
-//                        
-//                    }
-//                    
-//                    
-//                }
-//                //MARK: - Need to reverse the changes here
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    
-//                    HStack {
-//                        if purchasesManager.isSubscriptionActive == false {
-//                            Button {
-//                                isShowingPayWall = true
-//                            } label: {
-//                                HStack(spacing: 0) {
-//                                    Text("💎")
-//                                        .foregroundStyle(Color.yellow)
-//                                        .frame(width: 25, height: 0)
-//                                    Text("PRO")
-//                                        .fontWeight(.bold)
-//                                }
-//                                .padding(5)
-//                                .foregroundColor(.white)
-//                                .background(Color.accentColor)
-//                                .clipShape(
-//                                    Capsule()
-//                                )
-//                            }
-//                            .fullScreenCover(isPresented: $isShowingPayWall) {
-//                                PaywallView()
-//                                    .padding([.leading, .trailing], -100)
-//                                //                                    .paywallFooter(condensed: false)
-//                            }
-//                        } else {
-//                            
-//                        }
-//                        
-//                        
-//                        //MARK: - APP CLIP
-//                        
-//                        Button {
-//                            if let currentUserId = Auth.auth().currentUser?.uid {
-//                            guard let activeCard = viewModel.activeCard else { return }
-//                            guard let hostUserId = Auth.auth().currentUser?.uid else { return }
-//                            let votingReference = Firestore.firestore().collection("voting").document()
-//                            let votingId = votingReference.documentID
-//                            votingReference.setData([
-//                                "title" : activeCard.title,
-//                                "address" : activeCard.location,
-//                                "image" : activeCard.image,
-//                                "hostUserId" : hostUserId
-//                            ])
-//                            shareButton(votingId: votingId)
-//                            } else {
-//                                showingLoginView.toggle()
-//                            }
-//                            
-//                                
-//                        } label: {
-//                            Image(systemName: "person.3")
-//                                .foregroundStyle(Color.accentColor)
-//                        }
-//                        
-//                        
-//                    }
-//                }
-//            }
-//        }
-        
+    
         //MARK: - Fullscreen Cover Sheet
         .fullScreenCover(isPresented: $viewModel.showNoLocationView, content: {
             NoLocationSharedView()

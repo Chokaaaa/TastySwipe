@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-@Observable
-class TabManager {
-    var showHiddenTab = false
+
+class TabManager: ObservableObject {
+    @Published var showHiddenTab = false
+    @Published var selectedTab = 0
 }

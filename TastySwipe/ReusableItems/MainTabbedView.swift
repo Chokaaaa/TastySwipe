@@ -39,8 +39,8 @@ enum TabbedItems: Int, CaseIterable{
 
 struct MainTabbedView: View {
     
-    @State var selectedTab = 0
-    @Environment(TabManager.self) var tabManager : TabManager
+//    @State var selectedTab = 0
+    @EnvironmentObject var tabManager : TabManager
     @AppStorage("isOnboarding") var isOnboarding : Bool = false
     
     var body: some View {
@@ -51,9 +51,9 @@ struct MainTabbedView: View {
                                 HStack{
                                     ForEach((TabbedItems.allCases), id: \.self){ item in
                                         Button{
-                                            selectedTab = item.rawValue
+                                            tabManager.selectedTab = item.rawValue
                                         } label: {
-                                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (tabManager.selectedTab == item.rawValue))
                                         }
                                     }
                                 }
@@ -72,7 +72,7 @@ struct MainTabbedView: View {
                         }
             
             
-            if selectedTab == 0 {
+            if tabManager.selectedTab == 0 {
                 ZStack {
                     if tabManager.showHiddenTab {
                         VisualEffectBlur(blurStyle: .systemThinMaterialDark)
@@ -81,11 +81,11 @@ struct MainTabbedView: View {
                     StartView()
                         .tag(0)
                 }
-            } else if selectedTab == 1 {
+            } else if tabManager.selectedTab == 1 {
                 
                 if Auth.auth().currentUser?.uid != nil {
                     
-                    WishListView(tabSelection: $selectedTab)
+                    WishListView(tabSelection: $tabManager.selectedTab)
                         .tag(1)
                     
                 } else {
@@ -93,7 +93,7 @@ struct MainTabbedView: View {
                         .tag(1)
                 }
                 
-            } else if selectedTab == 2 {
+            } else if tabManager.selectedTab == 2 {
                 
                 PlacesListView()
                     .tag(2)
@@ -122,9 +122,10 @@ struct MainTabbedView: View {
                     HStack{
                         ForEach((TabbedItems.allCases), id: \.self){ item in
                             Button{
-                                selectedTab = item.rawValue
+                                print("new selection \(item.rawValue)")
+                                tabManager.selectedTab = item.rawValue
                             } label: {
-                                CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                                CustomTabItem(imageName: item.iconName, title: item.title, isActive: (tabManager.selectedTab == item.rawValue))
                             }
                         }
                     }

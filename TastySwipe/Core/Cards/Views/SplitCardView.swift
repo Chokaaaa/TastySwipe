@@ -30,7 +30,7 @@ struct SplitCardView: View {
     @Binding var bottomOffsetValue : CGFloat
     @Binding var selectedCardView : CardView?
     
-    @Environment(TabManager.self) var tabManager : TabManager
+    @EnvironmentObject var tabManager : TabManager
     
     @EnvironmentObject var wishListViewModel: WishListViewModel
     @ObservedObject var purchasesManager = PurchasesManager()

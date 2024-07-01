@@ -177,7 +177,7 @@ struct CardView: View, Identifiable {
                             .padding(.bottom, 5)
                             .padding(.top, 5)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .background(.regularMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(.horizontal, 2)
