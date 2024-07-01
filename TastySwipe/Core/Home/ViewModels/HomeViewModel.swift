@@ -70,10 +70,11 @@ class HomeViewModel : NSObject, ObservableObject {
                 print("Calling fetch places 2")
                 self.currentLocation = location
                 self.token = response.next_page_token
+                self.sortAndDisplayResults(results: response.results, location: location)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.fetchNextPlaces(location: location, results: response.results)
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    self.fetchNextPlaces(location: location, results: response.results)
+//                }
             }
     }
     

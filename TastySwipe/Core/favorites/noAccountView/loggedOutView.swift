@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import RevenueCat
-import RevenueCatUI
+//import RevenueCat
+//import RevenueCatUI
 
 struct loggedOutView: View {
     @State private var showingLoginView = false

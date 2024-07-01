@@ -15,7 +15,6 @@
 		8407D22C2B488C1D00CAE616 /* EmptyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22B2B488C1D00CAE616 /* EmptyCardView.swift */; };
 		8407D22E2B488DE400CAE616 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22D2B488DE400CAE616 /* Config.swift */; };
 		8407D2302B488E1F00CAE616 /* PurchasesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D22F2B488E1F00CAE616 /* PurchasesManager.swift */; };
-		8407D2362B4932F600CAE616 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8407D2352B4932F600CAE616 /* Shimmer */; };
 		8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2382B496ABB00CAE616 /* dismissButton.swift */; };
 		8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D23A2B49894200CAE616 /* ListRowModifier.swift */; };
 		8407D23E2B49A30700CAE616 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8407D23D2B49A30700CAE616 /* Localizable.xcstrings */; };
@@ -48,6 +47,13 @@
 		84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84348F7629CB35250017ED7E /* MenuActionButton.swift */; };
 		846558242BF38F0100E422F4 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558232BF38F0100E422F4 /* MainTabbedView.swift */; };
 		846558272BFBD0B000E422F4 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558262BFBD0B000E422F4 /* BlurView.swift */; };
+		8465582B2C0CFA4600E422F4 /* SplitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8465582A2C0CFA4500E422F4 /* SplitCardView.swift */; };
+		8465582D2C0DBAC300E422F4 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8465582C2C0DBAC200E422F4 /* VisualEffectBlur.swift */; };
+		8465582F2C0DBCF200E422F4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8465582E2C0DBCF200E422F4 /* TestView.swift */; };
+		846558312C0DC0E100E422F4 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558302C0DC0E100E422F4 /* TabManager.swift */; };
+		846558332C0F5F9200E422F4 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558322C0F5F9200E422F4 /* ActivityViewController.swift */; };
+		846558352C0F61B800E422F4 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846558342C0F61B800E422F4 /* Extension+URL.swift */; };
+		846753662C3004E300479AC5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 846753652C3004E300479AC5 /* GoogleMobileAds */; };
 		84693EE92B4B0AE8001E0783 /* EmptyWishList.json in Resources */ = {isa = PBXBuildFile; fileRef = 84693EE82B4B0AE7001E0783 /* EmptyWishList.json */; };
 		847037B32B409BC3004C7A06 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = 847037B22B409BC3004C7A06 /* CardStack */; };
 		847037B62B40AA9A004C7A06 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847037B52B40AA9A004C7A06 /* MainView.swift */; };
@@ -62,6 +68,7 @@
 		84755DEB2B519E7B0057CA5F /* MonthlyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */; };
 		84755DEE2B51BD480057CA5F /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DED2B51BD480057CA5F /* PlanView.swift */; };
 		84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */; };
+		8476E37C2C11835300B42320 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E37B2C11835300B42320 /* ContactUsView.swift */; };
 		847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B022B7E633600B0C30E /* SelectKeeper.swift */; };
 		847C6B052B7E9AB800B0C30E /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B042B7E9AB800B0C30E /* HapticsManager.swift */; };
 		847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */; };
@@ -78,8 +85,6 @@
 		84866A2C2B657A9B0096695E /* dismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2382B496ABB00CAE616 /* dismissButton.swift */; };
 		84866A2F2B664AEC0096695E /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A2E2B664AEC0096695E /* VoteModel.swift */; };
 		84866A312B6798970096695E /* VoteHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84866A302B6798970096695E /* VoteHistoryModel.swift */; };
-		84AE7E812B41F2FD00175EE4 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 84AE7E802B41F2FD00175EE4 /* RevenueCat */; };
-		84AE7E832B41F2FD00175EE4 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 84AE7E822B41F2FD00175EE4 /* RevenueCatUI */; };
 		84AE7E8F2B42EC6300175EE4 /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E8D2B42EC6300175EE4 /* ImageExt.swift */; };
 		84AE7E902B42EC6300175EE4 /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E8E2B42EC6300175EE4 /* ColorExt.swift */; };
 		84AE7E922B42EC7100175EE4 /* InfiniteScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE7E912B42EC7100175EE4 /* InfiniteScroller.swift */; };
@@ -115,7 +120,6 @@
 		84DE46512B585978009123AD /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE46502B585978009123AD /* StartView.swift */; };
 		84DE46542B585AD1009123AD /* NavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE46532B585AD1009123AD /* NavigationConfigurator.swift */; };
 		84E2635629F20BB500847C16 /* thinking.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E2635529F20BB500847C16 /* thinking.json */; };
-		84E2635929F20C2600847C16 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 84E2635829F20C2600847C16 /* Lottie */; };
 		84E2635D29F20C5700847C16 /* OnBoardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2635C29F20C5700847C16 /* OnBoardingItem.swift */; };
 		84E2636229F20E0300847C16 /* ResizableLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2636029F20E0300847C16 /* ResizableLottieView.swift */; };
 		84E2636329F20E0300847C16 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2636129F20E0300847C16 /* OnBoardingScreen.swift */; };
@@ -131,7 +135,6 @@
 		84EAD9BA2B5BC121000B1E83 /* LoadingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9B92B5BC121000B1E83 /* LoadingCardView.swift */; };
 		84EAD9BC2B5BC249000B1E83 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */; };
 		84EAD9BE2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */; };
-		84EAD9C12B5E3F70000B1E83 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +200,12 @@
 		8442D91B29D51544005FE419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		846558232BF38F0100E422F4 /* MainTabbedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
 		846558262BFBD0B000E422F4 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		8465582A2C0CFA4500E422F4 /* SplitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitCardView.swift; sourceTree = "<group>"; };
+		8465582C2C0DBAC200E422F4 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		8465582E2C0DBCF200E422F4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		846558302C0DC0E100E422F4 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		846558322C0F5F9200E422F4 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		846558342C0F61B800E422F4 /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
 		84693EE82B4B0AE7001E0783 /* EmptyWishList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyWishList.json; sourceTree = "<group>"; };
 		847037B52B40AA9A004C7A06 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		847037B72B4145CE004C7A06 /* SettingsRowWithToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowWithToggle.swift; sourceTree = "<group>"; };
@@ -210,6 +219,7 @@
 		84755DE82B519E7B0057CA5F /* MonthlyPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlyPlanView.swift; sourceTree = "<group>"; };
 		84755DED2B51BD480057CA5F /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPackage.swift; sourceTree = "<group>"; };
+		8476E37B2C11835300B42320 /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		847C6B022B7E633600B0C30E /* SelectKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectKeeper.swift; sourceTree = "<group>"; };
 		847C6B042B7E9AB800B0C30E /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
@@ -278,20 +288,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8407D2362B4932F600CAE616 /* Shimmer in Frameworks */,
 				84227B5C2A2CA0EA001CAAD8 /* GoogleSignIn in Frameworks */,
 				847037B32B409BC3004C7A06 /* CardStack in Frameworks */,
+				846753662C3004E300479AC5 /* GoogleMobileAds in Frameworks */,
 				8431D78C2B4E58B9006FE611 /* GoogleSignIn in Frameworks */,
-				84E2635929F20C2600847C16 /* Lottie in Frameworks */,
 				84DCAD4129F5F5B9007D6E4C /* FirebaseStorage in Frameworks */,
 				84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */,
-				84AE7E812B41F2FD00175EE4 /* RevenueCat in Frameworks */,
 				84CB7FB92B46B07D00E1CE79 /* StarRatingViewSwiftUI in Frameworks */,
 				8431D78E2B4E58B9006FE611 /* GoogleSignInSwift in Frameworks */,
 				84DCAD3D29F5F595007D6E4C /* FirebaseAuth in Frameworks */,
 				84DCAD3F29F5F59D007D6E4C /* FirebaseFirestoreSwift in Frameworks */,
-				84EAD9C12B5E3F70000B1E83 /* GoogleMobileAds in Frameworks */,
-				84AE7E832B41F2FD00175EE4 /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +373,8 @@
 				84EAD9BD2B5C1EB0000B1E83 /* RoundedRectProgressViewStyle.swift */,
 				847C6B022B7E633600B0C30E /* SelectKeeper.swift */,
 				847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */,
+				8465582C2C0DBAC200E422F4 /* VisualEffectBlur.swift */,
+				846558322C0F5F9200E422F4 /* ActivityViewController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -381,6 +389,7 @@
 				84348F3529CB33420017ED7E /* TastySwipe */,
 				84DE46392B56C6DE009123AD /* TastyClip */,
 				84348F3429CB33420017ED7E /* Products */,
+				846753622C30038600479AC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -425,6 +434,7 @@
 		84348F4429CB33E70017ED7E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8476E37A2C11833500B42320 /* ContactUsView */,
 				84DE464F2B585947009123AD /* StartView */,
 				84CB7FB42B469E3900E1CE79 /* PlacesListView */,
 				84AE7E932B42EC7800175EE4 /* PayWall */,
@@ -481,6 +491,7 @@
 				84DE464D2B58556E009123AD /* ArrayExtension.swift */,
 				84EAD9BB2B5BC249000B1E83 /* ViewExtension.swift */,
 				847C6B0F2B82093B00B0C30E /* SFSafariViewWrapper.swift */,
+				846558342C0F61B800E422F4 /* Extension+URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -496,6 +507,7 @@
 				84121E542B74103200D4A5AC /* SessionManager.swift */,
 				84121E562B7774BA00D4A5AC /* CardsManager.swift */,
 				847C6B042B7E9AB800B0C30E /* HapticsManager.swift */,
+				846558302C0DC0E100E422F4 /* TabManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -557,6 +569,7 @@
 			children = (
 				84348F6229CB34E00017ED7E /* CardMain.swift */,
 				84348F6329CB34E00017ED7E /* CardView.swift */,
+				8465582A2C0CFA4500E422F4 /* SplitCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -621,6 +634,13 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		846753622C30038600479AC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		847037B42B40AA89004C7A06 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +675,14 @@
 				84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8476E37A2C11833500B42320 /* ContactUsView */ = {
+			isa = PBXGroup;
+			children = (
+				8476E37B2C11835300B42320 /* ContactUsView.swift */,
+			);
+			path = ContactUsView;
 			sourceTree = "<group>";
 		};
 		847C6B0C2B80DE3200B0C30E /* LastCardView */ = {
@@ -791,6 +819,7 @@
 			children = (
 				84EAD9B82B5BC056000B1E83 /* View */,
 				84DE46502B585978009123AD /* StartView.swift */,
+				8465582E2C0DBCF200E422F4 /* TestView.swift */,
 			);
 			path = StartView;
 			sourceTree = "<group>";
@@ -875,20 +904,16 @@
 			);
 			name = TastySwipe;
 			packageProductDependencies = (
-				84E2635829F20C2600847C16 /* Lottie */,
 				84DCAD3C29F5F595007D6E4C /* FirebaseAuth */,
 				84DCAD3E29F5F59D007D6E4C /* FirebaseFirestoreSwift */,
 				84DCAD4029F5F5B9007D6E4C /* FirebaseStorage */,
 				84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */,
 				84227B5D2A2CA0EA001CAAD8 /* GoogleSignInSwift */,
 				847037B22B409BC3004C7A06 /* CardStack */,
-				84AE7E802B41F2FD00175EE4 /* RevenueCat */,
-				84AE7E822B41F2FD00175EE4 /* RevenueCatUI */,
 				84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */,
-				8407D2352B4932F600CAE616 /* Shimmer */,
 				8431D78B2B4E58B9006FE611 /* GoogleSignIn */,
 				8431D78D2B4E58B9006FE611 /* GoogleSignInSwift */,
-				84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */,
+				846753652C3004E300479AC5 /* GoogleMobileAds */,
 			);
 			productName = TastySwipe;
 			productReference = 84348F3329CB33420017ED7E /* TastySwipe.app */;
@@ -943,14 +968,12 @@
 			);
 			mainGroup = 84348F2A29CB33420017ED7E;
 			packageReferences = (
-				84E2635729F20C2600847C16 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
-				84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				84CB7FB72B46B07C00E1CE79 /* XCRemoteSwiftPackageReference "StarRatingViewSwiftUI" */,
 				8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				846753612C30029B00479AC5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 84348F3429CB33420017ED7E /* Products */;
 			projectDirPath = "";
@@ -1003,6 +1026,7 @@
 				8407D23B2B49894200CAE616 /* ListRowModifier.swift in Sources */,
 				84CB7FAC2B45558E00E1CE79 /* WishListViewModel.swift in Sources */,
 				847C6B0E2B80DE3F00B0C30E /* LastCardView.swift in Sources */,
+				8465582D2C0DBAC300E422F4 /* VisualEffectBlur.swift in Sources */,
 				84AE7E902B42EC6300175EE4 /* ColorExt.swift in Sources */,
 				84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */,
 				84348F7729CB35250017ED7E /* ExploreMapViewRepresentable.swift in Sources */,
@@ -1024,6 +1048,7 @@
 				847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */,
 				8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */,
 				8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */,
+				8476E37C2C11835300B42320 /* ContactUsView.swift in Sources */,
 				846558272BFBD0B000E422F4 /* BlurView.swift in Sources */,
 				847037B62B40AA9A004C7A06 /* MainView.swift in Sources */,
 				84348F7929CB35250017ED7E /* MenuActionButton.swift in Sources */,
@@ -1037,8 +1062,10 @@
 				84348F5F29CB34CC0017ED7E /* PlacesModel.swift in Sources */,
 				84AE7E992B42EC8200175EE4 /* FeatureCard.swift in Sources */,
 				84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */,
+				8465582B2C0CFA4600E422F4 /* SplitCardView.swift in Sources */,
 				84348F5029CB34670017ED7E /* LocationManager.swift in Sources */,
 				8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */,
+				846558332C0F5F9200E422F4 /* ActivityViewController.swift in Sources */,
 				84348F4A29CB341F0017ED7E /* CustomInputField.swift in Sources */,
 				84DE46332B569657009123AD /* ButtonFillExt.swift in Sources */,
 				84AE7E972B42EC8200175EE4 /* FeatureCardView.swift in Sources */,
@@ -1077,11 +1104,14 @@
 				84DCAD3429F5DF55007D6E4C /* AuthViewModel.swift in Sources */,
 				84E2636229F20E0300847C16 /* ResizableLottieView.swift in Sources */,
 				84AE7E922B42EC7100175EE4 /* InfiniteScroller.swift in Sources */,
+				846558312C0DC0E100E422F4 /* TabManager.swift in Sources */,
 				847C6B0B2B7F97AE00B0C30E /* NoLocationSharedView.swift in Sources */,
 				84866A2B2B6512CA0096695E /* VotingModel.swift in Sources */,
 				84DE46542B585AD1009123AD /* NavigationConfigurator.swift in Sources */,
+				846558352C0F61B800E422F4 /* Extension+URL.swift in Sources */,
 				847C6B052B7E9AB800B0C30E /* HapticsManager.swift in Sources */,
 				84CB7FAF2B4555AF00E1CE79 /* WishListModel.swift in Sources */,
+				8465582F2C0DBCF200E422F4 /* TestView.swift in Sources */,
 				84121E552B74103200D4A5AC /* SessionManager.swift in Sources */,
 				84348F5C29CB34A20017ED7E /* RegistrationView.swift in Sources */,
 				847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */,
@@ -1250,7 +1280,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1288,7 +1318,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1336,6 +1366,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1375,6 +1406,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chokaaaa.TastySwipe.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1430,20 +1462,20 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		846753612C30029B00479AC5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
 		847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dadalar/SwiftUI-CardStackView.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.0.6;
-			};
-		};
-		84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.31.6;
 			};
 		};
 		84CB7FB72B46B07C00E1CE79 /* XCRemoteSwiftPackageReference "StarRatingViewSwiftUI" */ = {
@@ -1462,30 +1494,9 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		84E2635729F20C2600847C16 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-		84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.14.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8407D2352B4932F600CAE616 /* Shimmer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
-			productName = Shimmer;
-		};
 		84227B5B2A2CA0EA001CAAD8 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -1506,6 +1517,11 @@
 			package = 84227B5A2A2CA0EA001CAAD8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
+		846753652C3004E300479AC5 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 846753612C30029B00479AC5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		847037B22B409BC3004C7A06 /* CardStack */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
@@ -1515,16 +1531,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		84AE7E802B41F2FD00175EE4 /* RevenueCat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = RevenueCat;
-		};
-		84AE7E822B41F2FD00175EE4 /* RevenueCatUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 84AE7E7F2B41F2FD00175EE4 /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = RevenueCatUI;
 		};
 		84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1545,16 +1551,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84DCAD2A29F5DDE2007D6E4C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		84E2635829F20C2600847C16 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 84E2635729F20C2600847C16 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-		84EAD9C02B5E3F70000B1E83 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 84EAD9BF2B5E3F6F000B1E83 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

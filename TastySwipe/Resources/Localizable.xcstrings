@@ -91,6 +91,7 @@
 
     },
     "Back" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -128,6 +129,15 @@
       }
     },
     "Change App Language?" : {
+
+    },
+    "Collor Scheme" : {
+
+    },
+    "Contact us" : {
+
+    },
+    "Contact Us" : {
 
     },
     "Continue" : {
@@ -170,6 +180,9 @@
       }
     },
     "Dark" : {
+
+    },
+    "Developer Email" : {
 
     },
     "Discover" : {
@@ -269,10 +282,16 @@
         }
       }
     },
+    "Get in Touch" : {
+
+    },
     "Get More features 🍱" : {
 
     },
     "Haptic" : {
+
+    },
+    "Hello World!" : {
 
     },
     "Hello, World!" : {
@@ -288,6 +307,12 @@
           }
         }
       }
+    },
+    "If you have any inquiries get in touch with us Well be happy to help you." : {
+
+    },
+    "Language" : {
+
     },
     "Light" : {
 
@@ -352,6 +377,7 @@
       }
     },
     "Next" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -489,6 +515,9 @@
     "Restore Purchases" : {
 
     },
+    "Review" : {
+
+    },
     "Save" : {
       "localizations" : {
         "zh-Hans" : {
@@ -561,6 +590,7 @@
 
     },
     "Skip" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -569,6 +599,9 @@
           }
         }
       }
+    },
+    "Social Media" : {
+
     },
     "Sorry, we need your location to better enhance your experience" : {
 
@@ -591,6 +624,7 @@
 
     },
     "Start" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -627,7 +661,11 @@
         }
       }
     },
+    "Terms & Condition" : {
+
+    },
     "Terms of Service" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {

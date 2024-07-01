@@ -63,7 +63,8 @@ struct NoLocationSharedView: View {
                 }
                 .padding(.top, 15)
             }
-        .onChangeOf(scenePhase) { newValue in
+        
+        .onChange(of: scenePhase, { oldValue, newValue in
             if newValue == .active {
                 switch locationManager.authorizationStatus {
                     
@@ -74,7 +75,8 @@ struct NoLocationSharedView: View {
                     print("error getting location")
                 }
             }
-        }
+        })
+        
     }
 }
 

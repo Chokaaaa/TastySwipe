@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import Lottie
+//import Lottie
 
 
-struct OnBoardingItem: Identifiable, Equatable {
-    var id: UUID = .init()
-    var title : String
-    var focusWord : String
-    var subTitle : String
-    var lottieView : LottieAnimationView = .init()
-}
+//struct OnBoardingItem: Identifiable, Equatable {
+//    var id: UUID = .init()
+//    var title : String
+//    var focusWord : String
+//    var subTitle : String
+//    var lottieView : LottieAnimationView = .init()
+//}

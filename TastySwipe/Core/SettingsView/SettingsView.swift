@@ -9,13 +9,14 @@ import SwiftUI
 import FirebaseAuth
 import StoreKit
 import MessageUI
-import RevenueCat
-import RevenueCatUI
+//import RevenueCat
+//import RevenueCatUI
 import GoogleSignIn
 
 struct SettingsView: View {
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager: SessionManager
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.requestReview) var requestReview
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isSheetPresented = false
@@ -35,103 +36,225 @@ struct SettingsView: View {
         
         NavigationStack {
             
-            
-            List {
+            ZStack {
                 
-                Section {
+                UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
+                    .fill(Color("settingTopBG"))
+                    .frame(width: UIScreen.main.bounds.width, height: 235)
+                    .ignoresSafeArea(.container, edges: .top)
+                
+                VStack {
                     
-                    if Auth.auth().currentUser?.uid != nil {
-                        Button(action: {
+                    HStack {
+                        //MARK: - Back Button
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            VStack {
+                                
+                                Image("backButton")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 25, height: 25)
+                                
+                                
+                            }
+                            .frame(width: 50, height: 50)
+                            .padding(.leading, 0)
+                            .foregroundColor(Color.black.opacity(0.8))
+                            //                            .background(.ultraThinMaterial, in: Circle())
+                            .background(Color("smallCirclebg"), in: Circle())
+                        }
+                        .padding(.bottom, 100)
+                        
+                        Spacer()
+                        
+                        //MARK: - Image
+                        let loggedInUser = Auth.auth().currentUser?.uid != nil
+                        
+                        if loggedInUser {
+                            Button(action: {
+                                
+                            }, label: {
+                                HStack(spacing: 15) {
+                                    
+                                    VStack {
+                                        
+                                        ZStack {
+                                            Circle()
+                                                .fill(Color.black.opacity(0.7))
+                                                .frame(width: 120, height: 100)
+                                            
+                                            Image("userLoggedIn")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundStyle(.white)
+                                                .frame(width: 100, height: 100)
+                                                .clipShape(Circle())
+                                        }
+                                        
+                                        VStack(alignment: .center, spacing: 5) {
+                                            Text("\(sessionManager.currentUser?.fullName ?? "")")
+                                                .font(.system(size: 15, weight: .bold))
+                                                .foregroundStyle(.white)
+                                            
+                                            //                    Text(viewModel.userSession?.email ?? "No Email")
+                                            Text("\(sessionManager.currentUser?.email ?? "")")
+                                                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                                .foregroundColor(.gray.opacity(0.8))
+                                        }
+                                    }
+                                }
+                                .padding(.leading, 0)
+                            })
                             
-                        }, label: {
-                            HStack(spacing: 15) {
-                                Image("PF.Changs")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(
+                            
+                        } else {
+                            Button(action: {
+                                isSheetPresented = true
+                            }, label: {
+                                VStack(spacing: 15) {
+                                    ZStack {
                                         Circle()
-                                    )
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text("\(sessionManager.currentUser?.fullName ?? "")")
-                                        .font(.system(size: 15, weight: .bold))
+                                            .fill(Color.black.opacity(0.7))
+                                            .frame(width: 120, height: 100)
+                                        
+                                        Image("userIcon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .foregroundStyle(.white)
+                                            .frame(width: 30, height: 30)
+                                            .clipShape(Circle())
+                                    }
                                     
-                                    //                    Text(viewModel.userSession?.email ?? "No Email")
-                                    Text("\(sessionManager.currentUser?.email ?? "")")
-                                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                                        .foregroundColor(Color.red)
-                                }
-                                
-                            }
-                            .padding(.leading, -10)
-                        })
-                        
-                        
-                    } else {
-                        Button(action: {
-                            isSheetPresented = true
-                        }, label: {
-                            HStack(spacing: 15) {
-                                Image("loading")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(
-                                        Circle()
-                                    )
-                                
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text("No Name")
-                                        .font(.system(size: 15, weight: .bold))
+                                    VStack(alignment: .center, spacing: 5) {
+                                        Text("No Name")
+                                            .font(.system(size: 15, weight: .bold))
+                                            .foregroundStyle(.white)
+                                        //                    Text(viewModel.userSession?.email ?? "No Email")
+                                        Text("No Email")
+                                            .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                            .foregroundColor(.gray.opacity(0.8))
+                                    }
                                     
-                                    //                    Text(viewModel.userSession?.email ?? "No Email")
-                                    Text("No Email")
-                                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                                        .foregroundColor(Color.red)
                                 }
-                                
-                                Spacer()
-                                
-                                Image(systemName : "chevron.right")
-                                    .foregroundStyle(Color.secondary)
-                                    .opacity(0.5)
-                                    .font(.system(size: 14, weight: .bold))
-                                
+                                .padding(.leading, -55)
+                            })
+                        }
+                            
+                        
+                        Spacer()
+                        
+                        //MARK: - Log Out Button
+                        if Auth.auth().currentUser?.uid != nil {
+                            Button {
+                                self.customAlert = true
+                            } label: {
+                                VStack {
+                                    
+                                    Image("logoutButton")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundStyle(.white)
+                                        .frame(width: 25, height: 25)
+                                    
+                                    
+                                }
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(Color.black.opacity(0.8))
+                                //                            .background(.ultraThinMaterial, in: Circle())
+                                .background(Color("smallCirclebg"), in: Circle())
                             }
-                            .padding(.leading, -10)
-                        })
+                            .alert(isPresented: $customAlert) {
+                                Alert(
+                                    title: Text("You have successfully logged out!"),
+                                    message: Text("We will miss you, Please come back as soon as possible"),
+                                    dismissButton: .default(Text("Okay")) {
+                                        viewModel.signOut()
+                                        GIDSignIn.sharedInstance.signOut()
+                                        sessionManager.currentUser = nil
+                                    }
+                                )
+                            }
+                            .padding(.bottom, 100)
+                        } else {
+                            
+                        }
                     }
-                    
+                    .padding([.leading, .trailing])
+                    .padding(.bottom, 80)
                 }
                 .fullScreenCover(isPresented: $isSheetPresented) {
                     LoginView()
                 }
-                
-                //MARK: - General Section
-                Section {
+            }
+            ScrollView {
+                VStack(spacing: 1) {
                     
-                    NavigationLink(destination: PlacesListView()) {
-                        SettingsRow(title: "Categories", imageName: "square.grid.2x2", bgColor: Color.pink)
+                    Button {
+                        
+                    } label: {
+                        
+                        HStack(spacing: 30) {
+                            
+                            Image("medalIcon")
+                            
+                            Text("Become a PRO")
+                                .font(.title2)
+                                .foregroundStyle(.black)
+                                .bold()
+                            
+                            Spacer()
+                            
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
                     }
+                    .padding([.trailing, .leading], 10)
+//                    .padding(.top,15)
+                    
+                    
+                    
+                    
+                    //MARK: - General Section
                     
                     
                     Button {
                         showingAlert = true
                     } label: {
                         HStack {
-                            SettingsRow(title: "Language", imageName: "globe", bgColor: Color.blue)
-                                .foregroundStyle(Color("SystemTextColor"))
+                            Image("globeSettings")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Language")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
                             Spacer()
                             
                             Text("\(Locale.current.localizedString(forIdentifier: Locale.current.language.languageCode?.identifier ?? "No Language Settled") ?? "None")")
-                                .foregroundStyle(.gray)
+                                .font(.subheadline)
+                                .foregroundStyle(.gray.opacity(0.6))
                             
-                            Image(systemName : "chevron.right")
-                                .foregroundStyle(Color.secondary)
-                                .opacity(0.5)
-                                .font(.system(size: 14, weight: .bold))
+                            
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
                         }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                        
                     }
                     .alert(isPresented: $showingAlert) {
                         Alert(
@@ -143,176 +266,255 @@ struct SettingsView: View {
                             secondaryButton: .cancel()
                         )
                     }
-                    
-                    Button(action: {
-                        EmailController.shared.sendEmail(subject: "Support",
-                                                         body: """
-      Please describe your issue below
-  
-  
-  
-    ---------------------------------------
-    Application Name: \(Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Unknown")
-    iOS Version: \(UIDevice.current.systemVersion)
-    Device Model: \(UIDevice.current.model)
-    App Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "no app version")
-    App Build: \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "no app build version")
-  """,
-                                                         to: "nykdevs@gmail.com")
-                    }, label: {
-                        SettingsRow(title: "Contact Us", imageName: "envelope.open", bgColor: Color.cyan)
-                            .foregroundStyle(Color("SystemTextColor"))
-                    })
+                    .padding([.trailing, .leading], 10)
+                    .padding(.top,20)
                     
                     
                     
-                }
-                
-                
-                //MARK: - Apperance
-                Section {
-                    SettingsRowWithPicker(imageName: "circle.lefthalf.filled", text: "Color Scheme", bgColor: Color.black)
-                }
-                
-                //MARK: - App Related
-                Section {
+                    NavigationLink {
+                        ContactUsView()
+                            .navigationBarBackButtonHidden(true)
+                        
+                    } label: {
+                        
+                        HStack {
+                            Image("envelopeIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Contact Us")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                        
+                    }
+                    .padding([.trailing, .leading], 10)
                     
-                    Button(action: {
+                    
+                    
+                    
+                    
+                    
+                    //MARK: - Apperance
+                    
+                    Button {
+                        
+                    } label: {
+                        HStack {
+                            Image("sunIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Collor Scheme")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Text("Dark")
+                                .font(.subheadline)
+                                .foregroundStyle(.gray.opacity(0.6))
+                            
+                            
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                    }
+                    .padding([.trailing, .leading], 10)
+                    .padding(.top,30)
+                    
+                    //                Section {
+                    //                    SettingsRowWithPicker(imageName: "circle.lefthalf.filled", text: "Color Scheme", bgColor: Color.black)
+                    //                }
+                    
+                    //MARK: - App Related
+                    
+                    
+                    Button {
                         requestReview()
-                    }, label: {
-                        SettingsRow(title: "Review", imageName: "star", bgColor: Color.yellow)
-                            .foregroundStyle(Color("SystemTextColor"))
-                    })
-
+                    } label: {
+                        HStack {
+                            Image("emptyStarIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Review")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                        
+                    }
+                    .padding([.trailing, .leading], 10)
+                    .padding(.top,30)
                     
-                    haptics
-                    
-//                    .sensoryFeedback(.success, trigger: hapticIsOn)
                     
                     
-                }
-                
-                
-                Section {
+                    Button {
+                        
+                    } label: {
+                        HStack {
+                            Image("configIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Haptic")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Toggle("", isOn: $isHapticEnabled)
+                                .tint(Color.accentColor)
+                            
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                        
+                    }
+                    .padding([.trailing, .leading], 10)
+                    
+                    //                    haptics
+                    
+                    //                                        .sensoryFeedback(.success, trigger: hapticIsOn)
                     
                     
                     Button {
                         showPrivacyPolicy.toggle()
-                        
                     } label: {
-                        SettingsRow(title: "Privacy Policy", imageName: "shield.lefthalf.filled", bgColor: Color.teal)
-                            .foregroundStyle(Color("SystemTextColor"))
+                        HStack {
+                            Image("shieldTickIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Privacy Policy")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
+                        
                     }
+                    .padding([.trailing, .leading], 10)
+                    .padding(.top,30)
                     
                     Button {
                         showTC.toggle()
-                        
                     } label: {
-                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.cyan)
-                            .foregroundStyle(Color("SystemTextColor"))
-                    }
-                    
-//                    NavigationLink(destination: GeneralSettingsView()) {
-//                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
-//                    }
-                }
-                
-                //MARK: - Log Out
-                
-                if Auth.auth().currentUser?.uid != nil {
-                    Section {
+                        HStack {
+                            Image("taskSquareIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 25, height: 25)
+                                .padding(.leading, -10)
+                            
+                            
+                            Text("Terms & Condition")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 17, weight: .bold))
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Image("chevron.Right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.leading, 0)
+                        }
+                        .padding()
+                        .padding(.leading,10)
+                        .background(Color("settingsRowBg"))
+                        .cornerRadius(10)
                         
-                        Button {
-                            self.customAlert = true
-                        } label: {
-                            SettingsRow(title: "Log Out", imageName: "rectangle.portrait.and.arrow.right", bgColor: Color.red)
-                                .foregroundStyle(Color("SystemTextColor"))
-                        }
-                        .alert(isPresented: $customAlert) {
-                            
-                            
-                            Alert(
-                                title: Text("You have successfully logged out!"),
-                                message: Text("We will miss you, Please come back as soon as possible"),
-                                dismissButton: .default(Text("Okay")) {
-                                    viewModel.signOut()
-                                    GIDSignIn.sharedInstance.signOut()
-                                    sessionManager.currentUser = nil
-                                }
-                            )
-                        }
                     }
+                    .padding([.trailing, .leading], 10)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //                    NavigationLink(destination: GeneralSettingsView()) {
+                    //                        SettingsRow(title: "Terms & Condition", imageName: "newspaper", bgColor: Color.teal)
+                    //                    }
+                    
+                    
+                    
                 }
-                
             }
+            .padding(.top, -45)
+            .scrollIndicators(.hidden)
             .fullScreenCover(isPresented: $showPrivacyPolicy, content: {
-                    SFSafariViewWrapper(url: URL(string: "https://www.termsfeed.com/live/57886249-1490-4e29-979f-cabc010d4b5a")!)
+                SFSafariViewWrapper(url: URL(string: "https://www.termsfeed.com/live/57886249-1490-4e29-979f-cabc010d4b5a")!)
             })
             
             .fullScreenCover(isPresented: $showTC, content: {
-                    SFSafariViewWrapper(url: URL(string: "https://www.termsandconditionsgenerator.com/live.php?token=rKSQsIUOpaoKVSGenzM4t9ph2SOPYhBu")!)
+                SFSafariViewWrapper(url: URL(string: "https://www.termsandconditionsgenerator.com/live.php?token=rKSQsIUOpaoKVSGenzM4t9ph2SOPYhBu")!)
             })
             
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    
-                    HStack {
-                        
-                        if purchasesManager.isSubscriptionActive == false {
-                            Button {
-                                isShowingPayWall = true
-                            } label: {
-                                HStack(spacing: 0) {
-                                    Text("💎")
-                                        .foregroundStyle(Color.yellow)
-                                        .frame(width: 25, height: 0)
-                                    Text("PRO")
-                                        .fontWeight(.bold)
-                                }
-                                .padding(5)
-                                .foregroundColor(.white)
-                                .background(Color.accentColor)
-                                .clipShape(
-                                    Capsule()
-                                )
-                            }
-                            .fullScreenCover(isPresented: $isShowingPayWall) {
-                                PaywallView()
-                                    .padding([.leading, .trailing], -100)
-//                                    .paywallFooter(condensed: false)
-                            }
-                            
-                        } else {
-                            
-                            
-                            
-                        }
-//                        Button {
-//                            
-//                            if Auth.auth().currentUser?.uid == nil {
-//                                showingLoginView.toggle()
-//                            } else {
-//                                //MARK: - Login to open a view for whatsapp share
-//                                
-//                            }
-//                            
-//                        } label: {
-//                            Image(systemName: "person.3")
-//                                .foregroundStyle(Color.accentColor)
-//                        }
-                    }
-                    .fullScreenCover(isPresented: $showingLoginView) {
-                        LoginView()
-                    }
-                }
-            }
-           
+            
+            .navigationBarBackButtonHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
+            
         }
- 
+        
         .onAppear {
             print("is Subscribed \(purchasesManager.isSubscriptionActive)")
             
@@ -342,23 +544,23 @@ private extension SettingsView {
     var haptics: some View {
         HStack(spacing: 25) {
             ZStack {
-                        RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 8)
                     .fill(Color.darkRed)
-                        
-                        HStack(spacing: 15) {
-                            Image(systemName: "slider.horizontal.2.square")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(Color.white)
-                            
-                            
-                            
-                          
-                        }
-                        .padding(5)
                 
-                    }
+                HStack(spacing: 15) {
+                    Image(systemName: "slider.horizontal.2.square")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color.white)
+                    
+                    
+                    
+                    
+                }
+                .padding(5)
+                
+            }
             .frame(width: 15, height: 10)
             
             Text("Haptic")
@@ -366,6 +568,7 @@ private extension SettingsView {
             
             
             Toggle("", isOn: $isHapticEnabled)
+                
             
         }
     }

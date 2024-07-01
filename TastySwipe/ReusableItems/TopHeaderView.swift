@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import RevenueCat
-import RevenueCatUI
+//import RevenueCat
+//import RevenueCatUI
 
 struct TopHeaderView: View {
     
@@ -41,11 +41,11 @@ struct TopHeaderView: View {
                 }, label: {
                     Text("Buttons")
                 })
-                .fullScreenCover(isPresented: $isShowingPayWall) {
-                    PaywallView()
-                        .padding([.leading, .trailing], -100)
-//                        .paywallFooter(condensed: false)
-                }
+//                .fullScreenCover(isPresented: $isShowingPayWall) {
+//                    PaywallView()
+//                        .padding([.leading, .trailing], -100)
+////                        .paywallFooter(condensed: false)
+//                }
                 
             } else {
                 Button(action: {
@@ -88,15 +88,15 @@ struct TopHeaderView: View {
     }
     
     func checkSubscriptionStatus() {
-        Purchases.shared.getCustomerInfo { (purchaserInfo, error) in
-            if let purchaserInfo = purchaserInfo {
-                // Check if user is subscribed
-                isSubscribed = purchaserInfo.entitlements.all["your_entitlement_identifier"]?.isActive ?? false
-            }
-            if let error = error {
-                print("Error fetching subscription info: \(error.localizedDescription)")
-            }
-        }
+//        Purchases.shared.getCustomerInfo { (purchaserInfo, error) in
+//            if let purchaserInfo = purchaserInfo {
+//                // Check if user is subscribed
+//                isSubscribed = purchaserInfo.entitlements.all["your_entitlement_identifier"]?.isActive ?? false
+//            }
+//            if let error = error {
+//                print("Error fetching subscription info: \(error.localizedDescription)")
+//            }
+//        }
     }
     
     

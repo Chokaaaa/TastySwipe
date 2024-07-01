@@ -253,11 +253,11 @@ struct PaywallView: View {
     private func choosePlanSection() -> some View {
         return VStack(alignment: .center, spacing: 10) {
             
-            ForEach(purchasesManager.products) { product in
-                
-                PlanView(product: product, selectedProductId: $selectedProductId)
-                
-            }
+//            ForEach(purchasesManager.products) { product in
+//                
+//                PlanView(product: product, selectedProductId: $selectedProductId)
+//                
+//            }
             
             
 //            MonthlyPlanView(selectedPlan: $selectedPlan).padding(.bottom)

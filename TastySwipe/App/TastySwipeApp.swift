@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
-import RevenueCat
+//import RevenueCat
 import SwiftData
 import GoogleMobileAds
 
@@ -41,76 +41,14 @@ struct TastySwipeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("isOnboarding") var isOnboarding = true
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @State var tabBarManager = TabManager()
     @State var selection = 0
     
     var body: some Scene {
         WindowGroup {
-            if isOnboarding {
-                OnBoardingScreen()
-                    .environmentObject(authViewModel)
-                    .environmentObject(sessionManager)
-            } else {
+          
                 MainTabbedView()
-//                TabView(selection: $selection) {
-//                 StartView()
-//                    .tabItem {
-//                        
-//                        if selection == 0 {
-//                            Image(systemName: "location.fill")
-//                                .environment(\.symbolVariants, .none)
-//                        } else {
-//                            Image(systemName: "location")
-//                                .environment(\.symbolVariants, .none)
-//
-//                        }
-//                        Text("Places")
-//                    }
-//                    .tag(0)
-//                    if Auth.auth().currentUser?.uid != nil {
-//                        WishListView(tabSelection: $selection)
-//                            .tabItem {
-//                                
-//                                if selection == 1 {
-//                                    Image(systemName: "star.fill")
-//                                        .environment(\.symbolVariants, .none)
-//                                } else {
-//                                    Image(systemName: "star")
-//                                        .environment(\.symbolVariants, .none)
-//
-//                                }
-//                                Text("Wishlist")
-//                            }
-//                            .tag(1)
-//                    }else{
-//                        loggedOutView()
-//                            .tabItem {
-//                                if selection == 1 {
-//                                    Image(systemName: "star.fill")
-//                                        .environment(\.symbolVariants, .none)
-//                                } else {
-//                                    Image(systemName: "star")
-//                                        .environment(\.symbolVariants, .none)
-//
-//                                }
-//                                Text("Wishlist")
-//                            }
-//                            .tag(1)
-//                    }
-//                    
-//                    SettingsView()
-//                        .tabItem {
-//                            if selection == 2 {
-//                                Image(systemName: "person.fill")
-//                                    .environment(\.symbolVariants, .none)
-//                            } else {
-//                                Image(systemName: "person")
-//                                    .environment(\.symbolVariants, .none)
-//                            }
-//                            Text("Profile")
-//                        }
-//                        .tag(2)
-//                }
+                    .environment(tabBarManager)
                 
                 .environmentObject(cardsManager)
                 .environmentObject(sessionManager)
@@ -139,21 +77,24 @@ struct TastySwipeApp: App {
                          UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
                         csManager.applyColorScheme()
                     }
-                    .onChangeOf(sessionManager.currentUser) { newValue in
+            
+                    .onChange(of: sessionManager.currentUser, { oldValue, newValue in
                         if newValue != nil {
                             wishlistViewModel.createWishListObserver()
                         } else {
                             wishlistViewModel.removeWishListObserver()
                         }
-                    }
-            }
+                    })
+            
+                  
+            
         }
     }
     
     
     init() {
-        Purchases.logLevel = .debug
-        Purchases.configure(withAPIKey: "appl_CvgGNQYNduWDdNSUdgCZBXyajCN")
+//        Purchases.logLevel = .debug
+//        Purchases.configure(withAPIKey: "appl_CvgGNQYNduWDdNSUdgCZBXyajCN")
     }
     
 }

@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import RevenueCat
-import RevenueCatUI
+//import RevenueCat
+//import RevenueCatUI
 import StarRatingViewSwiftUI
 import SwiftData
 

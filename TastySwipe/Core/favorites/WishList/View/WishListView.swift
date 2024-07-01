@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import RevenueCat
-import RevenueCatUI
+//import RevenueCat
+//import RevenueCatUI
 import FirebaseAuth
-import Lottie
+//import Lottie
 
 struct WishListView: View {
     
@@ -21,31 +21,89 @@ struct WishListView: View {
     let columns : [GridItem] = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
+        
+        ZStack(alignment: .center) {
             
-            ScrollView {
+            Color.black.ignoresSafeArea(edges: .all)
+            
+            VStack {
                 
-                if viewModel.wishList.count > 0 {
+                HStack(spacing: 60) {
                     
-                    LazyVGrid(columns: columns) {
+                    //MARK: - Profile Icon
+                    
+                    Button {
                         
-                        ForEach(viewModel.wishList, id: \.self) { wishList in
-                            FavoriteCardView(image: wishList.image,
-                                             title: wishList.title,
-                                             id: wishList.id)
+                    } label: {
+                        VStack {
+                            
+                            Image("userIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
                         }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.black.opacity(0.8))
+                        //                            .background(.ultraThinMaterial, in: Circle())
+                        .background(Color("NavBarBGColor"), in: Circle())
                     }
-                    .padding()
                     
                     
-                } else {
+                    //MARK: - Text
                     
-                    VStack{
+                    Text("Locale Link")
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                    
+                    
+                    //MARK: - AI Button
+                    
+                    Button {
+                        
+                    } label: {
+                        VStack {
+                            
+                            Image("starsIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.black.opacity(0.8))
+                        .background(Color("NavBarBGColor"), in: Circle())
+                    }
+                    
+                    
+                }
+                ScrollView {
+                    
+                    if viewModel.wishList.count > 0 {
+                        
+                        LazyVGrid(columns: columns) {
+                            
+                            ForEach(viewModel.wishList, id: \.self) { wishList in
+                                FavoriteCardView(image: wishList.image,
+                                                 title: wishList.title,
+                                                 id: wishList.id)
+                            }
+                        }
+                        .padding()
+                        
+                        
+                    } else {
+                        
+                        VStack{
                             
                             // MARK: Movable Slides
                             VStack{
                                 
-                                    Image("magnifyingGlass")
+                                Image("magnifyingGlass")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 285, height: 285, alignment: .center)
@@ -65,75 +123,34 @@ struct WishListView: View {
                                         .foregroundColor(.gray)
                                     //                            .padding(.bottom, 10)
                                     
-                                
-                   
-                                Button {
-                                    tabSelection = 0
-                                } label: {
-                                    Text("Discover")
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                        .padding(.vertical,20)
-                                        .frame(maxWidth: .infinity)
-                                        .background {
-                                            Capsule()
-                                                .fill(Color.accentColor)
-                                        }
-                                        .padding(.horizontal,20)
-                                }
+                                    
+                                    
+                                    Button {
+                                        tabSelection = 0
+                                    } label: {
+                                        Text("Discover")
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding(.vertical,20)
+                                            .frame(maxWidth: .infinity)
+                                            .background {
+                                                Capsule()
+                                                    .fill(Color.accentColor)
+                                            }
+                                            .padding(.horizontal,20)
+                                    }
                                 }
                             }
                             .padding(.top, 85)
                         }
-                }
-            }
-            .navigationTitle("Favorites")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    
-                    HStack {
-                        
-                        if purchasesManager.isSubscriptionActive == false {
-                            Button {
-                                isShowingPayWall = true
-                            } label: {
-                                HStack(spacing: 0) {
-                                    Text("💎")
-                                        .foregroundStyle(Color.yellow)
-                                        .frame(width: 25, height: 0)
-                                    Text("PRO")
-                                        .fontWeight(.bold)
-                                }
-                                .padding(5)
-                                .foregroundColor(.white)
-                                .background(Color.accentColor)
-                                .clipShape(
-                                    Capsule()
-                                )
-                            }
-                            .fullScreenCover(isPresented: $isShowingPayWall) {
-                                PaywallView()
-                                    .padding([.leading, .trailing], -100)
-//                                    .paywallFooter(condensed: false)
-                            }
-                            
-                          
-                        } else {
-                            
-                        }
-//                        Button {
-//                            
-//                        } label: {
-//                            Image(systemName: "person.3")
-//                                .foregroundStyle(Color.accentColor)
-//                        }
                     }
                 }
             }
         }
+//            .navigationTitle("Favorites")
+//            .navigationBarTitleDisplayMode(.inline)
+             
+//        }
         .onAppear {
             viewModel.createWishListObserver()
         }

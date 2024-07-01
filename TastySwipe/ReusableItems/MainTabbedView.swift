@@ -40,14 +40,49 @@ enum TabbedItems: Int, CaseIterable{
 struct MainTabbedView: View {
     
     @State var selectedTab = 0
+    @Environment(TabManager.self) var tabManager : TabManager
+    @AppStorage("isOnboarding") var isOnboarding : Bool = false
     
     var body: some View {
         
         ZStack(alignment: .bottom){
-            TabView(selection: $selectedTab) {
-                StartView()
-                    .tag(0)
-
+                        if tabManager.showHiddenTab {
+                            ZStack{
+                                HStack{
+                                    ForEach((TabbedItems.allCases), id: \.self){ item in
+                                        Button{
+                                            selectedTab = item.rawValue
+                                        } label: {
+                                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                                        }
+                                    }
+                                }
+                                .padding(6)
+                                if isOnboarding {
+                                    Color.black.ignoresSafeArea(edges: .all)
+                                        .opacity(0.7)
+                                }
+            //                    VisualEffectBlur(blurStyle: .systemThinMaterialDark)
+            //                        .ignoresSafeArea()
+                            }
+                            .frame(width: 300, height: 90)
+                            .background(Color("NavBarBGColor"))
+                            .cornerRadius(60)
+                            .padding(.horizontal, 26)
+                        }
+            
+            
+            if selectedTab == 0 {
+                ZStack {
+                    if tabManager.showHiddenTab {
+                        VisualEffectBlur(blurStyle: .systemThinMaterialDark)
+                            .ignoresSafeArea()
+                    }
+                    StartView()
+                        .tag(0)
+                }
+            } else if selectedTab == 1 {
+                
                 if Auth.auth().currentUser?.uid != nil {
                     
                     WishListView(tabSelection: $selectedTab)
@@ -57,29 +92,55 @@ struct MainTabbedView: View {
                     loggedOutView()
                         .tag(1)
                 }
-                    
-                SettingsView()
+                
+            } else if selectedTab == 2 {
+                
+                PlacesListView()
                     .tag(2)
             }
-            .background(Color.clear)
+        
             
-            ZStack{
-                HStack{
-                    ForEach((TabbedItems.allCases), id: \.self){ item in
-                        Button{
-                            selectedTab = item.rawValue
-                        } label: {
-                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+//            TabView(selection: $selectedTab) {
+//                
+//         
+//                if Auth.auth().currentUser?.uid != nil {
+//                    
+//                    WishListView(tabSelection: $selectedTab)
+//                        .tag(1)
+//                    
+//                } else {
+//                    loggedOutView()
+//                        .tag(1)
+//                }
+//                    
+//                SettingsView()
+//                    .tag(2)
+//            }
+//            .background(Color.clear)
+            if !tabManager.showHiddenTab {
+                ZStack{
+                    HStack{
+                        ForEach((TabbedItems.allCases), id: \.self){ item in
+                            Button{
+                                selectedTab = item.rawValue
+                            } label: {
+                                CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                            }
                         }
                     }
+                    .padding(6)
+                    if isOnboarding {
+                        Color.black.ignoresSafeArea(edges: .all)
+                            .opacity(0.7)
+                    }
                 }
-                .padding(6)
+                .frame(width: 300, height: 90)
+                .background(Color("NavBarBGColor"))
+                .cornerRadius(60)
+                .padding(.horizontal, 26)
             }
-            .frame(width: 300, height: 90)
-            .background(Color("NavBarBGColor"))
-            .cornerRadius(60)
-            .padding(.horizontal, 26)
         }
+        
         .toolbar(.hidden, for: .tabBar)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 import StarRatingViewSwiftUI
-import Shimmer
+//import Shimmer
 struct CardView: View, Identifiable {
     
     let title : String
@@ -67,7 +67,7 @@ struct CardView: View, Identifiable {
                     //MARK: - Distance marker in glass bg
                     VStack {
                         HStack {
-                            HStack(spacing: 0) {
+                            HStack(spacing: 5) {
                                 Image("paperPlane")
                                     .scaledToFit()
                                     .padding(.leading,5)
@@ -78,8 +78,8 @@ struct CardView: View, Identifiable {
                                     .foregroundStyle(.white)
                             }
                             //MARK: - Paperline
-                            .padding(.vertical, 2)
-                            .padding(.horizontal, 3)
+                            .padding(.vertical, 7)
+                            .padding(.horizontal, 8)
                             .background(
                                 .ultraThinMaterial,
                                 in: RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -88,7 +88,8 @@ struct CardView: View, Identifiable {
                         }
                         Spacer()
                     }
-                    .padding(.top, 15)
+                    .padding(.top, 10)
+                    .padding(.leading, 5)
                     
                     
                     //MARK: - BOX bottom
@@ -101,14 +102,14 @@ struct CardView: View, Identifiable {
                                     .font(.system(size: 20, design: .rounded))
                                     .foregroundStyle(Color.white)
                                     .fontWeight(.bold)
-                                    .padding(.top, 20)
+                                    .padding(.top, 12)
                                 
                                 //MARK: - Raiting
                                 StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
                                     .frame(width: 25, height: 20, alignment: .leading)
                                 
                                 
-                                HStack {
+                                HStack(alignment: .bottom) {
                                     VStack(alignment: .leading, spacing: 5) {
                                         Text("\(category) & more")
                                             .font(.system(size: 15, design: .rounded))
@@ -164,15 +165,15 @@ struct CardView: View, Identifiable {
                                     .background(Color.white.opacity(0.3))
                                     .cornerRadius(33)
                                     .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
-                                    
                                     .disabled(isLoadingWishlist)
                                     
                                     
                                 }
-                                .padding(.top)
+                                .padding(.top, 25)
                                 .padding(.bottom)
                             }
-                            .padding(.horizontal)
+                            .padding(.leading)
+                            .padding(.trailing, 10)
                             .padding(.bottom, 5)
                             .padding(.top, 5)
                         }
