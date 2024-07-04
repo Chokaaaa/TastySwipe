@@ -12,6 +12,8 @@ import StarRatingViewSwiftUI
 //import Shimmer
 struct CardView: View, Identifiable {
     
+  
+    
     let title : String
     let location : String
     let image : String
@@ -22,6 +24,8 @@ struct CardView: View, Identifiable {
     let latitude : Double
     let longitude : Double
     
+    
+    
     @EnvironmentObject var wishListViewModel: WishListViewModel
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isLoading = false
@@ -30,6 +34,8 @@ struct CardView: View, Identifiable {
         return wishListViewModel.wishList.contains(where: { $0.id == id })
     }
     @State private var isLoadingWishlist = false
+    
+ 
     
     var body: some View {
         
@@ -105,8 +111,14 @@ struct CardView: View, Identifiable {
                                     .padding(.top, 12)
                                 
                                 //MARK: - Raiting
-                                StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
-                                    .frame(width: 25, height: 20, alignment: .leading)
+//                                StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
+//                                    .frame(width: 25, height: 20, alignment: .leading)
+                                
+                                HStack(spacing: 3) {
+                                    ForEach(1...5, id: \.self) { index in
+                                        StarType.getStarImage(value: rating, index: index)
+                                    }
+                                }
                                 
                                 
                                 HStack(alignment: .bottom) {

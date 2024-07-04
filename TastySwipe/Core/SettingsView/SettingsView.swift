@@ -513,7 +513,7 @@ struct SettingsView: View {
             })
             
             
-            .navigationBarBackButtonHidden(true)
+//            .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .navigationBar)
             
         }

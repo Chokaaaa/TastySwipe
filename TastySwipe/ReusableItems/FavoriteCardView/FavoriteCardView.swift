@@ -69,29 +69,20 @@ struct FavoriteCardView: View {
                                   .foregroundStyle(Color("SystemTextColor"))
                                   .font(.system(size: 15))
                                   .bold()
-                              .padding(.leading, -8)
+                                  .padding(.horizontal)
+                                  .padding(.vertical, 10)
                               Spacer()
-                              
-                              
-                              
-                            
-//                              Button {
-//                                  print("")
-//                              } label: {
-//                                  Image(systemName: "square.and.arrow.up")
-//                                      .font(.footnote)
-//                                      .padding(.trailing, -5)
-//                              }
-
-                              
                           }
-                          
+//                          .background(Color("SystemBgColor"))
+                          .background(.regularMaterial)
+                          .clipShape(RoundedRectangle(cornerRadius: 15))
+                          .padding(.horizontal, 2)
+                          .padding(.bottom, 2)
                       }
                       
-                      .padding()
-                      .frame(width: 180, alignment: .leading)
-                      .background(Color("SystemBgColor"))
-                      .clipShape(UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 20, bottomTrailingRadius: 20, topTrailingRadius: 0))
+//                      .padding()
+//                      .frame(width: 180, alignment: .leading)
+//                      .clipShape(UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 20, bottomTrailingRadius: 20, topTrailingRadius: 0))
                       
                       
                   }

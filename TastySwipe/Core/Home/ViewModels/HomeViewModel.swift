@@ -27,6 +27,7 @@ class HomeViewModel : NSObject, ObservableObject {
     @Published var activeCard : CardView?
     @Published var isFetching = false
     @Published var showNoLocationView = false
+    @Published var showTopButtons = true
     var didFetchLocations = false
     var currentLocation : CLLocation?
     var token : String?

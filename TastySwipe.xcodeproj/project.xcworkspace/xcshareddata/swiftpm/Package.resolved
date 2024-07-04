@@ -1,5 +1,5 @@
 {
-  "originHash" : "6b89057a5de64937fedf0b39f2e3bf28b85346ec8177a62aca768e7b2a58673d",
+  "originHash" : "d0cb61ecf24b1aaab06a66e3ffe2a67bdc164a974769f397ac3efba4003052cd",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "spline-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/splinetool/spline-ios.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b447426275d935cebdd1783122dd50248c136c57"
       }
     },
     {

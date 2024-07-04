@@ -86,63 +86,58 @@ struct StartView: View {
                 
                 
                 VStack {
-                    
-                    HStack(spacing: 60) {
-                        
-                        //MARK: - Profile Icon
-                        
-                        
-                        
-                        NavigationLink {
-                            SettingsView()
-//                                .statusBarHidden()
-                        } label: {
-                            VStack {
-                                
-                                Image("userIcon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                                
-                                
-                            }
-                            .frame(width: 70, height: 70)
-                            .foregroundColor(Color.black.opacity(0.8))
-                            //                            .background(.ultraThinMaterial, in: Circle())
-                            .background(Color("NavBarBGColor"), in: Circle())
-                        }
-                        
-                        
-                        //MARK: - Text
-                        
-                        Text("Locale Link")
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                            .fontWeight(.semibold)
-                        
-                        
-                        //MARK: - AI Button
-                        
-                        Button {
+                    if viewModel.showTopButtons {
+                        HStack(spacing: 60) {
                             
-                        } label: {
-                            VStack {
-                                
-                                Image("starsIcon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                                
-                                
+                            //MARK: - Profile Icon
+                            NavigationLink {
+                                SettingsView()
+                                //                                .statusBarHidden()
+                            } label: {
+                                VStack {
+                                    
+                                    Image("userIcon")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 25, height: 25)
+                                }
+                                .frame(width: 70, height: 70)
+                                .foregroundColor(Color.black.opacity(0.8))
+                                //                            .background(.ultraThinMaterial, in: Circle())
+                                .background(Color("NavBarBGColor"), in: Circle())
                             }
-                            .frame(width: 70, height: 70)
-                            .foregroundColor(Color.black.opacity(0.8))
-                            .background(Color("NavBarBGColor"), in: Circle())
+                            
+                            
+                            //MARK: - Text
+                            Text("GoChoice")
+                                .font(.title3)
+                                .foregroundStyle(.white)
+                                .fontWeight(.semibold)
+                            
+                            
+                            //MARK: - AI Button
+                            
+                            Button {
+                                
+                            } label: {
+                                VStack {
+                                    
+                                    Image("starsIcon")
+                                        .resizable()
+                                        .foregroundStyle(Color.accentColor)
+                                        .scaledToFit()
+                                        .frame(width: 25, height: 25)
+                                    
+                                    
+                                }
+                                .frame(width: 70, height: 70)
+                                .foregroundColor(Color.black.opacity(0.8))
+                                .background(Color("NavBarBGColor"), in: Circle())
+                            }
+                            
+                            
                         }
-                        
-                        
                     }
-                    
                     
                     //MARK: - Card View
                     VStack {
@@ -169,7 +164,7 @@ struct StartView: View {
                                 ZStack {
                                     if let place = selectedCardView {
                                         
-                                        SplitCardView(title: place.title, location: place.location, image: place.image, category: place.category, distance: place.distance, rating: place.rating, id: place.id, latitude: place.latitude,longitude: place.longitude, topDividerOffsetValue: $topDividerOffsetValue, imageOffsetValue: $imageOffsetValue, distanceOffsetValue: $distanceOffsetValue, bottomOffsetValue: $bottomOffsetValue, selectedCardView: $selectedCardView)
+                                        SplitCardView(title: place.title, location: place.location, image: place.image, category: place.category, distance: place.distance, rating: place.rating, id: place.id, latitude: place.latitude,longitude: place.longitude, topDividerOffsetValue: $topDividerOffsetValue, imageOffsetValue: $imageOffsetValue, distanceOffsetValue: $distanceOffsetValue, bottomOffsetValue: $bottomOffsetValue, selectedCardView: $selectedCardView, showTopButtons: $viewModel.showTopButtons)
                                             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
                                             .transition(.customTransition)
                                     }
@@ -219,11 +214,12 @@ struct StartView: View {
                                                         
                                                         selectedCardView = place
                                                         tabManager.showHiddenTab = true
+                                                        viewModel.showTopButtons = false
                                                         withAnimation(.easeInOut(duration: 0.2)) {
-                                                            topDividerOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.4)
-                                                            imageOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
-                                                            distanceOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39)
-                                                            bottomOffsetValue = 127.5
+                                                            topDividerOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.4) + 55
+                                                            imageOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39) + 30
+                                                            distanceOffsetValue = -(UIScreen.main.bounds.width * 0.9 * 1.3 * 0.39) + 50
+                                                            bottomOffsetValue = 157.5
                                                         }
                                                         
                                                     }

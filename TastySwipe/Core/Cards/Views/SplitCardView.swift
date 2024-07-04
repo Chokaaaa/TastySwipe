@@ -29,7 +29,7 @@ struct SplitCardView: View {
     @Binding var distanceOffsetValue : CGFloat
     @Binding var bottomOffsetValue : CGFloat
     @Binding var selectedCardView : CardView?
-    
+    @Binding var showTopButtons: Bool
     @EnvironmentObject var tabManager : TabManager
     
     @EnvironmentObject var wishListViewModel: WishListViewModel
@@ -56,7 +56,7 @@ struct SplitCardView: View {
                         switch phase {
                         case .empty:
                             Color.clear
-                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: (UIScreen.main.bounds.width * 0.9 * 1.3) - 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .clipped()
                             
@@ -64,13 +64,13 @@ struct SplitCardView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: (UIScreen.main.bounds.width * 0.9 * 1.3) - 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .clipped()
                             
                         case .failure:
                             Color.clear
-                                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9 * 1.3)
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: (UIScreen.main.bounds.width * 0.9 * 1.3) - 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .clipped()
                             
@@ -129,6 +129,7 @@ struct SplitCardView: View {
                                     
                                     Button {
                                         tabManager.showHiddenTab =  false
+                                        showTopButtons = true
                                         withAnimation(.easeInOut(duration: 0.2)) {
                                             topDividerOffsetValue = 0
                                             imageOffsetValue = 0
@@ -145,9 +146,15 @@ struct SplitCardView: View {
                                     }
                                 }
                                 
-                                //MARK: - Raiting
-                                StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
-                                    .frame(width: 25, height: 20, alignment: .leading)
+//                                //MARK: - Raiting
+//                                StarRatingView(rating: Float(rating), color: Color("starsColor"), maxRating: 5)
+//                                    .frame(width: 25, height: 20, alignment: .leading)
+                                
+                                HStack(spacing: 3) {
+                                    ForEach(1...5, id: \.self) { index in
+                                        StarType.getStarImage(value: rating, index: index)
+                                    }
+                                }
                                 
                                 
                                 HStack(alignment: .bottom) {
@@ -173,8 +180,8 @@ struct SplitCardView: View {
                                     
                                     //MARK: - Action Button
                                     
-                                    HStack(alignment: .center, spacing: 10) {
-                                        
+                                    HStack(alignment: .center, spacing: 15) {
+//                                        Spacer()
                                         Button {
 //                                            shareURL = getGoogleMapsShareLink(latitude: latitude, longitude: longitude)
                                             
@@ -195,6 +202,7 @@ struct SplitCardView: View {
                                         .cornerRadius(33)
                                         .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
                                         
+//                                        Spacer()
                                         
                                         Button {
                                             openGoogleMaps(latitude: latitude, longitude: longitude)
@@ -211,6 +219,7 @@ struct SplitCardView: View {
                                         .cornerRadius(33)
                                         .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
                                         
+//                                        Spacer()
                                         
                                         Button {
                                             print("Did tapped button")
@@ -252,13 +261,9 @@ struct SplitCardView: View {
                                         .background(Color.white.opacity(0.3))
                                         .cornerRadius(33)
                                         .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
-                                        
-                                        //                                    .disabled(isLoadingWishlist)
-                                        
-                                        
-                                        
-                                        
+//                                        Spacer()
                                     }
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                     .padding()
                                 }
                             }
@@ -274,6 +279,7 @@ struct SplitCardView: View {
                         .padding(.bottom, 2)
                     }
                     .offset(y: bottomOffsetValue)
+                    .padding(.bottom, 40)
                     
                 }//MARK: - End of ZStack
                 .shadow(radius: 1.5)

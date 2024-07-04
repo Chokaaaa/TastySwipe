@@ -10,6 +10,7 @@ import SwiftUI
 //import RevenueCatUI
 import FirebaseAuth
 //import Lottie
+import SplineRuntime
 
 struct WishListView: View {
     
@@ -69,6 +70,7 @@ struct WishListView: View {
                             
                             Image("starsIcon")
                                 .resizable()
+                                .foregroundStyle(Color.accentColor)
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
                             
@@ -103,10 +105,10 @@ struct WishListView: View {
                             // MARK: Movable Slides
                             VStack{
                                 
-                                Image("magnifyingGlass")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 285, height: 285, alignment: .center)
+                              WishList3DView()
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 400, alignment: .center)
                                 
                                 
                                 VStack(spacing: 25) {
@@ -141,7 +143,7 @@ struct WishListView: View {
                                     }
                                 }
                             }
-                            .padding(.top, 85)
+                            
                         }
                     }
                 }
@@ -156,6 +158,18 @@ struct WishListView: View {
         }
         
     }
+}
+
+struct WishList3DView: View {
+ var body: some View {
+  // fetching from cloud
+  let url = URL(string: "https://build.spline.design/m-PJCGVFxD6OwZ-EJ1Ex/scene.splineswift")!
+
+  // // fetching from local
+  // let url = Bundle.main.url(forResource: "scene", withExtension: "splineswift")!
+
+  try? SplineView(sceneFileURL: url).ignoresSafeArea(.all)
+ }
 }
 
 #Preview {
