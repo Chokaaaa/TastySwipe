@@ -9,13 +9,14 @@ import SwiftUI
 import FirebaseAuth
 import StoreKit
 import MessageUI
-//import RevenueCat
-//import RevenueCatUI
+import RevenueCat
+import RevenueCatUI
 import GoogleSignIn
 
 struct SettingsView: View {
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager: SessionManager
+    @EnvironmentObject var tabManager : TabManager
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.requestReview) var requestReview
     @ObservedObject var purchasesManager = PurchasesManager()
@@ -49,6 +50,7 @@ struct SettingsView: View {
                         //MARK: - Back Button
                         Button {
                             presentationMode.wrappedValue.dismiss()
+                            tabManager.showHiddenTab = false
                         } label: {
                             VStack {
                                 
@@ -193,31 +195,32 @@ struct SettingsView: View {
                 Color.black.ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 1) {
-                        
-                        Button {
-                            
-                        } label: {
-                            
-                            HStack(spacing: 30) {
+                        if purchasesManager.isSubscriptionActive == false {
+                            Button {
+                                //MARK: - Become a pro
+                                isShowingPayWall = true
+                            } label: {
                                 
-                                Image("medalIcon")
-                                
-                                Text("Become a PRO")
-                                    .font(.title2)
-                                    .foregroundStyle(.black)
-                                    .bold()
-                                
-                                Spacer()
-                                
+                                HStack(spacing: 30) {
+                                    
+                                    Image("medalIcon")
+                                    
+                                    Text("Become a PRO")
+                                        .font(.title2)
+                                        .foregroundStyle(.black)
+                                        .bold()
+                                    
+                                    Spacer()
+                                    
+                                }
+                                .padding()
+                                .padding(.leading,10)
+                                .background(Color.accentColor)
+                                .cornerRadius(10)
                             }
-                            .padding()
-                            .padding(.leading,10)
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
+                            .padding([.trailing, .leading], 10)
+                            //                    .padding(.top,15)
                         }
-                        .padding([.trailing, .leading], 10)
-                        //                    .padding(.top,15)
-                        
                         
                         
                         
@@ -512,6 +515,11 @@ struct SettingsView: View {
                 SFSafariViewWrapper(url: URL(string: "https://www.termsandconditionsgenerator.com/live.php?token=rKSQsIUOpaoKVSGenzM4t9ph2SOPYhBu")!)
             })
             
+            .fullScreenCover(isPresented: $isShowingPayWall) {
+                PaywallView()
+                    .padding([.leading, .trailing], -100)
+//                                .paywallFooter(condensed: false)
+            }
             
 //            .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .navigationBar)
@@ -520,7 +528,7 @@ struct SettingsView: View {
         
         .onAppear {
             print("is Subscribed \(purchasesManager.isSubscriptionActive)")
-            
+            tabManager.showHiddenTab = true
         }
         
     }

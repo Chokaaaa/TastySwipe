@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-//import RevenueCat
+import RevenueCat
 
 struct PremiumPackage : Identifiable {
     
@@ -16,20 +16,20 @@ struct PremiumPackage : Identifiable {
 
     let price : String
     
-//    init(package : Package) {
-//        id = package.identifier
-//        print("Premium Package Id \(package.identifier)")
-//        if package.identifier == "$rc_monthly" {
-//            //MARK: - Name of the monthly package
-//            name = "7-Day free trial"
-//        } else if package.identifier == "$rc_annual" {
-//            //MARK: - Name of the yearly package
-//            name = "Yearly"
-//        } else {
-//            name = ""
-//        }
-//        price = package.localizedPriceString
-//    }
+    init(package : Package) {
+        id = package.identifier
+        print("Premium Package Id \(package.identifier)")
+        if package.identifier == "$rc_monthly" {
+            //MARK: - Name of the monthly package
+            name = "7-Day free trial"
+        } else if package.identifier == "$rc_annual" {
+            //MARK: - Name of the yearly package
+            name = "Yearly"
+        } else {
+            name = ""
+        }
+        price = package.localizedPriceString
+    }
     
 }
 

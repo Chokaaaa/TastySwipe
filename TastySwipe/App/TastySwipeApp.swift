@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
-//import RevenueCat
+import RevenueCat
 import SwiftData
 import GoogleMobileAds
 
@@ -92,8 +92,8 @@ struct TastySwipeApp: App {
     
     
     init() {
-//        Purchases.logLevel = .debug
-//        Purchases.configure(withAPIKey: "appl_CvgGNQYNduWDdNSUdgCZBXyajCN")
+        Purchases.logLevel = .debug
+        Purchases.configure(withAPIKey: "appl_CvgGNQYNduWDdNSUdgCZBXyajCN")
     }
     
 }

@@ -37,29 +37,29 @@ struct FavoriteCardView: View {
                               Image("PF.Changs")
                                   .resizable()
                                   .aspectRatio(contentMode: .fill)
-                                  .cornerRadius(20)
+                                  
                                   .frame(width: 180,height: 230)
-                                  .clipped()
                                   .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 20, topTrailingRadius: 20))
+                                  .clipped()
                           case .success(let image):
                               image
                                   .resizable()
                                   .aspectRatio(contentMode: .fill)
-                                  .cornerRadius(20)
+                                  
                                   .frame(width: 180,height: 230)
-                                  .clipped()
                                   .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 20, topTrailingRadius: 20))
+                                  .clipped()
                           case .failure:
                               Image("PF.Changs")
                                   .resizable()
                                   .aspectRatio(contentMode: .fill)
-                                  .cornerRadius(20)
+                                  
                                   .frame(width: 180,height: 230)
-                                  .clipped()
                                   .clipShape(UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 20, topTrailingRadius: 20))
+                                  .clipped()
                           @unknown default:
                               EmptyView()
-                                  .frame(width: 60, height: 60)
+                                  .frame(width: 180, height: 230)
                           }
                       }
                       VStack(alignment: .leading) {
@@ -87,7 +87,7 @@ struct FavoriteCardView: View {
                       
                   }
                   
-                  .frame(width: 180, height: 235)
+//                  .frame(width: 180, height: 235)
                   .shadow(radius: 1.5)
                   
                   Button {
@@ -108,7 +108,7 @@ struct FavoriteCardView: View {
                   } label: {
                       Image(systemName : "xmark")
                           .padding(5)
-                          .foregroundStyle(Color.accentColor)
+                          .foregroundStyle(Color.black)
                           .background(.white)
                           .clipShape(Circle())
                           .padding()
@@ -117,7 +117,7 @@ struct FavoriteCardView: View {
               }
               .background(
                   RoundedRectangle(cornerRadius: 20)
-                      .frame(width: 180, height: 230)
+//                      .frame(width: 180, height: 230)
               )
               .padding()
     }

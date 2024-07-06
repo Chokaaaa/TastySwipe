@@ -14,6 +14,14 @@
 				<string>com.googleusercontent.apps.699360189004-m9tkkuspbjj9up0jakqoclrdh3j1v5j7</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://www.facebook.com/profile.php?id=61561919794459</string>
+			</array>
+		</dict>
 	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-2127236424500505~1877500901</string>

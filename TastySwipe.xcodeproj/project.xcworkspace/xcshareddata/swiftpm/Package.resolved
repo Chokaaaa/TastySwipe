@@ -1,5 +1,5 @@
 {
-  "originHash" : "d0cb61ecf24b1aaab06a66e3ffe2a67bdc164a974769f397ac3efba4003052cd",
+  "originHash" : "a709486c23949857ae06e60c57d88f4b84ebd612bd37a697df92064b1528e6b6",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -101,6 +101,15 @@
       }
     },
     {
+      "identity" : "modernslider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/arjun-dureja/ModernSlider.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f6a09a215ce32cce15bd6b2670fb0180c1efaacd"
+      }
+    },
+    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
@@ -116,6 +125,15 @@
       "state" : {
         "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "purchases-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RevenueCat/purchases-ios.git",
+      "state" : {
+        "revision" : "9af8350487e4b1354a25596a6a7bd4d4a37f1159",
+        "version" : "5.0.0"
       }
     },
     {

@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-//import RevenueCat
-//import RevenueCatUI
+import RevenueCat
+import RevenueCatUI
 import FirebaseAuth
 //import Lottie
 import SplineRuntime
@@ -19,14 +19,14 @@ struct WishListView: View {
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isShowingPayWall = false
     
-    let columns : [GridItem] = [GridItem(.adaptive(minimum: 160), spacing: 20)]
+    let columns : [GridItem] = [GridItem(.flexible(), spacing: 20), GridItem(.flexible(), spacing: 20) ]
     
     var body: some View {
-//        NavigationStack {
+        NavigationStack {
         
-        ZStack(alignment: .center) {
-            
-            Color.black.ignoresSafeArea(edges: .all)
+//        ZStack(alignment: .center) {
+//            
+//            Color.black.ignoresSafeArea(edges: .all)
             
             VStack {
                 
@@ -34,8 +34,8 @@ struct WishListView: View {
                     
                     //MARK: - Profile Icon
                     
-                    Button {
-                        
+                    NavigationLink {
+                        SettingsView()
                     } label: {
                         VStack {
                             
@@ -55,39 +55,42 @@ struct WishListView: View {
                     
                     //MARK: - Text
                     
-                    Text("Locale Link")
+                    Text("Favorites")
                         .font(.title3)
                         .foregroundStyle(.white)
                         .fontWeight(.semibold)
                     
                     
-                    //MARK: - AI Button
-                    
-                    Button {
-                        
-                    } label: {
-                        VStack {
-                            
-                            Image("starsIcon")
-                                .resizable()
-                                .foregroundStyle(Color.accentColor)
-                                .scaledToFit()
-                                .frame(width: 25, height: 25)
-                            
-                            
+                    //MARK: - Become a Pro Button
+                    if purchasesManager.isSubscriptionActive == false {
+                        Button {
+                            isShowingPayWall = true
+                        } label: {
+                            VStack {
+                                
+                                Image("starsIcon")
+                                    .resizable()
+                                    .foregroundStyle(Color.accentColor)
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                
+                                
+                            }
+                            .frame(width: 70, height: 70)
+                            .foregroundColor(Color.black.opacity(0.8))
+                            .background(Color("NavBarBGColor"), in: Circle())
                         }
-                        .frame(width: 70, height: 70)
-                        .foregroundColor(Color.black.opacity(0.8))
-                        .background(Color("NavBarBGColor"), in: Circle())
+                        
+                        
                     }
                     
-                    
                 }
+                
                 ScrollView {
                     
                     if viewModel.wishList.count > 0 {
                         
-                        LazyVGrid(columns: columns) {
+                        LazyVGrid(columns: columns, spacing: -20) {
                             
                             ForEach(viewModel.wishList, id: \.self) { wishList in
                                 FavoriteCardView(image: wishList.image,
@@ -147,12 +150,20 @@ struct WishListView: View {
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
-        }
+            
+            .fullScreenCover(isPresented: $isShowingPayWall) {
+                PaywallView()
+                    .padding([.leading, .trailing], -100)
+//                                .paywallFooter(condensed: false)
+            }
+            
+//        }
 //            .navigationTitle("Favorites")
 //            .navigationBarTitleDisplayMode(.inline)
              
-//        }
+        }
         .onAppear {
             viewModel.createWishListObserver()
         }

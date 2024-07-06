@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-//import RevenueCat
-//import RevenueCatUI
+import RevenueCat
+import RevenueCatUI
 import StarRatingViewSwiftUI
 import SwiftData
 
@@ -23,6 +23,8 @@ struct PlacesListView: View {
     @State private var isShowingPayWall = false
 //    @State private var selectedRating:
     @State private var selectedRating = 4
+    
+    @State var showPlacesSettings = false
     @AppStorage("filterByRating") var filterByRating = 3
       let rate = [3, 4, 5]
     
@@ -31,107 +33,177 @@ struct PlacesListView: View {
     
     
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            ScrollView {
-                
-                VStack(alignment: .leading,spacing: 10) {
-                    Text("Place & Rating")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .tint(.accentColor)
+//        ZStack {
+//            Color.black.ignoresSafeArea()
+        
+            VStack {
+                HStack(spacing: 60) {
                     
-                    VStack {
-                        Text("Please select your place and rating")
-                            .foregroundStyle(Color.gray)
-                            .multilineTextAlignment(.leading)
-                        
-                    }
-                    .font(.body)
-                    .foregroundStyle(Color.blue)
-                    
-                    
-                    
-                        Picker("", selection: $selectedRating) {
-                            ForEach(rate, id: \.self) { number in
-                                    Text("\(number)")
+                    //MARK: - AI Button
+                    if purchasesManager.isSubscriptionActive == false {
+                        Button {
+                            isShowingPayWall = true
+                        } label: {
+                            VStack {
+                                
+                                Image("starsIcon")
+                                    .resizable()
+                                    .foregroundStyle(Color.accentColor)
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                
+                                
                             }
+                            .frame(width: 70, height: 70)
+                            .foregroundColor(Color.black.opacity(0.8))
+                            .background(Color("NavBarBGColor"), in: Circle())
                         }
-                        .pickerStyle(.segmented)
-                        
-                        
-                    LazyVGrid(columns: columns) {
+                    }
+                    
+                    
+                    //MARK: - Text
+                    
+                    Text("Places")
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                    
+                    
+                    
+                    //MARK: - Profile Icon
+                    
+                    Button {
+                        showPlacesSettings.toggle()
+                    } label: {
+                        VStack {
                             
-                        ForEach(Array(TagModel.allCases.enumerated()), id: \.1) { index, tag in
-                            Button(action: {
-                                viewModel.tagSelected(tag: tag)
-                            }, label: {
-                                
-                                
-                                VStack(spacing:0) {
-                                    Text(tag.emoji)
-                                    Text(tag.title)
-                                        .fontWeight(.medium)
-                                        .font(.system(size: 13))
-                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
-//                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
+                            Image("configureLineCirclesIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.black.opacity(0.8))
+                        //                            .background(.ultraThinMaterial, in: Circle())
+                        .background(Color("NavBarBGColor"), in: Circle())
+                    }
+                    .sheet(isPresented: $showPlacesSettings, content: {
+                        PlacesSetingsView()
+//                            .presentationDetents([.medium])
+                            .presentationDetents([.height(550)])
+                    })
+                    
+                }
+                ScrollView {
+                    
+                    VStack(alignment: .leading,spacing: 10) {
+                        //                    Text("Place & Rating")
+                        //                        .font(.largeTitle)
+                        //                        .fontWeight(.bold)
+                        //                        .tint(.accentColor)
+                        //
+                        //                    VStack {
+                        //                        Text("Please select your place and rating")
+                        //                            .foregroundStyle(Color.gray)
+                        //                            .multilineTextAlignment(.leading)
+                        //
+                        //                    }
+                        //                    .font(.body)
+                        //                    .foregroundStyle(Color.blue)
+                        //
+                        //
+                        //
+                        //                        Picker("", selection: $selectedRating) {
+                        //                            ForEach(rate, id: \.self) { number in
+                        //                                    Text("\(number)")
+                        //                            }
+                        //                        }
+                        //                        .pickerStyle(.segmented)
+                        
+                        
+                        LazyVGrid(columns: columns) {
+                            
+                            ForEach(Array(TagModel.allCases.enumerated()), id: \.1) { index, tag in
+                                Button(action: {
+                                    viewModel.tagSelected(tag: tag)
+                                }, label: {
                                     
-                                }
+                                    
+                                    VStack(spacing:0) {
+                                        Text(tag.emoji)
+                                        Text(tag.title)
+                                            .fontWeight(.medium)
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
+                                        //                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
+                                        
+                                    }
                                     .frame(width: 75, height: 75)
                                     .padding(.horizontal, 15)
                                     .padding(.vertical, 5)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(getStatusColor(tag: tag, index: index))
-                                            
+                                        
                                     )
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 10)
                                             .stroke(!viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.clear, lineWidth: 1.0)
-                                            
-                                            
+                                        
+                                        
                                     }
-                            })
-                            
-                            .disabled(disableButton(index: index))
+                                })
+                                
+                                .disabled(disableButton(index: index))
+                                
+                            }
                             
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical)
                         
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical)
+                    .padding()
+                    
+                    HStack {
+                        Text("We continuously supplement our category selection.")
+                            .font(.caption2)
+                            .underline()
+                            .foregroundStyle(Color.gray)
+                    }
+                    .padding(.bottom)
+                    
+                    //                VStack(alignment: .leading) {
+                    
+                    //                    Text("Rating: ")
+                    //                        .font(.title)
+                    
+                    //                    HStack {
+                    //                        StarRatingView(rating: 4, color: Color.yellow, maxRating: 5)
+                    //                            .frame(width: 220, height: 35, alignment: .leading)
+                    //
+                    //                        Text(String(format: "%.1f", 4.000))
+                    //                            .font(.title)
+                    //                            .foregroundStyle(.yellow)
+                    //                    }
+                    
+                    //                }
+                    
                     
                 }
-                .padding()
-                
-                HStack {
-                    Text("We continuously supplement our category selection.")
-                        .font(.caption2)
-                        .underline()
-                        .foregroundStyle(Color.gray)
-                }
-                .padding(.bottom)
-                
-//                VStack(alignment: .leading) {
-                    
-//                    Text("Rating: ")
-//                        .font(.title)
-                 
-//                    HStack {
-//                        StarRatingView(rating: 4, color: Color.yellow, maxRating: 5)
-//                            .frame(width: 220, height: 35, alignment: .leading)
-//                        
-//                        Text(String(format: "%.1f", 4.000))
-//                            .font(.title)
-//                            .foregroundStyle(.yellow)
-//                    }
-                    
-//                }
-                
-                
+                .scrollIndicators(.hidden)
             }
-        }
+            .fullScreenCover(isPresented: $isShowingPayWall) {
+                PaywallView()
+                    .padding([.leading, .trailing], -100)
+//                                .paywallFooter(condensed: false)
+            }
+
+        
+//        }
         
         
         .onDisappear(perform: {
@@ -162,63 +234,55 @@ struct PlacesListView: View {
             selectedRating = filterByRating
         }
         
-        .navigationTitle("Places")
-        .navigationBarTitleDisplayMode(.inline)
-        
-        .toolbar {
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                
-                HStack {
-                    if purchasesManager.isSubscriptionActive == false {
-                        Button {
-                            isShowingPayWall = true
-                        } label: {
-                            HStack(spacing: 0) {
-                                Text("💎")
-                                    .foregroundStyle(Color.yellow)
-                                    .frame(width: 25, height: 0)
-                                Text("PRO")
-                                    .fontWeight(.bold)
-                            }
-                            .padding(5)
-                            .foregroundColor(.white)
-                            .background(Color.accentColor)
-                            .clipShape(
-                                Capsule()
-                            )
-                        }
-                        .fullScreenCover(isPresented: $isShowingPayWall) {
-                            PaywallView()
-                                .padding([.leading, .trailing], -100)
-//                                .paywallFooter(condensed: false)
-                        }
-                    } else {
-                        
-                    }
-                    
-                    Button {
-                        if preferedPlaces.count > 0 {
-                            for preferedPlace in preferedPlaces {
-                                context.delete(preferedPlace)
-                            }
-                        }
-                        for tag in viewModel.selectedTags {
-                            let newPreferedPlace = PreferedPlaceModel(place: tag)
-                            context.insert(newPreferedPlace)
-                        }
-                        let locationName = viewModel.selectedTags.map({ $0.apiName }).joined(separator: " OR ")
-                        homeViewModel.fetchPlaces(locationName: locationName, filterByRating: selectedRating)
-                        cardsManager.showLastCard = false
-                        cardsManager.totalCardSwiped = 0
-                        self.presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text(homeViewModel.isFetching ? "Fetching..." : "Save")
-                    }
-                    .disabled(homeViewModel.isFetching)
-                }
-            }
-        }
+//        .toolbar {
+//            
+//            ToolbarItem(placement: .topBarTrailing) {
+//                
+//                HStack {
+//                    if purchasesManager.isSubscriptionActive == false {
+//                        Button {
+//                            isShowingPayWall = true
+//                        } label: {
+//                            HStack(spacing: 0) {
+//                                Text("💎")
+//                                    .foregroundStyle(Color.yellow)
+//                                    .frame(width: 25, height: 0)
+//                                Text("PRO")
+//                                    .fontWeight(.bold)
+//                            }
+//                            .padding(5)
+//                            .foregroundColor(.white)
+//                            .background(Color.accentColor)
+//                            .clipShape(
+//                                Capsule()
+//                            )
+//                        }
+//                    } else {
+//                        
+//                    }
+//                    
+//                    Button {
+//                        if preferedPlaces.count > 0 {
+//                            for preferedPlace in preferedPlaces {
+//                                context.delete(preferedPlace)
+//                            }
+//                        }
+//                        for tag in viewModel.selectedTags {
+//                            let newPreferedPlace = PreferedPlaceModel(place: tag)
+//                            context.insert(newPreferedPlace)
+//                        }
+//                        let locationName = viewModel.selectedTags.map({ $0.apiName }).joined(separator: " OR ")
+//                        homeViewModel.fetchPlaces(locationName: locationName, filterByRating: selectedRating)
+//                        cardsManager.showLastCard = false
+//                        cardsManager.totalCardSwiped = 0
+//                        self.presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Text(homeViewModel.isFetching ? "Fetching..." : "Save")
+//                    }
+//                    .disabled(homeViewModel.isFetching)
+//                }
+//            }
+//        }
         
     }
     func getStatusColor(tag: TagModel, index: Int) -> Color {

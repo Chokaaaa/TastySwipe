@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContactUsView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var FBAccountWeb: Bool = false
+    @State private var InstaAccountWeb: Bool = false
+    @State private var XAccountWeb: Bool = false
+    
     var body: some View {
         ZStack {
                 RoundedRectangle(cornerRadius: 0)
@@ -16,10 +22,11 @@ struct ContactUsView: View {
                     .ignoresSafeArea(.container, edges: .top)
             
                
-                HStack(spacing: 90) {
+            HStack(spacing: 85) {
+                
                     //MARK: - Back Button
                     Button {
-                        
+                        dismiss()
                     } label: {
                         VStack {
                             
@@ -37,14 +44,18 @@ struct ContactUsView: View {
                         .background(Color("smallCirclebg"), in: Circle())
                     }
                     
+                
+//                Spacer()
+                
                     Text("Contact us")
                         .bold()
-                    
+                
                     Spacer()
                     
                 }
-                .padding([.leading])
-//                .padding(.bottom, 60)
+            .padding([.leading, .trailing])
+            .frame(maxWidth: .infinity)
+            .padding(.top, -60)
                 
             
         }
@@ -76,7 +87,7 @@ struct ContactUsView: View {
                 App Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "no app version")
                 App Build: \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "no app build version")
               """,
-                                                                     to: "nykdevs@gmail.com")
+                                                                     to: "NY@nykdevs.com")
             } label: {
                 HStack(spacing: 15) {
                     Image("envelopeIcon")
@@ -86,9 +97,9 @@ struct ContactUsView: View {
                         .padding(.leading, -10)
                     
                     
-                    Text("Developer Email")
+                    Text("info@nykdevs.com")
                         .font(.system(size: 17, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundColor(Color("bgButton"))
                         .padding(.leading, 5)
                     
                     Spacer()
@@ -109,24 +120,56 @@ struct ContactUsView: View {
                 .font(.title)
                 .foregroundStyle(.white)
                 .bold()
-                .padding([.leading, .trailing], 10)
-                .padding(.top, 20)
+//                .padding([.leading, .trailing], 10)
+                .padding(.vertical, 15)
+                .padding()
             
-            
-            HStack {
-                Image("")
+            VStack(alignment: .leading, spacing: 30) {
+                
+                Button {
+                    FBAccountWeb.toggle()
+
+                } label: {
+                    socialMediaButton(image: "FBSocial", title: "Stay updated, connect, and engage with us on Facebook.")
+                }
+                .fullScreenCover(isPresented: $FBAccountWeb, content: {
+                    SFSafariViewWrapper(url: URL(string: "https://www.facebook.com/profile.php?id=61561919794459")!)
+                })
                 
                 
+                Button {
+                    XAccountWeb.toggle()
+                } label: {
+                    socialMediaButton(image: "xSocial", title: "Explore our visual world and discover beauty of our brand.")
+                }
+                .fullScreenCover(isPresented: $XAccountWeb, content: {
+                    SFSafariViewWrapper(url: URL(string: "https://x.com/PlacesSwipe?mx=2")!)
+                })
+                
+                
+                Button {
+                    InstaAccountWeb.toggle()
+                } label: {
+                    socialMediaButton(image: "InstaSocial", title: "Follow us for real-time updates and lively discussions.")
+                }
+                .fullScreenCover(isPresented: $InstaAccountWeb, content: {
+                    SFSafariViewWrapper(url: URL(string: "https://www.instagram.com/placesswipe?igsh=cjVhODdlbjJncmRj&utm_source=qr")!)
+                })
                 
             }
+            .padding(.trailing, 15)
             
             
             
         }
-        .padding([.leading, .trailing], 10)
-        
+        .padding([.leading, .trailing], 15)
+        .padding(.top, -50)
+        Spacer()
     }
+ 
 }
+
+    
 
 #Preview {
     ContactUsView()

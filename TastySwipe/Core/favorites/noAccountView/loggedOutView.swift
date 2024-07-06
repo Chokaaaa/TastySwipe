@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-//import RevenueCat
-//import RevenueCatUI
+import RevenueCat
+import RevenueCatUI
 
 struct loggedOutView: View {
     @State private var showingLoginView = false
@@ -79,6 +79,15 @@ struct loggedOutView: View {
                     .fullScreenCover(isPresented: $showingLoginView) {
                         LoginView()
                     }
+                
+                
+                    .fullScreenCover(isPresented: $isShowingPayWall) {
+                        PaywallView()
+                            .padding([.leading, .trailing], -100)
+        //                                .paywallFooter(condensed: false)
+                    }
+
+                
                 }
             .padding(.top,50)
                 .padding(10)

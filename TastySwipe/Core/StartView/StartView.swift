@@ -13,6 +13,8 @@ import FirebaseFirestore
 import SwiftData
 import GoogleMobileAds
 import MapKit
+import RevenueCat
+import RevenueCatUI
 
 
 struct MapAnnotationInfo : Identifiable {
@@ -109,33 +111,32 @@ struct StartView: View {
                             
                             
                             //MARK: - Text
-                            Text("GoChoice")
+                            Text("Places Swipe")
                                 .font(.title3)
                                 .foregroundStyle(.white)
                                 .fontWeight(.semibold)
                             
                             
                             //MARK: - AI Button
-                            
-                            Button {
-                                
-                            } label: {
-                                VStack {
-                                    
-                                    Image("starsIcon")
-                                        .resizable()
-                                        .foregroundStyle(Color.accentColor)
-                                        .scaledToFit()
-                                        .frame(width: 25, height: 25)
-                                    
-                                    
+                            if purchasesManager.isSubscriptionActive == false {
+                                Button {
+                                    isShowingPayWall = true
+                                } label: {
+                                    VStack {
+                                        
+                                        Image("starsIcon")
+                                            .resizable()
+                                            .foregroundStyle(Color.accentColor)
+                                            .scaledToFit()
+                                            .frame(width: 25, height: 25)
+                                        
+                                        
+                                    }
+                                    .frame(width: 70, height: 70)
+                                    .foregroundColor(Color.black.opacity(0.8))
+                                    .background(Color("NavBarBGColor"), in: Circle())
                                 }
-                                .frame(width: 70, height: 70)
-                                .foregroundColor(Color.black.opacity(0.8))
-                                .background(Color("NavBarBGColor"), in: Circle())
                             }
-                            
-                            
                         }
                     }
                     
@@ -252,6 +253,11 @@ struct StartView: View {
                     .onAppear {
                         loadInterstitialAds()
                     }
+                }
+                .fullScreenCover(isPresented: $isShowingPayWall) {
+                    PaywallView()
+                        .padding([.leading, .trailing], -100)
+    //                                .paywallFooter(condensed: false)
                 }
             }
         }
