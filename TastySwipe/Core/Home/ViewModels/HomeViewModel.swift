@@ -40,16 +40,29 @@ class HomeViewModel : NSObject, ObservableObject {
         locationManager.delegate = self
     }
     
+    func fetchByRating(rating: Int) {
+        
+        guard !locationName.isEmpty else {
+            return
+        }
+        
+        fetchPlaces(locationName: locationName, filterByRating: rating)
+        
+    }
+    
     //MARK: - Changing the category api call
-    func fetchPlaces(locationName: String, filterByRating : Int) {
+    func fetchPlaces(locationName: String, filterByRating : Int, searchRadius: Int? = nil) {
         guard let location = currentLocation else { return }
         print("Calling fetch places 1")
         self.locationName = locationName
         print("Location name \(locationName)")
         cardViews.removeAll()
         self.filterByRating = filterByRating
+        if let searchRadius = searchRadius {
+            self.searchRadius = searchRadius
+        }
         isFetching = true
-        googleClient.getGooglePlacesData(forKeyword: locationName, location: location, withinMeters: searchRadius, token: nil) { response in
+        googleClient.getGooglePlacesData(forKeyword: locationName, location: location, withinMeters: self.searchRadius, token: nil) { response in
 //            self.currentLocation = location
             self.token = response.next_page_token
             guard response.results.count > 0 else {

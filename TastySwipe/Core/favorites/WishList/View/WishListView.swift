@@ -82,6 +82,21 @@ struct WishListView: View {
                         }
                         
                         
+                    } else {
+                        
+                        VStack {
+                            
+                            Image("")
+                                .resizable()
+                                .foregroundStyle(Color.accentColor)
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.clear)
+                        .background(Color.clear, in: Circle())
                     }
                     
                 }

@@ -20,7 +20,7 @@ class GoogleClient: GoogleClientRequest {
      
     func getGooglePlacesData(forKeyword keyword: String, location: CLLocation, withinMeters radius: Int, token : String? = nil,  using completionHandler: @escaping (GooglePlacesResponse) -> ())  {
          print("Did get first results")
-        let url = googlePlacesDataURL(forKey: googlePlacesKey, location: location, keyword: keyword, token: token)
+        let url = googlePlacesDataURL(forKey: googlePlacesKey, location: location, keyword: keyword, radius: radius, token: token)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             let task = self.session.dataTask(with: url) { (responseData, _, error) in
                 
@@ -54,8 +54,8 @@ class GoogleClient: GoogleClientRequest {
         })
     }
     
-    func getNextResults(keyword: String, location: CLLocation, token: String? = nil, step: Int, results : [Place], completionHandler: @escaping (GooglePlacesResponse) -> () ) {
-        let url = googlePlacesDataURL(forKey: googlePlacesKey, location: location, keyword: keyword, token: token)
+    func getNextResults(keyword: String, location: CLLocation, token: String? = nil, step: Int, radius: Int, results : [Place], completionHandler: @escaping (GooglePlacesResponse) -> () ) {
+        let url = googlePlacesDataURL(forKey: googlePlacesKey, location: location, keyword: keyword, radius: radius , token: token)
         print("Token is \(token)")
         print("the URL is \(url.absoluteString)")
         print("did get next results")
@@ -92,7 +92,7 @@ class GoogleClient: GoogleClientRequest {
                 } else {
                     print("Getting next results 2")
                     let totalResults = results + response.results
-                    self.getNextResults(keyword: keyword, location: location, token: response.next_page_token, step: step + 1, results: totalResults, completionHandler: completionHandler)
+                    self.getNextResults(keyword: keyword, location: location, token: response.next_page_token, step: step + 1, radius: radius, results: totalResults, completionHandler: completionHandler)
                     
                 }
                 
@@ -101,19 +101,20 @@ class GoogleClient: GoogleClientRequest {
             task.resume()
     }
     
-    func googlePlacesDataURL(forKey apiKey: String, location: CLLocation, keyword: String, token : String? = nil) -> URL {
+    func googlePlacesDataURL(forKey apiKey: String, location: CLLocation, keyword: String, radius: Int, token : String? = nil) -> URL {
     
          let baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
          let locationString = "location=" + String(location.coordinate.latitude) + "," + String(location.coordinate.longitude)
          let rankby = "rankby=distance"
          let keywrd = "keyword=" + keyword
          let key = "key=" + apiKey
+         let radius = "radius=" + "\(radius)"
 //    let url = URL(string: "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Paris&types=geocode&key=" + key)
 //        return url!
         if let token = token {
-            return URL(string: baseURL + locationString + "&" + rankby + "&" + keywrd + "&" + key + "&pagetoken=\(token)"  )!
+            return URL(string: baseURL + locationString + "&" + radius + "&" + keywrd + "&" + key + "&pagetoken=\(token)"  )!
         }
-         return URL(string: baseURL + locationString + "&" + rankby + "&" + keywrd + "&" + key)!
+         return URL(string: baseURL + locationString + "&" + radius + "&" + keywrd + "&" + key)!
     }
     
 }

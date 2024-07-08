@@ -46,7 +46,7 @@ enum TagModel : Identifiable, CaseIterable, Codable {
     var title : String {
         switch self {
         case .cafe:
-            return "Coffee\nShops"
+            return "Coffee"
         case .burger:
             return "Burgers"
         case .pizza:
@@ -60,25 +60,25 @@ enum TagModel : Identifiable, CaseIterable, Codable {
         case .bank:
             return "Bank"
         case .beauty_salon:
-            return "Beauty\nSalon"
+            return "Beauty Salon"
         case .car_rental:
-            return "Car\nRental"
+            return "Car Rental"
         case .car_repair:
-            return "Car\nRepair"
+            return "Car Repair"
         case .car_wash:
-            return "Car\nWash"
+            return "Car Wash"
         case .dentist:
             return "Dentist"
         case .department_store:
-            return "Department\nShop"
+            return "Department Shop"
         case .doctor:
             return "Doctor"
         case .electronics_store:
-            return "Electronic\nStore"
+            return "Electronic Store"
         case .florist:
             return "Flowers"
         case .gas_station:
-            return "Petrol\nStation"
+            return "Petrol Station"
         case .hair_care:
             return "Barber"
         case .hospital:
@@ -92,17 +92,17 @@ enum TagModel : Identifiable, CaseIterable, Codable {
         case .pharmacy:
             return "Pharmacy"
         case .real_estate_agency:
-            return "Real\nEstate"
+            return "Real Estate"
         case .shopping_mall:
-            return "Shopping\nMall"
+            return "Shopping Mall"
         case .spa:
             return "SPA"
         case .stadium:
             return "Stadium"
         case .supermarket:
-            return "Super\nmarket"
+            return "Supermarket"
         case .tourist_attraction:
-            return "Tourist\nAttraction"
+            return "Tourist Attraction"
       
         }
     }
@@ -174,37 +174,37 @@ enum TagModel : Identifiable, CaseIterable, Codable {
     var emoji : String {
         switch self {
         case .bank:
-            return "🏦"
+            return "bank"
         case .beauty_salon:
-            return "💅🏼"
+            return "salon"
         case .cafe:
-            return "☕️"
+            return "CoffeeCup"
         case .car_rental:
             return "🏎️"
         case .car_repair:
             return "🛠️"
         case .car_wash:
-            return "🧽"
+            return "carWash"
         case .dentist:
-            return "🪥"
+            return "dentist"
         case .department_store:
-            return "🏪"
+            return "departmentStore"
         case .doctor:
-            return "🩺"
+            return "doctor"
         case .electronics_store:
-            return "💻"
+            return "electronic"
         case .florist:
-            return "🌷"
+            return "flower"
         case .food:
-            return "🍱"
+            return "restraunt"
         case .gas_station:
-            return "⛽️"
+            return "pump"
         case .gym:
-            return "🏋🏼‍♂️"
+            return "gym"
         case .hair_care:
-            return "💇🏻‍♀️"
+            return "barberShop"
         case .hospital:
-            return "🏥"
+            return ""
         case .mosque:
             return "🕌"
         case .museum:
@@ -222,15 +222,15 @@ enum TagModel : Identifiable, CaseIterable, Codable {
         case .stadium:
             return "🏀"
         case .supermarket:
-            return "🛒"
+            return "superMarket"
         case .tourist_attraction:
-            return "🎡"
+            return "touristAtraction"
         case .burger:
-            return "🍔"
+            return "hamburger"
         case .pizza:
-            return "🍕"
+            return "pizza"
         case .sushi:
-            return "🍣"
+            return "sushi"
         }
     }
     

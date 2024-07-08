@@ -93,51 +93,53 @@ struct loggedOutView: View {
                 .padding(10)
                 .navigationTitle("Favorites")
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    
-                    ToolbarItem(placement: .topBarLeading) {
-                      
-                    }
-                    
-                    ToolbarItem(placement: .topBarTrailing) {
-                        
-                        HStack {
-                            if purchasesManager.isSubscriptionActive == false {
-                                Button {
-                                    isShowingPayWall = true
-                                } label: {
-                                    HStack(spacing: 0) {
-                                        Text("💎")
-                                            .foregroundStyle(Color.yellow)
-                                            .frame(width: 25, height: 0)
-                                        Text("PRO")
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(5)
-                                    .foregroundColor(.white)
-                                    .background(Color.accentColor)
-                                    .clipShape(
-                                        Capsule()
-                                    )
-                                }
-                                .fullScreenCover(isPresented: $isShowingPayWall) {
-                                    PaywallView()
-                                        .padding([.leading, .trailing], -100)
-//                                        .paywallFooter(condensed: false)
-                                }
-                            } else {
-                                
-                            }
-//                            
-//                            Button {
+                
+                
+//                .toolbar {
+//                    
+//                    ToolbarItem(placement: .topBarLeading) {
+//                      
+//                    }
+//                    
+//                    ToolbarItem(placement: .topBarTrailing) {
+//                        
+//                        HStack {
+//                            if purchasesManager.isSubscriptionActive == false {
+//                                Button {
+//                                    isShowingPayWall = true
+//                                } label: {
+//                                    HStack(spacing: 0) {
+//                                        Text("💎")
+//                                            .foregroundStyle(Color.yellow)
+//                                            .frame(width: 25, height: 0)
+//                                        Text("PRO")
+//                                            .fontWeight(.bold)
+//                                    }
+//                                    .padding(5)
+//                                    .foregroundColor(.white)
+//                                    .background(Color.accentColor)
+//                                    .clipShape(
+//                                        Capsule()
+//                                    )
+//                                }
+//                                .fullScreenCover(isPresented: $isShowingPayWall) {
+//                                    PaywallView()
+//                                        .padding([.leading, .trailing], -100)
+////                                        .paywallFooter(condensed: false)
+//                                }
+//                            } else {
 //                                
-//                            } label: {
-//                                Image(systemName: "person.3")
-//                                    .foregroundStyle(Color.accentColor)
 //                            }
-                        }
-                    }
-                }
+////                            
+////                            Button {
+////                                
+////                            } label: {
+////                                Image(systemName: "person.3")
+////                                    .foregroundStyle(Color.accentColor)
+////                            }
+//                        }
+//                    }
+//                }
             }
         }
     }

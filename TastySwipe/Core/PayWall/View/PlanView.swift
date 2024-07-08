@@ -32,13 +32,13 @@ struct PlanView: View {
                 HStack {
                     Text("\(product.name)")
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color.white)
                     
                     Spacer()
                     
                     Text("\(product.price)")
                         .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color.white)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -48,7 +48,7 @@ struct PlanView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(selectedProductId == product.id ? Color.accentColor : Color.gray.opacity(0.5), lineWidth: 2.5)
             )
-            .background(Color.white)
+            .background(Color.black)
             .cornerRadius(12)
             .padding(.horizontal, 15)
             .onTapGesture { selectedProductId = product.id }

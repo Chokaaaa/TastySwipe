@@ -26,9 +26,10 @@ struct PlacesListView: View {
     
     @State var showPlacesSettings = false
     @AppStorage("filterByRating") var filterByRating = 3
+    @AppStorage("searchRadius") var searchRadius = 1000
       let rate = [3, 4, 5]
     
-    let columns : [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns : [GridItem] = [GridItem(.flexible()), GridItem(.flexible(), spacing: 10)]
     
     
     
@@ -37,7 +38,7 @@ struct PlacesListView: View {
 //            Color.black.ignoresSafeArea()
         
             VStack {
-                HStack(spacing: 60) {
+                HStack(spacing: 90) {
                     
                     //MARK: - AI Button
                     if purchasesManager.isSubscriptionActive == false {
@@ -58,6 +59,21 @@ struct PlacesListView: View {
                             .foregroundColor(Color.black.opacity(0.8))
                             .background(Color("NavBarBGColor"), in: Circle())
                         }
+                    } else {
+                        
+                        VStack {
+                            
+                            Image("")
+                                .resizable()
+                                .foregroundStyle(Color.accentColor)
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.clear)
+                        .background(Color.clear, in: Circle())
                     }
                     
                     
@@ -96,6 +112,7 @@ struct PlacesListView: View {
                     })
                     
                 }
+                
                 ScrollView {
                     
                     VStack(alignment: .leading,spacing: 10) {
@@ -131,18 +148,23 @@ struct PlacesListView: View {
                                 }, label: {
                                     
                                     
-                                    VStack(spacing:0) {
-                                        Text(tag.emoji)
+                                    VStack(spacing: 10) {
+                                        Image(tag.emoji)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 60, height: 60, alignment: .center)
+                                        
                                         Text(tag.title)
                                             .fontWeight(.medium)
                                             .font(.system(size: 13))
-                                            .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
+//                                            .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
+                                            .foregroundStyle(Color("SystemTextColor"))
                                         //                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
                                         
                                     }
-                                    .frame(width: 75, height: 75)
+                                    .frame(width: 130, height: 120)
                                     .padding(.horizontal, 15)
-                                    .padding(.vertical, 5)
+                                    .padding(.vertical, 10)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(getStatusColor(tag: tag, index: index))
@@ -150,9 +172,7 @@ struct PlacesListView: View {
                                     )
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(!viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.clear, lineWidth: 1.0)
-                                        
-                                        
+                                            .stroke(viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.clear, lineWidth: 1.0)
                                     }
                                 })
                                 
@@ -192,8 +212,9 @@ struct PlacesListView: View {
                     
                     //                }
                     
-                    
+                    .padding(.bottom, 100)
                 }
+                
                 .scrollIndicators(.hidden)
             }
             .fullScreenCover(isPresented: $isShowingPayWall) {
@@ -219,7 +240,7 @@ struct PlacesListView: View {
                     context.insert(newPreferedPlace)
                 }
                 let locationName = viewModel.selectedTags.map({ $0.apiName }).joined(separator: " OR ")
-                homeViewModel.fetchPlaces(locationName: locationName, filterByRating: selectedRating)
+                homeViewModel.fetchPlaces(locationName: locationName, filterByRating: filterByRating, searchRadius: searchRadius)
                 cardsManager.showLastCard = false
                 cardsManager.totalCardSwiped = 0
                 
@@ -231,7 +252,7 @@ struct PlacesListView: View {
             if viewModel.selectedTags.count == 0 {
                 viewModel.tagSelected(tag: .cafe)
             }
-            selectedRating = filterByRating
+//            selectedRating = filterByRating
         }
         
 //        .toolbar {
@@ -290,9 +311,12 @@ struct PlacesListView: View {
             if index > 2 {
                 return Color.gray.opacity(0.15)
             }
-            return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
+//            return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
+            return viewModel.selectedTags.contains(tag) ? Color.accentColor.opacity(0.2) : Color("PlaceNewDarkColor").opacity(0.7)
+            
         }
-        return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
+//        return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
+        return viewModel.selectedTags.contains(tag) ? Color.accentColor.opacity(0.2) : Color("PlaceNewDarkColor").opacity(0.7)
     }
     
     func disableButton(index: Int) -> Bool {

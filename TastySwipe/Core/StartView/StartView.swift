@@ -136,6 +136,22 @@ struct StartView: View {
                                     .foregroundColor(Color.black.opacity(0.8))
                                     .background(Color("NavBarBGColor"), in: Circle())
                                 }
+                            } else {
+                                
+                                VStack {
+                                    
+                                    Image("")
+                                        .resizable()
+                                        .foregroundStyle(Color.accentColor)
+                                        .scaledToFit()
+                                        .frame(width: 25, height: 25)
+                                    
+                                    
+                                }
+                                .frame(width: 70, height: 70)
+                                .foregroundColor(Color.clear)
+                                .background(Color.clear, in: Circle())
+                                
                             }
                         }
                     }
@@ -295,8 +311,6 @@ struct StartView: View {
                 let locationName = preferedPlaces.map { $0.place.apiName }.joined(separator: " OR ")
                 viewModel.locationName = locationName
             }
-            
-            
             if !didFetchLocation {
             
                 didFetchLocation = true

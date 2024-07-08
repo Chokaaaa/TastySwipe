@@ -33,49 +33,35 @@ struct PaywallView: View {
                         .font(.system(size: 35, weight: .bold))
                         .foregroundStyle(Color.accentColor)
                     
-                    VStack(spacing: 0) {
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundStyle(.yellow)
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                    HStack {
+                        
+                        VStack(alignment: .leading, spacing: 0) {
                             
-                            Text("Block Ads 🚫")
+                            Text("Block Ads")
                                 .font(.system(size: 17.5, weight: .bold))
-                                .foregroundStyle(Color.black)
-                            Spacer()
-                        }
-                        .padding(.leading,25)
-                        
-                        
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundStyle(.yellow)
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                                .foregroundStyle(Color.white)
                             
-                            Text("Unlimited Access ✅")
-                                .font(.system(size: 17.5, weight: .bold))
-                                .foregroundStyle(Color.black)
-                            Spacer()
-                        }
-                        .padding(.leading,25)
-                        
-                        
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundStyle(.yellow)
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                                
                             
-                            Text("Get More features 🍱")
+                            
+                            
+                            Text("Unlimited Access")
                                 .font(.system(size: 17.5, weight: .bold))
-                                .foregroundStyle(Color.black)
-                            Spacer()
+                                .foregroundStyle(Color.white)
+                            
+                                
+                            
+                            
+                            Text("Get More features")
+                                .font(.system(size: 17.5, weight: .bold))
+                                .foregroundStyle(Color.white)
+                            
+                                
+                            
+                            
                         }
-                        .padding(.leading,25)
-                        
-                        
+                        .padding(.leading,55)
+                         Spacer()
                     }
                     .padding([.top,.bottom], 10)
                     
@@ -145,7 +131,7 @@ struct PaywallView: View {
                     Spacer()
                     
                     RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(height: 500)
                         .padding(.horizontal)
                         .blur(radius: 30)

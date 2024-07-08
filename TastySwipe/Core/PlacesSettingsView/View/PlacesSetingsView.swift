@@ -19,8 +19,10 @@ struct PlacesSetingsView: View {
     }
     
     @Environment(\.dismiss) var dismiss
-    @State private var celsius: Double = 0
-    @AppStorage("filterByRating") var filterByRating = 3
+    @State private var distance: Double = 0
+    @EnvironmentObject var homeViewModel : HomeViewModel
+    @AppStorage("filterByRating") var filterByRating = 1
+    @AppStorage("searchRadius") var searchRadius = 1000
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -153,10 +155,10 @@ struct PlacesSetingsView: View {
                 
                 ModernSlider(
                     systemImage: "eye.circle",
-                    sliderWidth: .infinity,
+                    sliderWidth: UIScreen.main.bounds.width - 30,
                     sliderHeight: 30,
                     sliderColor: .accentColor,
-                    value: $celsius
+                    value: $distance
                 )
                 
                 
@@ -167,31 +169,7 @@ struct PlacesSetingsView: View {
                             .frame(width: 2.5, height: 15)
                             .foregroundStyle(.white.opacity(0.5))
                         
-                        Text("500m")
-                            .font(.footnote)
-                            .foregroundStyle(.white.opacity(0.5))
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .center) {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 2.5, height: 15)
-                            .foregroundStyle(.white.opacity(0.5))
-                        
                         Text("1KM")
-                            .font(.footnote)
-                            .foregroundStyle(.white.opacity(0.5))
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .center) {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 2.5, height: 15)
-                            .foregroundStyle(.white.opacity(0.5))
-                        
-                        Text("1,5KM")
                             .font(.footnote)
                             .foregroundStyle(.white.opacity(0.5))
                     }
@@ -227,7 +205,31 @@ struct PlacesSetingsView: View {
                             .frame(width: 2.5, height: 15)
                             .foregroundStyle(.white.opacity(0.5))
                         
-                        Text("10km")
+                        Text("6KM")
+                            .font(.footnote)
+                            .foregroundStyle(.white.opacity(0.5))
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .center) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 2.5, height: 15)
+                            .foregroundStyle(.white.opacity(0.5))
+                        
+                        Text("8KM")
+                            .font(.footnote)
+                            .foregroundStyle(.white.opacity(0.5))
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .center) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 2.5, height: 15)
+                            .foregroundStyle(.white.opacity(0.5))
+                        
+                        Text("10KM")
                             .font(.footnote)
                             .foregroundStyle(.white.opacity(0.5))
                     }
@@ -240,7 +242,8 @@ struct PlacesSetingsView: View {
             HStack {
                 
                 Button {
-                    
+                    filterByRating = 1
+                    searchRadius = 10000
                 } label: {
                     Text("Reset")
                         .foregroundColor(.white)
@@ -255,6 +258,7 @@ struct PlacesSetingsView: View {
                 
                 
                 Button {
+                    homeViewModel.fetchByRating(rating: filterByRating)
                     dismiss()
                 } label: {
                     Text("Save")
@@ -272,8 +276,24 @@ struct PlacesSetingsView: View {
             
             
         }
-        
         .padding()
+        
+        .onAppear {
+            distance = (Double(searchRadius) / Double(10000)) * 100
+        }
+        
+        .onChange(of: distance) { oldValue, newValue in
+            print("Current distance \(newValue)")
+            
+            if newValue <= 10 {
+                searchRadius = 1000
+            } else {
+                searchRadius = Int((Double(newValue) / Double(100)) * 10000)
+            }
+            
+            
+        }
+        
     }
 }
 
