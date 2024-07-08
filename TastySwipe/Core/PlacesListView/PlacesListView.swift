@@ -175,6 +175,20 @@ struct PlacesListView: View {
                                             .stroke(viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.clear, lineWidth: 1.0)
                                     }
                                 })
+                                .overlay(alignment: .topTrailing, content: {
+                                    if index > 2 && !purchasesManager.isSubscriptionActive {
+                                        Text("PRO")
+                                            .font(.system(size: 15))
+                                            .foregroundStyle(.white)
+                                            .padding(.horizontal, 8)
+                                            .background {
+                                                Capsule()
+                                                    .fill(Color.darkOrange)
+                                            }
+                                            .padding(.top, 10)
+                                            .padding(.trailing, 10)
+                                    }
+                                })
                                 
                                 .disabled(disableButton(index: index))
                                 

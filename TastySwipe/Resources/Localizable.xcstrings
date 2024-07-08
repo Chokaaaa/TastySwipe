@@ -498,7 +498,6 @@
       }
     },
     "PRO" : {
-      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
