@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2004BBEA2C3BE22700005BF0 /* ImageLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */; };
 		209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B02CF2B6D749200F832B0 /* ExploreMapView.swift */; };
 		8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */; };
 		8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2212B472ADA00CAE616 /* TagModel.swift */; };
@@ -141,6 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderViewModel.swift; sourceTree = "<group>"; };
 		209B02CF2B6D749200F832B0 /* ExploreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMapView.swift; sourceTree = "<group>"; };
 		8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
 		8407D2212B472ADA00CAE616 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
@@ -275,6 +277,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2004BBE82C3BE21300005BF0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8407D2192B472A6C00CAE616 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +372,7 @@
 		84348F3529CB33420017ED7E /* TastySwipe */ = {
 			isa = PBXGroup;
 			children = (
+				2004BBE82C3BE21300005BF0 /* ViewModels */,
 				846753852C34519700479AC5 /* Utilities */,
 				84866A222B6434510096695E /* TastySwipe.entitlements */,
 				84DE46522B585AB8009123AD /* Representables */,
@@ -981,6 +992,7 @@
 				84CB7FA92B45556400E1CE79 /* WishListView.swift in Sources */,
 				847352F12B49E85B00C39DA8 /* SettingsRowWithPicker.swift in Sources */,
 				847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */,
+				2004BBEA2C3BE22700005BF0 /* ImageLoaderViewModel.swift in Sources */,
 				8407D2392B496ABB00CAE616 /* dismissButton.swift in Sources */,
 				8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */,
 				8476E37C2C11835300B42320 /* ContactUsView.swift in Sources */,
@@ -1195,7 +1207,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1233,7 +1245,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

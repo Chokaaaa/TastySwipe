@@ -20,6 +20,7 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.requestReview) var requestReview
     @ObservedObject var purchasesManager = PurchasesManager()
+    @StateObject var imageLoaderViewModel = ImageLoaderViewModel()
     @State private var isSheetPresented = false
     @State private var isShowingPayWall = false
     @State private var showingAlert = false
@@ -28,6 +29,7 @@ struct SettingsView: View {
     @State private var showingLoginView = false
     @State private var showPrivacyPolicy: Bool = false
     @State private var showTC: Bool = false
+    @State private var showLibrary = false
     @State var hapticIsOn = false
     
     
@@ -77,7 +79,7 @@ struct SettingsView: View {
                         
                         if loggedInUser {
                             Button(action: {
-                                
+                                showLibrary = true
                             }, label: {
                                 HStack(spacing: 15) {
                                     
@@ -94,6 +96,16 @@ struct SettingsView: View {
                                                 .foregroundStyle(.white)
                                                 .frame(width: 100, height: 100)
                                                 .clipShape(Circle())
+                                            
+                                            Image(systemName: "plus.circle.fill")
+                                                .font(.system(size: 20))
+                                                .foregroundStyle(Color.blue)
+                                                .overlay(content: {
+                                                    Circle()
+                                                        .stroke(Color.white, lineWidth: 3.0)
+                                                })
+                                                .offset(x: 40, y: 40)
+                                            
                                         }
                                         
                                         VStack(alignment: .center, spacing: 5) {
@@ -523,6 +535,7 @@ struct SettingsView: View {
             
 //            .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .navigationBar)
+            .photosPicker(isPresented: $showLibrary, selection: $imageLoaderViewModel.imageSelection, matching: .images, photoLibrary: .shared())
             
         }
         
