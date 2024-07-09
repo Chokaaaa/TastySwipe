@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2004BBEA2C3BE22700005BF0 /* ImageLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */; };
+		2004BBEC2C3D2E4A00005BF0 /* ProgressComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2004BBEB2C3D2E4A00005BF0 /* ProgressComponentView.swift */; };
 		209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B02CF2B6D749200F832B0 /* ExploreMapView.swift */; };
 		8407D21D2B472AA200CAE616 /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */; };
 		8407D2222B472ADA00CAE616 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407D2212B472ADA00CAE616 /* TagModel.swift */; };
@@ -143,6 +144,7 @@
 
 /* Begin PBXFileReference section */
 		2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderViewModel.swift; sourceTree = "<group>"; };
+		2004BBEB2C3D2E4A00005BF0 /* ProgressComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressComponentView.swift; sourceTree = "<group>"; };
 		209B02CF2B6D749200F832B0 /* ExploreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMapView.swift; sourceTree = "<group>"; };
 		8407D21C2B472AA200CAE616 /* PlacesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
 		8407D2212B472ADA00CAE616 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				846558262BFBD0B000E422F4 /* BlurView.swift */,
 				846753882C374E6500479AC5 /* socialMediaButton.swift */,
 				846753932C38959100479AC5 /* ModernSlider.swift */,
+				2004BBEB2C3D2E4A00005BF0 /* ProgressComponentView.swift */,
 			);
 			path = ReusableItems;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				84CB7FBC2B46D04E00E1CE79 /* ChipsStack.swift in Sources */,
 				84227B632A2CA42B001CAAD8 /* Utilities.swift in Sources */,
 				84755DEB2B519E7B0057CA5F /* MonthlyPlanView.swift in Sources */,
+				2004BBEC2C3D2E4A00005BF0 /* ProgressComponentView.swift in Sources */,
 				84EAD9BA2B5BC121000B1E83 /* LoadingCardView.swift in Sources */,
 				8407D2292B48309900CAE616 /* CirlceButtonModifier.swift in Sources */,
 				84348F6429CB34E00017ED7E /* CardMain.swift in Sources */,
@@ -1196,7 +1200,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PS527BMRT;
+				DEVELOPMENT_TEAM = W85GJYFB35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;
@@ -1234,7 +1238,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PS527BMRT;
+				DEVELOPMENT_TEAM = W85GJYFB35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;

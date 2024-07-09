@@ -13,6 +13,7 @@ struct User : Codable {
     var fullName : String
     var email : String
     var uid : String
+    var avatar: URL?
     
     init(fullName: String, email: String, uid: String) {
         
@@ -29,6 +30,10 @@ struct User : Codable {
         self.fullName = fullName
         self.email = email
         self.uid = snapshot.documentID
+        if let avatar = data["avatar"] as? String,
+           let avatarURL = URL(string: avatar) {
+            self.avatar = avatarURL
+        }
     }
     
 }
