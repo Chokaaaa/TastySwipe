@@ -263,7 +263,7 @@ struct SplitCardView: View {
                                         .shadow(color: .gray.opacity(0.5), radius: 5,x: 0,y: 0)
 //                                        Spacer()
                                     }
-                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding()
                                 }
                             }

@@ -89,7 +89,7 @@ struct StartView: View {
                 
                 VStack {
                     if viewModel.showTopButtons {
-                        HStack(spacing: 60) {
+                        HStack(spacing: 50) {
                             
                             //MARK: - Profile Icon
                             NavigationLink {

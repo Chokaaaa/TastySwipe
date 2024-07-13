@@ -102,6 +102,9 @@
 		84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */; };
 		84CF7B842A73B38B005AE71C /* GoogleClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */; };
 		84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF7B852A73B405005AE71C /* HomeViewModel.swift */; };
+		84DC308B2C41625700E066F2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC308A2C41625700E066F2 /* SettingsViewModel.swift */; };
+		84DC308D2C427A4400E066F2 /* OtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC308C2C427A4400E066F2 /* OtpView.swift */; };
+		84DC308F2C427CD800E066F2 /* VerificationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC308E2C427CD800E066F2 /* VerificationDetails.swift */; };
 		84DCAD2929F5DCCB007D6E4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */; };
 		84DCAD3429F5DF55007D6E4C /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCAD3329F5DF55007D6E4C /* AuthViewModel.swift */; };
 		84DCAD3629F5EE6C007D6E4C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCAD3529F5EE6C007D6E4C /* User.swift */; };
@@ -230,6 +233,9 @@
 		84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesResponseModel.swift; sourceTree = "<group>"; };
 		84CF7B832A73B38B005AE71C /* GoogleClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleClientRequest.swift; sourceTree = "<group>"; };
 		84CF7B852A73B405005AE71C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		84DC308A2C41625700E066F2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		84DC308C2C427A4400E066F2 /* OtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpView.swift; sourceTree = "<group>"; };
+		84DC308E2C427CD800E066F2 /* VerificationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationDetails.swift; sourceTree = "<group>"; };
 		84DCAD2829F5DCCB007D6E4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84DCAD3329F5DF55007D6E4C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		84DCAD3529F5EE6C007D6E4C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				2004BBE92C3BE22700005BF0 /* ImageLoaderViewModel.swift */,
+				84DC308A2C41625700E066F2 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -419,6 +426,7 @@
 				84348F5D29CB34AF0017ED7E /* Cards */,
 				84227B612A2CA3FE001CAAD8 /* Utilities */,
 				84348F5629CB34830017ED7E /* Authentication */,
+				84DC308C2C427A4400E066F2 /* OtpView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				84CF7B812A73B1DC005AE71C /* GooglePlacesResponseModel.swift */,
 				847352F72B4A9B8500C39DA8 /* PreferedPlaceModel.swift */,
 				846753862C3545A200479AC5 /* StarType.swift */,
+				84DC308E2C427CD800E066F2 /* VerificationDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1027,7 +1036,9 @@
 				847037B82B4145CE004C7A06 /* SettingsRowWithToggle.swift in Sources */,
 				209B02D02B6D749200F832B0 /* ExploreMapView.swift in Sources */,
 				84CF7B822A73B1DC005AE71C /* GooglePlacesResponseModel.swift in Sources */,
+				84DC308B2C41625700E066F2 /* SettingsViewModel.swift in Sources */,
 				84B6516F2B70181800AD652C /* PulseAnimation.swift in Sources */,
+				84DC308F2C427CD800E066F2 /* VerificationDetails.swift in Sources */,
 				8407D22E2B488DE400CAE616 /* Config.swift in Sources */,
 				846753942C38959100479AC5 /* ModernSlider.swift in Sources */,
 				84CF7B862A73B405005AE71C /* HomeViewModel.swift in Sources */,
@@ -1067,6 +1078,7 @@
 				8465582F2C0DBCF200E422F4 /* TestView.swift in Sources */,
 				84121E552B74103200D4A5AC /* SessionManager.swift in Sources */,
 				84348F5C29CB34A20017ED7E /* RegistrationView.swift in Sources */,
+				84DC308D2C427A4400E066F2 /* OtpView.swift in Sources */,
 				847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */,
 				846753892C374E6500479AC5 /* socialMediaButton.swift in Sources */,
 			);
@@ -1200,7 +1212,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = W85GJYFB35;
+				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;
@@ -1238,7 +1250,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4.8;
 				DEVELOPMENT_ASSET_PATHS = "\"TastySwipe/Preview Content\"";
-				DEVELOPMENT_TEAM = W85GJYFB35;
+				DEVELOPMENT_TEAM = 9PS527BMRT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TastySwipe/Info.plist;

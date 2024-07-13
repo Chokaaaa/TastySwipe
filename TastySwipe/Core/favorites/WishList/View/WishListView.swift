@@ -30,7 +30,7 @@ struct WishListView: View {
             
             VStack {
                 
-                HStack(spacing: 60) {
+                HStack(spacing: 69) {
                     
                     //MARK: - Profile Icon
                     
@@ -124,8 +124,7 @@ struct WishListView: View {
                             VStack{
                                 
                               WishList3DView()
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
+                                
                                     .frame(height: 400, alignment: .center)
                                 
                                 

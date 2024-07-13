@@ -13,12 +13,13 @@ struct dismissButton: View {
             Circle()
                 .fill(Color.white)
                 .frame(width: 35, height: 35)
-                .shadow(radius: 1)
+                .shadow(radius: 1.2)
             
-            Image(systemName : "chevron.down")
+            Image(systemName : "xmark")
                 .resizable()
+                .foregroundStyle(.black)
                 .scaledToFit()
-                .frame(width: 25, height: 25)
+                .frame(width: 15, height: 15)
                 .clipShape(Circle())
         }
     }

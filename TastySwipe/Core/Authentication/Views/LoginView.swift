@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
 import AuthenticationServices
-
+import FirebaseAuth
 
 struct SignInWithAppleButtonRepresentable : UIViewRepresentable {
     
@@ -30,13 +30,14 @@ struct LoginView: View {
     
     @State private var intros : [Intro] = sampleIntros
     @State private var activeIntros : Intro?
-     
     
+    @State var phoneNumber = ""
     @State var email = ""
     @State var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var alertTitle = ""
+    @State var verificationDetails: VerificationDetails?
     @AppStorage("isOnboarding") var isOnboarding = true
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager : SessionManager
@@ -50,7 +51,7 @@ struct LoginView: View {
                 ScrollView {
                     VStack {
                         HStack {
-                            Spacer()
+                            
                             Button {
                                 if !isOnboarding {
                                     dismiss()
@@ -58,127 +59,178 @@ struct LoginView: View {
                                     isOnboarding = false
                                 }
                             } label: {
-                                dismissButton()
+                                Image(systemName: "arrow.backward")
+                                    .resizable()
+                                    .foregroundStyle(.white)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                                    .padding(.leading, 15)
                             }
+                            Spacer()
                         }
                         .padding(.trailing, 25)
                         
                         //MARK: - Image and title
-                        
-                        HStack {
-                            Text("Login")
-                                .font(.system(size: 32, weight: .semibold, design: .rounded))
-                            Spacer()
+                        VStack(spacing: 15) {
+                            HStack {
+                                Spacer()
+                                Text("Locale Swipe")
+                                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+                                Spacer()
+                            }
+                            
+                            Text("Welcome Back")
+                                .font(.system(size: 20, weight: .thin))
+                            
                         }
-                        .padding(.leading, 20)
-                        .padding(.top, 20)
-                        
                         //MARK: - Input fields
                         
-                        VStack(spacing: 34) {
-                            //Email
-                            VStack {
-                                HStack {
-                                    Text("Email")
-                                        .foregroundStyle(Color("PrimaryTextColor"))
-                                        .font(.system(size: 14))
-                                    Spacer()
-                                }
-                                .padding(.leading, 12)
-                                CustomInputField(text: $email, title: "Email", image: "email", placeHolder: "Enter your email")
-                                    .font(.system(size: 14))
-                            }
-                            //Password
-                            VStack {
-                                
-                                HStack {
-                                    Text("Password")
-                                        .foregroundStyle(Color("PrimaryTextColor"))
-                                        .font(.system(size: 14))
-                                    Spacer()
-                                }
-                                .padding(.leading, 12)
-                                
-                                CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Enter your password", isSecured: true)
-                                    .font(.system(size: 14))
-                            }
+                        //                        VStack(spacing: 34) {
+                        //                            //Email
+                        //                            VStack {
+                        //                                HStack {
+                        //                                    Text("Email")
+                        //                                        .foregroundStyle(Color("PrimaryTextColor"))
+                        //                                        .font(.system(size: 14))
+                        //                                    Spacer()
+                        //                                }
+                        //                                .padding(.leading, 12)
+                        //                                CustomInputField(text: $email, title: "Email", image: "email", placeHolder: "Enter your email")
+                        //                                    .font(.system(size: 14))
+                        //                            }
+                        //                            //Password
+                        //                            VStack {
+                        //
+                        //                                HStack {
+                        //                                    Text("Password")
+                        //                                        .foregroundStyle(Color("PrimaryTextColor"))
+                        //                                        .font(.system(size: 14))
+                        //                                    Spacer()
+                        //                                }
+                        //                                .padding(.leading, 12)
+                        //
+                        //                                CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Enter your password", isSecured: true)
+                        //                                    .font(.system(size: 14))
+                        //                            }
+                        //
+                        //                            //MARK: - Sign in Button
+                        //
+                        //                            Button {
+                        //                                viewModel.signIn(withEmail: email, password: password) { user in
+                        //                                    if let user = user {
+                        ////                                        sessionManager.currentUser = user
+                        //                                        isOnboarding = false
+                        //                                        dismiss()
+                        //                                    } else {
+                        //
+                        //
+                        //                                        if email == "" {
+                        //                                            alertTitle = "Sorry"
+                        //                                            alertMessage = "Email is an empty field"
+                        //                                            alertMessage = "Sorry you cannot leave an email empty"
+                        //                                        }
+                        //
+                        //                                        if password == "" {
+                        //                                            alertTitle = "Sorry"
+                        //                                            alertMessage = "Password is an empty field"
+                        //                                            alertMessage = "Sorry you cannot leave a password empty"
+                        //                                        }
+                        //
+                        //                                        alertTitle = "Sorry"
+                        //                                        alertMessage = "Email or Password is wrong"
+                        //                                        showAlert = true
+                        //                                    }
+                        //                                }
+                        //                            } label: {
+                        //                                Text("Log in")
+                        //                                    .foregroundColor(.white)
+                        //                                    .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+                        //                            }
+                        //                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.accentColor))
+                        //                            .padding(.top,30)
+                        //
+                        //                        }
+                        
+                        
+                        VStack(alignment: .leading, spacing: 10) {
                             
-                            //MARK: - Sign in Button
+                            Text("Phone number or Email")
+                                .foregroundStyle(Color("innactiveButtonColorDarkBlue"))
+                            HStack(spacing: 15) {
+                                
+                                TextField("Enter", text: $phoneNumber)
+                                    .font(.system(size: 17, weight: .bold))
+                                    .foregroundColor(Color("bgButton"))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                            }
+                            .padding()
+                            .padding(.leading, 0)
+                            
+                            .background(Color.clear)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("innactiveButtonColorDarkBlue"), lineWidth: 1)
+                            )
+                            
+                            Text("You will receive an SMS verification that may apply message and data rates.")
+                                .font(.system(size: 12.5))
+                                .foregroundStyle(Color("innactiveButtonColorDarkBlue"))
                             
                             Button {
-                                viewModel.signIn(withEmail: email, password: password) { user in
-                                    if let user = user {
-                                        sessionManager.currentUser = user
-                                        isOnboarding = false
-                                        dismiss()
-                                    } else {
-                                        
-                                        
-                                        if email == "" {
-                                            alertTitle = "Sorry"
-                                            alertMessage = "Email is an empty field"
-                                            alertMessage = "Sorry you cannot leave an email empty"
-                                        }
-                                        
-                                        if password == "" {
-                                            alertTitle = "Sorry"
-                                            alertMessage = "Password is an empty field"
-                                            alertMessage = "Sorry you cannot leave a password empty"
-                                        }
-                                        
-                                        alertTitle = "Sorry"
-                                        alertMessage = "Email or Password is wrong"
-                                        showAlert = true
+                                Task {
+                                    do {
+                                        let verificationCode = try await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
+                                        print("Verification Code \(verificationCode)")
+                                        verificationDetails = VerificationDetails(code: verificationCode, phoneNumber: phoneNumber)
+                                    } catch {
+                                        print(error.localizedDescription)
+                                        print("Wrong Phone number")
                                     }
                                 }
                             } label: {
-                                Text("Log in")
+                                Text("Next")
+                                    .fontWeight(.bold)
                                     .foregroundColor(.white)
-                                    .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+                                    .padding(.vertical,20)
+                                    .frame(maxWidth: .infinity)
+                                    .background {
+                                        if phoneNumber.count <= 0 {
+                                        Capsule()
+                                            .fill(Color("innactiveButtonColorDarkBlue"))
+                                        } else {
+                                            Capsule()
+                                            .fill(Color.accentColor)
+                                        }
+                                    }
+                                    .padding(.horizontal,0)
                             }
-                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.accentColor))
-                            .padding(.top,30)
+                            .padding(.top, 50)
                             
                         }
+                        
                         .padding(.horizontal)
                         .padding(.top,35)
                         
                         
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Forgot Password ?")
-                                .foregroundStyle(Color("PrimaryTextColor"))
-                                .font(.system(size: 13,weight: .bold))
-                                .padding(.top, 25)
-                        }
-                        
-                        
-                        
                         //MARK: - Social Sign in view
                         VStack {
-                            HStack(spacing: 24) {
-                                Rectangle().frame(width: 76, height: 1)
-                                    .opacity(0.1)
-                                
-                                Text("or continue with")
+                            HStack {
+                                //                                Rectangle().frame(width: 100, height: 1)
+                                //                                    .opacity(0.3)
+                                Spacer()
+                                Text("OR")
                                     .fontWeight(.semibold)
                                     .opacity(0.5)
-                                
-                                Rectangle().frame(width: 76, height: 1)
-                                    .opacity(0.1)
+                                Spacer()
+                                //                                Rectangle().frame(width: 100, height: 1)
+                                //                                    .opacity(0.3)
                             }
                             .padding(.top, 10)
                             
                             
-                            VStack(spacing: 20) {
-                                
-                            
-//                                //MARK: - Google sign IN
-//                                GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .icon, state: .normal)) {
-//                                   
-//                                }
+                            VStack(spacing: 30) {
                                 
                                 //MARK: - Google Sign-In
                                 Button {
@@ -202,10 +254,11 @@ struct LoginView: View {
                                     }
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 55)
-//                                    .frame(width: .infinity, height: 60)
-                                    .background(Color("googleButtonBg").opacity(1).cornerRadius(10))
-//                                    .background(Color.gray.cornerRadius(10))
-                                    .padding(.horizontal, 15)
+                                    //                                    .frame(width: .infinity, height: 60)
+                                    
+                                    .background(Color("googleButtonBg")
+                                    .cornerRadius(10)
+                                    .padding(.horizontal, 15))
                                 }
                                 
                                 //MARK: - Apple Sign-In
@@ -213,12 +266,12 @@ struct LoginView: View {
                                 Button {
                                     sessionManager.startSignInWithAppleFlow()
                                 } label: {
-                                    SignInWithAppleButtonRepresentable(type: .signIn, style: .black)
-                                    .allowsTightening(false)
+                                    SignInWithAppleButtonRepresentable(type: .signIn, style: .white)
+                                        .allowsTightening(false)
                                 }
                                 .frame(height: 55)
                                 .padding(.horizontal, 15)
-
+                                
                                 
                             }
                             .padding(.top, 30)
@@ -226,40 +279,46 @@ struct LoginView: View {
                         }
                         .padding(.vertical)
                         
-                        
-                        
-                        Spacer()
-                        
-                        NavigationLink {
-                            RegistrationView()
-                                .navigationBarBackButtonHidden(true)
-                        } label: {
-                            HStack {
-                                Text("Dont have an account?")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color.gray)
-                                
-                                Text("Sign Up")
-                                    .font(.system(size: 12, weight: .bold))
+                        VStack(spacing: 20) {
+                            Text("Don't have an account yet?")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(Color.white)
+                            
+                            
+                            NavigationLink {
+                                RegistrationView()
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                HStack {
+                                    
+                                    Text("Sign Up")
+                                        .font(.system(size: 15, weight: .bold))
+                                }
                             }
                         }
+                        .padding(.top)
                     }
                 }
             }
-            
-        }
-        
-        .onChange(of: sessionManager.appleSignInCompleted) { oldValue, newValue in
-            if newValue {
-                dismiss()
+            .navigationDestination(item: $verificationDetails) { verificationDetails in
+                OtpView(verificationDetails: verificationDetails)
             }
         }
+        
+        
+                .onChange(of: sessionManager.appleSignInCompleted) { oldValue, newValue in
+                    if newValue {
+                        dismiss()
+                    }
+                }
     }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(SessionManager())
     }
 }
 

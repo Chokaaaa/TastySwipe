@@ -211,7 +211,11 @@
     "Discover" : {
 
     },
+    "Don't have an account yet?" : {
+
+    },
     "Dont have an account?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -221,7 +225,13 @@
         }
       }
     },
-    "Email" : {
+    "Enter" : {
+
+    },
+    "Enter authentication code" : {
+
+    },
+    "Enter the 4-digit that we have sent via the phone number +1 (555) 555-1234" : {
 
     },
     "Enter your Email" : {
@@ -258,9 +268,6 @@
       }
     },
     "Filter" : {
-
-    },
-    "Forgot Password ?" : {
 
     },
     "Forgot Password?" : {
@@ -346,6 +353,9 @@
     "Loading..." : {
 
     },
+    "Locale Swipe" : {
+
+    },
     "LocaleLink" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -369,6 +379,7 @@
       }
     },
     "Log in" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -400,7 +411,6 @@
       }
     },
     "Next" : {
-      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -461,7 +471,11 @@
     "Okay" : {
 
     },
+    "OR" : {
+
+    },
     "or continue with" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -471,7 +485,7 @@
         }
       }
     },
-    "Password" : {
+    "Phone number or Email" : {
 
     },
     "Places" : {
@@ -722,6 +736,9 @@
         }
       }
     },
+    "Uploading..." : {
+
+    },
     "We continuously supplement our category selection." : {
 
     },
@@ -729,6 +746,9 @@
 
     },
     "We will miss you, Please come back as soon as possible" : {
+
+    },
+    "Welcome Back" : {
 
     },
     "Where to?" : {
@@ -763,7 +783,11 @@
         }
       }
     },
+    "You have no account yet" : {
+
+    },
     "You have no account yet." : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -777,6 +801,9 @@
 
     },
     "You have successfully logged out!" : {
+
+    },
+    "You will receive an SMS verification that may apply message and data rates." : {
 
     },
     "You'll be directed to the app settings, allowing you to select your desired language." : {

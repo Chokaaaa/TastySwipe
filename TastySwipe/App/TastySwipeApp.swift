@@ -25,6 +25,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
     return true
   }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if Auth.auth().canHandle(url) {
+            return true
+          }
+        return false
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        if Auth.auth().canHandleNotification(userInfo) {
+            return UIBackgroundFetchResult.noData
+        }
+        return UIBackgroundFetchResult.failed
+    }
+    
 }
 
 @main

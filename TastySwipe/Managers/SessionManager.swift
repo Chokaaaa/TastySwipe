@@ -22,6 +22,7 @@ class SessionManager : NSObject, ObservableObject {
     @Published var appleSignInCompleted = false
     fileprivate var currentNonce: String?
     
+    @Environment(\.dismiss) private var dismiss
     
     override init() {
         super.init()
@@ -120,11 +121,12 @@ class SessionManager : NSObject, ObservableObject {
       let request = appleIDProvider.createRequest()
       request.requestedScopes = [.fullName, .email]
       request.nonce = sha256(nonce)
-
+        
       let authorizationController = ASAuthorizationController(authorizationRequests: [request])
       authorizationController.delegate = self
       authorizationController.presentationContextProvider = self
       authorizationController.performRequests()
+        
     }
     
     private func randomNonceString(length: Int = 32) -> String {

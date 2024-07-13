@@ -38,7 +38,7 @@ struct PlacesListView: View {
 //            Color.black.ignoresSafeArea()
         
             VStack {
-                HStack(spacing: 90) {
+                HStack(spacing: 80) {
                     
                     //MARK: - AI Button
                     if purchasesManager.isSubscriptionActive == false {

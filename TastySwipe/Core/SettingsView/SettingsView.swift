@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 import StoreKit
 import MessageUI
 import RevenueCat
@@ -15,7 +16,7 @@ import GoogleSignIn
 import FirebaseStorage
 
 struct SettingsView: View {
-    @EnvironmentObject var viewModel : AuthViewModel
+    @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var sessionManager: SessionManager
     @EnvironmentObject var tabManager : TabManager
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -34,14 +35,14 @@ struct SettingsView: View {
     @State var hapticIsOn = false
     @State var uploadProgress: Float = 0
     @State var isUploading = false
-    
+    @State var viewModel = SettingsViewModel()
     
     @AppStorage(UserDefaultsKey.hapticEnabled) private var isHapticEnabled: Bool = false
     
     var body: some View {
         
         NavigationStack {
-            ZStack {
+            
                 ZStack {
                     UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
                         .fill(Color("settingTopBG"))
@@ -86,38 +87,60 @@ struct SettingsView: View {
                                 }, label: {
                                     HStack(spacing: 15) {
                                         VStack {
-                                            ZStack {
-                                                Circle()
-                                                    .fill(Color.black.opacity(0.7))
-                                                    .frame(width: 120, height: 100)
-                                                AsyncImage(url: nil) { image in
+                                            
+                                            AsyncImage(url: sessionManager.currentUser?.avatar) { image in
+                                                ZStack {
+                                                    Circle()
+                                                        .fill(Color.black.opacity(0.7))
+                                                        .frame(width: 120, height: 100)
+                                                    
                                                     image
                                                         .resizable()
-                                                        .aspectRatio(contentMode: .fill)
+                                                        .scaledToFill()
+                                                        .foregroundStyle(.white)
                                                         .frame(width: 100, height: 100)
                                                         .clipShape(Circle())
                                                         .clipped()
-                                                } placeholder: {
-                                                    Image(systemName: "person.fill")
-                                                        .frame(width: 100, height: 100)
+                                                    
+                                                    Image(systemName: "plus.circle.fill")
+                                                        .font(.system(size: 20))
+                                                        .foregroundStyle(Color.blue)
+                                                        .overlay(content: {
+                                                            Circle()
+                                                                .stroke(Color.white, lineWidth: 3.0)
+                                                        })
+                                                        .offset(x: 40, y: 40)
+                                                    
                                                 }
-                                                Image("userLoggedIn")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .foregroundStyle(.white)
-                                                    .frame(width: 100, height: 100)
-                                                    .clipShape(Circle())
+                                            } placeholder: {
+                                                ZStack {
+                                                    Circle()
+                                                        .fill(Color.black.opacity(0.7))
+                                                        .frame(width: 120, height: 100)
+                                                    
+                                                    Image("userIcon")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .foregroundStyle(.white)
+                                                        .frame(width: 30, height: 30)
+                                                        .clipShape(Circle())
                                                 
-                                                Image(systemName: "plus.circle.fill")
-                                                    .font(.system(size: 20))
-                                                    .foregroundStyle(Color.blue)
-                                                    .overlay(content: {
-                                                        Circle()
-                                                            .stroke(Color.white, lineWidth: 3.0)
-                                                    })
-                                                    .offset(x: 40, y: 40)
+                                                    
+                                                    Image(systemName: "plus.circle.fill")
+                                                        .font(.system(size: 20))
+                                                        .foregroundStyle(Color.blue)
+                                                        .overlay(content: {
+                                                            Circle()
+                                                                .stroke(Color.white, lineWidth: 3.0)
+                                                        })
+                                                        .offset(x: 40, y: 40)
+                                                    
+                                                }
                                                 
                                             }
+                                            
+                                            
+                                            
                                             
                                             VStack(alignment: .center, spacing: 5) {
                                                 Text("\(sessionManager.currentUser?.fullName ?? "")")
@@ -196,7 +219,7 @@ struct SettingsView: View {
                                         title: Text("You have successfully logged out!"),
                                         message: Text("We will miss you, Please come back as soon as possible"),
                                         dismissButton: .default(Text("Okay")) {
-                                            viewModel.signOut()
+                                            authViewModel.signOut()
                                             GIDSignIn.sharedInstance.signOut()
                                             sessionManager.currentUser = nil
                                         }
@@ -550,21 +573,48 @@ struct SettingsView: View {
                 .onChange(of: imageLoaderViewModel.imageToUpload, { _, newValue in
                     if let newValue = newValue {
                         Task {
-                            await upload(imageToUpload: newValue)
+                            let downloadURL = await upload(imageToUpload: newValue)
+                            if let downloadURL = downloadURL {
+                                guard let userId = Auth.auth().currentUser?.uid else { return }
+                                try? await Firestore.firestore().collection("users").document(userId).updateData([
+                                    "avatar": downloadURL.absoluteString
+                                ])
+                            }
                         }
                     }
                 })
                 
-                if isUploading {
-                    ProgressComponentView(value: $uploadProgress)
-                }
                 
-            }
+                
+            
         }
+        .overlay(content: {
+            if isUploading {
+                ProgressComponentView(value: $uploadProgress)
+            }
+        })
+        
+        .onDisappear(perform: {
+            viewModel.listenerRegistration?.remove()
+        })
         
         .onAppear {
             print("is Subscribed \(purchasesManager.isSubscriptionActive)")
             tabManager.showHiddenTab = true
+            guard let userId = Auth.auth().currentUser?.uid else { return }
+            viewModel.listenerRegistration = Firestore.firestore().collection("users").document(userId).addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                guard let snapshot = snapshot else {
+                    return
+                }
+                guard let user = User(snapshot: snapshot) else  {
+                    return
+                }
+                sessionManager.currentUser = user
+            }
         }
         
     }
@@ -597,7 +647,7 @@ struct SettingsView: View {
         metaData.contentType = "image/jpg"
         isUploading = true
         do {
-            
+            print("image uploading...")
             let _ = try await storageRef.putDataAsync(imageData, metadata: metaData)
             
 //            let _ = try await storageRef.putDataAsync(imageData, metadata: metaData) { progress in
@@ -610,6 +660,7 @@ struct SettingsView: View {
             let downloadURL = try await storageRef.downloadURL()
             return downloadURL
         } catch {
+            print("image upload error \(error.localizedDescription)")
 //            createAlert(title: "Image Upload Failed", message: "Your receipe image could not be uploaded.")
             isUploading = false
             return nil

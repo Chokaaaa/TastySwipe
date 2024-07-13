@@ -17,26 +17,94 @@ struct loggedOutView: View {
     @ObservedObject var purchasesManager = PurchasesManager()
     
     var body: some View {
-//        HStack(spacing: 0){
-        
-        NavigationStack {
             
-            VStack(spacing: 60){
+            VStack(spacing: 25){
+                
+                HStack(spacing: 69) {
                     
-                    // MARK: Movable Slides
+                    //MARK: - Profile Icon
+                    
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        VStack {
+                            
+                            Image("userIcon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.black.opacity(0.8))
+                        //                            .background(.ultraThinMaterial, in: Circle())
+                        .background(Color("NavBarBGColor"), in: Circle())
+                    }
+                    
+                    
+                    //MARK: - Text
+                    
+                    Text("Favorites")
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                    
+                    
+                    //MARK: - Become a Pro Button
+                    if purchasesManager.isSubscriptionActive == false {
+                        Button {
+                            isShowingPayWall = true
+                        } label: {
+                            VStack {
+                                
+                                Image("starsIcon")
+                                    .resizable()
+                                    .foregroundStyle(Color.accentColor)
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                
+                                
+                            }
+                            .frame(width: 70, height: 70)
+                            .foregroundColor(Color.black.opacity(0.8))
+                            .background(Color("NavBarBGColor"), in: Circle())
+                        }
+                        
+                        
+                    } else {
+                        
+                        VStack {
+                            
+                            Image("")
+                                .resizable()
+                                .foregroundStyle(Color.accentColor)
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
+                        }
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.clear)
+                        .background(Color.clear, in: Circle())
+                    }
+                    
+                }
+                
+                
+                // MARK: Movable Slides
                     VStack(spacing: 15){
                         
-                            Image("ghostImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 285, height: 285, alignment: .center)
+                        //                            Image("ghostImage")
+                        //                            .resizable()
+                        //                            .aspectRatio(contentMode: .fit)
+                        //                            .frame(width: 285, height: 285, alignment: .center)
                         
+                      WishList3DView()
+                        .frame(height: 400, alignment: .center)
                         
-                        
-                            Text("You have no account yet.")
-                                .font(.title.bold())
-                                .padding(.top, 50)
-                        
+                        Text("You have no account yet")
+                            .font(.title.bold())
                         
                         
                         Text("Sorry, you didn’t create an account yet, no worries you may open an account by clicking the button below.")
@@ -45,12 +113,8 @@ struct loggedOutView: View {
                             .lineLimit(5)
                             .padding(.horizontal,15)
                             .foregroundColor(.gray)
-//                            .padding(.bottom, 10)
+                        //                            .padding(.bottom, 10)
                         
-                    }
-                    
-                    // MARK: Next / Login Button
-                    VStack(spacing: 15){
                         
                         Button {
                             if sessionManager.currentUser == nil {
@@ -62,87 +126,36 @@ struct loggedOutView: View {
                             Text("Create account")
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
-    //                                .padding(.vertical,isLastSlide ? 13 : 12)
+                            //                                .padding(.vertical,isLastSlide ? 13 : 12)
                                 .padding(.vertical,20)
                                 .frame(maxWidth: .infinity)
                                 .background {
                                     Capsule()
                                         .fill(Color.accentColor)
                                 }
-    //                                .padding(.horizontal,isLastSlide ? 30 : 100)
+                            //                                .padding(.horizontal,isLastSlide ? 30 : 100)
                                 .padding(.horizontal,20)
-                                .padding(.top, 20)
+                            //                                .padding(.top, 20)
                         }
-
-                    }
-                    .padding(.bottom, 50)
-                    .fullScreenCover(isPresented: $showingLoginView) {
-                        LoginView()
+                        
+                        Spacer()
                     }
                 
                 
-                    .fullScreenCover(isPresented: $isShowingPayWall) {
-                        PaywallView()
-                            .padding([.leading, .trailing], -100)
-        //                                .paywallFooter(condensed: false)
-                    }
-
-                
-                }
-            .padding(.top,50)
-                .padding(10)
-                .navigationTitle("Favorites")
-                .navigationBarTitleDisplayMode(.inline)
-                
-                
-//                .toolbar {
-//                    
-//                    ToolbarItem(placement: .topBarLeading) {
-//                      
-//                    }
-//                    
-//                    ToolbarItem(placement: .topBarTrailing) {
-//                        
-//                        HStack {
-//                            if purchasesManager.isSubscriptionActive == false {
-//                                Button {
-//                                    isShowingPayWall = true
-//                                } label: {
-//                                    HStack(spacing: 0) {
-//                                        Text("💎")
-//                                            .foregroundStyle(Color.yellow)
-//                                            .frame(width: 25, height: 0)
-//                                        Text("PRO")
-//                                            .fontWeight(.bold)
-//                                    }
-//                                    .padding(5)
-//                                    .foregroundColor(.white)
-//                                    .background(Color.accentColor)
-//                                    .clipShape(
-//                                        Capsule()
-//                                    )
-//                                }
-//                                .fullScreenCover(isPresented: $isShowingPayWall) {
-//                                    PaywallView()
-//                                        .padding([.leading, .trailing], -100)
-////                                        .paywallFooter(condensed: false)
-//                                }
-//                            } else {
-//                                
-//                            }
-////                            
-////                            Button {
-////                                
-////                            } label: {
-////                                Image(systemName: "person.3")
-////                                    .foregroundStyle(Color.accentColor)
-////                            }
-//                        }
-//                    }
-//                }
             }
-        }
+            
+            .fullScreenCover(isPresented: $showingLoginView) {
+                LoginView()
+            }
+            
+            
+            .fullScreenCover(isPresented: $isShowingPayWall) {
+                PaywallView()
+                    .padding([.leading, .trailing], -100)
+                
+            }
     }
+}
 
 struct loggedOutView_Previews: PreviewProvider {
     static var previews: some View {
