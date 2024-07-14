@@ -56,7 +56,7 @@ class AuthViewModel: ObservableObject {
             }
             
             
-            let user = User(fullName: fullName, email: email, uid: firebaseUser.uid)
+            let user = User(fullName: fullName, uid: firebaseUser.uid, email: email, phoneNumber: nil)
             
             do {
                 let encodedUser = try Firestore.Encoder().encode(user)

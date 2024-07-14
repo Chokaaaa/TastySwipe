@@ -24,6 +24,7 @@ struct SplitCardView: View {
     let longitude : Double
     @State var shareURL : URL?
     @State private var showingLoginView = false
+    @StateObject var loginNavigationManager = LoginNavigationManager()
     @Binding var topDividerOffsetValue : CGFloat
     @Binding var imageOffsetValue : CGFloat
     @Binding var distanceOffsetValue : CGFloat
@@ -224,7 +225,7 @@ struct SplitCardView: View {
                                         Button {
                                             print("Did tapped button")
                                             guard let currentUserId = Auth.auth().currentUser?.uid else {
-                                                showingLoginView = true
+                                                loginNavigationManager.showLoginView = true
                                                 return
                                             }
                                             print("User authenticated")
@@ -296,10 +297,17 @@ struct SplitCardView: View {
 //                    .cornerRadius(20)
 //                    .shadow(color: .gray.opacity(0.6), radius: 4.5,x: 0,y: 0)
 //            )
-            
-            .fullScreenCover(isPresented: $showingLoginView) {
-                LoginView()
+           
+//            .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+//                LoginView(loginNavigationManager: loginNavigationManager)
+//            })
+            .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
+                LoginView(loginNavigationManager: loginNavigationManager)
             }
+            
+//            .fullScreenCover(isPresented: $showingLoginView) {
+//                LoginView()
+//            }
             
             //            .padding(.bottom,-380)
         }

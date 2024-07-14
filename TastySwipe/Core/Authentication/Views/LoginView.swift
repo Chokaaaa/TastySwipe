@@ -38,15 +38,15 @@ struct LoginView: View {
     @State private var alertMessage = ""
     @State private var alertTitle = ""
     @State var verificationDetails: VerificationDetails?
+    @ObservedObject var loginNavigationManager: LoginNavigationManager
     @AppStorage("isOnboarding") var isOnboarding = true
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager : SessionManager
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        
-        NavigationStack {
             
+        NavigationStack {
             ZStack {
                 ScrollView {
                     VStack {
@@ -83,73 +83,6 @@ struct LoginView: View {
                                 .font(.system(size: 20, weight: .thin))
                             
                         }
-                        //MARK: - Input fields
-                        
-                        //                        VStack(spacing: 34) {
-                        //                            //Email
-                        //                            VStack {
-                        //                                HStack {
-                        //                                    Text("Email")
-                        //                                        .foregroundStyle(Color("PrimaryTextColor"))
-                        //                                        .font(.system(size: 14))
-                        //                                    Spacer()
-                        //                                }
-                        //                                .padding(.leading, 12)
-                        //                                CustomInputField(text: $email, title: "Email", image: "email", placeHolder: "Enter your email")
-                        //                                    .font(.system(size: 14))
-                        //                            }
-                        //                            //Password
-                        //                            VStack {
-                        //
-                        //                                HStack {
-                        //                                    Text("Password")
-                        //                                        .foregroundStyle(Color("PrimaryTextColor"))
-                        //                                        .font(.system(size: 14))
-                        //                                    Spacer()
-                        //                                }
-                        //                                .padding(.leading, 12)
-                        //
-                        //                                CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Enter your password", isSecured: true)
-                        //                                    .font(.system(size: 14))
-                        //                            }
-                        //
-                        //                            //MARK: - Sign in Button
-                        //
-                        //                            Button {
-                        //                                viewModel.signIn(withEmail: email, password: password) { user in
-                        //                                    if let user = user {
-                        ////                                        sessionManager.currentUser = user
-                        //                                        isOnboarding = false
-                        //                                        dismiss()
-                        //                                    } else {
-                        //
-                        //
-                        //                                        if email == "" {
-                        //                                            alertTitle = "Sorry"
-                        //                                            alertMessage = "Email is an empty field"
-                        //                                            alertMessage = "Sorry you cannot leave an email empty"
-                        //                                        }
-                        //
-                        //                                        if password == "" {
-                        //                                            alertTitle = "Sorry"
-                        //                                            alertMessage = "Password is an empty field"
-                        //                                            alertMessage = "Sorry you cannot leave a password empty"
-                        //                                        }
-                        //
-                        //                                        alertTitle = "Sorry"
-                        //                                        alertMessage = "Email or Password is wrong"
-                        //                                        showAlert = true
-                        //                                    }
-                        //                                }
-                        //                            } label: {
-                        //                                Text("Log in")
-                        //                                    .foregroundColor(.white)
-                        //                                    .frame(width: UIScreen.main.bounds.width - 32, height: 55)
-                        //                            }
-                        //                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.accentColor))
-                        //                            .padding(.top,30)
-                        //
-                        //                        }
                         
                         
                         VStack(alignment: .leading, spacing: 10) {
@@ -179,14 +112,18 @@ struct LoginView: View {
                                 .foregroundStyle(Color("innactiveButtonColorDarkBlue"))
                             
                             Button {
-                                Task {
-                                    do {
-                                        let verificationCode = try await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
-                                        print("Verification Code \(verificationCode)")
-                                        verificationDetails = VerificationDetails(code: verificationCode, phoneNumber: phoneNumber)
-                                    } catch {
-                                        print(error.localizedDescription)
-                                        print("Wrong Phone number")
+                                if textFieldValidatorEmail(phoneNumber) {
+                                    loginNavigationManager.showEmailView = true
+                                } else {
+                                    Task {
+                                        do {
+                                            let verificationCode = try await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
+                                            print("Verification Code \(verificationCode)")
+                                            loginNavigationManager.verificationDetails = VerificationDetails(code: verificationCode, phoneNumber: phoneNumber)
+                                        } catch {
+                                            print(error.localizedDescription)
+                                            print("Wrong Phone number")
+                                        }
                                     }
                                 }
                             } label: {
@@ -197,11 +134,11 @@ struct LoginView: View {
                                     .frame(maxWidth: .infinity)
                                     .background {
                                         if phoneNumber.count <= 0 {
-                                        Capsule()
-                                            .fill(Color("innactiveButtonColorDarkBlue"))
+                                            Capsule()
+                                                .fill(Color("innactiveButtonColorDarkBlue"))
                                         } else {
                                             Capsule()
-                                            .fill(Color.accentColor)
+                                                .fill(Color.accentColor)
                                         }
                                     }
                                     .padding(.horizontal,0)
@@ -257,8 +194,8 @@ struct LoginView: View {
                                     //                                    .frame(width: .infinity, height: 60)
                                     
                                     .background(Color("googleButtonBg")
-                                    .cornerRadius(10)
-                                    .padding(.horizontal, 15))
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 15))
                                 }
                                 
                                 //MARK: - Apple Sign-In
@@ -300,24 +237,43 @@ struct LoginView: View {
                     }
                 }
             }
-            .navigationDestination(item: $verificationDetails) { verificationDetails in
-                OtpView(verificationDetails: verificationDetails)
+            .navigationDestination(item: $loginNavigationManager.verificationDetails) { verificationDetails in
+                OtpView(loginNavigationManager: loginNavigationManager, phoneNumber: phoneNumber, verificationDetails: verificationDetails)
             }
+            
+            
+            .navigationDestination(isPresented: $loginNavigationManager.showEmailView) {
+                LoginPasswordView(email: phoneNumber, loginNavigationManager: loginNavigationManager)
+            }
+            
+            
+            
         }
         
-        
-                .onChange(of: sessionManager.appleSignInCompleted) { oldValue, newValue in
-                    if newValue {
-                        dismiss()
-                    }
-                }
+//                .onChange(of: sessionManager.appleSignInCompleted) { oldValue, newValue in
+//                    if newValue {
+//                        dismiss()
+//                    }
+//                }
+//                .navigationBarBackButtonHidden(true)
+   
+    }
+    
+    func textFieldValidatorEmail(_ string: String) -> Bool {
+        if string.count > 100 {
+            return false
+        }
+        let emailFormat = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        //let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: string)
     }
     
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(loginNavigationManager: LoginNavigationManager())
             .environmentObject(SessionManager())
     }
 }

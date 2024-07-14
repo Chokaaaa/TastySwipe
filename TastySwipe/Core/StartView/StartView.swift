@@ -25,7 +25,7 @@ struct MapAnnotationInfo : Identifiable {
 
 struct StartView: View {
     let mapView = ExploreMapView()
-    @State private var showingLoginView = false
+    
     @State private var mapState = MapViewState.noInput
     @State private var isShowingPayWall = false
     @Query var preferedPlaces : [PreferedPlaceModel]
@@ -49,6 +49,7 @@ struct StartView: View {
     @State private var distanceOffsetValue : CGFloat = 0
     @State private var bottomOffsetValue: CGFloat = 0
     @State private var showBlur = false
+    @StateObject var loginNavigationManager = LoginNavigationManager()
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var viewModel : HomeViewModel
@@ -336,9 +337,17 @@ struct StartView: View {
                         
         })
         
-        .fullScreenCover(isPresented: $showingLoginView) {
-            LoginView()
+//        .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+//            LoginView(loginNavigationManager: loginNavigationManager)
+//        })
+//        
+        .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
+            LoginView(loginNavigationManager: loginNavigationManager)
         }
+        
+//        .fullScreenCover(isPresented: $showingLoginView) {
+//            LoginView()
+//        }
         
     }
 

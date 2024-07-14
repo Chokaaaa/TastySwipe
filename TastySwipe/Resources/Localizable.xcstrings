@@ -225,13 +225,16 @@
         }
       }
     },
+    "Email" : {
+
+    },
     "Enter" : {
 
     },
     "Enter authentication code" : {
 
     },
-    "Enter the 4-digit that we have sent via the phone number +1 (555) 555-1234" : {
+    "Enter the 6-digit that we have sent via the phone number %@" : {
 
     },
     "Enter your Email" : {
@@ -379,7 +382,6 @@
       }
     },
     "Log in" : {
-      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -485,6 +487,9 @@
         }
       }
     },
+    "Password" : {
+
+    },
     "Phone number or Email" : {
 
     },
@@ -545,6 +550,9 @@
           }
         }
       }
+    },
+    "Resend Code" : {
+
     },
     "Reset" : {
 

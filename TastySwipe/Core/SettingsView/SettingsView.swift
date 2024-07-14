@@ -23,6 +23,7 @@ struct SettingsView: View {
     @Environment(\.requestReview) var requestReview
     @ObservedObject var purchasesManager = PurchasesManager()
     @StateObject var imageLoaderViewModel = ImageLoaderViewModel()
+    @StateObject var loginNavigationManager = LoginNavigationManager()
     @State private var isSheetPresented = false
     @State private var isShowingPayWall = false
     @State private var showingAlert = false
@@ -40,8 +41,6 @@ struct SettingsView: View {
     @AppStorage(UserDefaultsKey.hapticEnabled) private var isHapticEnabled: Bool = false
     
     var body: some View {
-        
-        NavigationStack {
             
                 ZStack {
                     UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
@@ -141,16 +140,23 @@ struct SettingsView: View {
                                             
                                             
                                             
-                                            
-                                            VStack(alignment: .center, spacing: 5) {
-                                                Text("\(sessionManager.currentUser?.fullName ?? "")")
-                                                    .font(.system(size: 15, weight: .bold))
-                                                    .foregroundStyle(.white)
-                                                
-                                                //                    Text(viewModel.userSession?.email ?? "No Email")
-                                                Text("\(sessionManager.currentUser?.email ?? "")")
-                                                    .font(.system(size: 12, weight: .semibold, design: .rounded))
-                                                    .foregroundColor(.gray.opacity(0.8))
+                                            if let phoneNumber = sessionManager.currentUser?.phoneNumber {
+                                                VStack(alignment: .center, spacing: 5) {
+                                                    Text("\(phoneNumber)")
+                                                        .font(.system(size: 15, weight: .bold))
+                                                        .foregroundStyle(.white)
+                                                }
+                                            } else {
+                                                VStack(alignment: .center, spacing: 5) {
+                                                    Text("\(sessionManager.currentUser?.fullName ?? "")")
+                                                        .font(.system(size: 15, weight: .bold))
+                                                        .foregroundStyle(.white)
+                                                    
+                                                    //                    Text(viewModel.userSession?.email ?? "No Email")
+                                                    Text("\(sessionManager.currentUser?.email ?? "")")
+                                                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                                        .foregroundColor(.gray.opacity(0.8))
+                                                }
                                             }
                                         }
                                     }
@@ -160,7 +166,8 @@ struct SettingsView: View {
                                 
                             } else {
                                 Button(action: {
-                                    isSheetPresented = true
+//                                    isSheetPresented = true
+                                    loginNavigationManager.showLoginView = true
                                 }, label: {
                                     VStack(spacing: 15) {
                                         ZStack {
@@ -232,9 +239,6 @@ struct SettingsView: View {
                         }
                         .padding([.leading, .trailing])
                         .padding(.bottom, 80)
-                    }
-                    .fullScreenCover(isPresented: $isSheetPresented) {
-                        LoginView()
                     }
                 }
                 ZStack {
@@ -566,6 +570,15 @@ struct SettingsView: View {
                         .padding([.leading, .trailing], -100)
                     //                                .paywallFooter(condensed: false)
                 }
+        
+                .fullScreenCover(isPresented: $loginNavigationManager.showLoginView, content: {
+                    LoginView(loginNavigationManager: loginNavigationManager)
+                })
+        
+//                .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+//                    LoginView(loginNavigationManager: loginNavigationManager)
+//                })
+        
                 
                 //            .navigationBarBackButtonHidden(true)
                 .toolbar(.hidden, for: .navigationBar)
@@ -587,7 +600,7 @@ struct SettingsView: View {
                 
                 
             
-        }
+        
         .overlay(content: {
             if isUploading {
                 ProgressComponentView(value: $uploadProgress)

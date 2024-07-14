@@ -60,6 +60,8 @@ struct TastySwipeApp: App {
     
     var body: some Scene {
         WindowGroup {
+            
+//            OtpView(verificationDetails: VerificationDetails(code: "123456", phoneNumber: "0554258496"))
           
                 MainTabbedView()
                 .environmentObject(tabBarManager)

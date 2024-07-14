@@ -10,8 +10,9 @@ import RevenueCat
 import RevenueCatUI
 
 struct loggedOutView: View {
-    @State private var showingLoginView = false
+    
     @State private var isShowingPayWall = false
+    @StateObject var loginNavigationManager = LoginNavigationManager()
     @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var sessionManager : SessionManager
     @ObservedObject var purchasesManager = PurchasesManager()
@@ -118,7 +119,7 @@ struct loggedOutView: View {
                         
                         Button {
                             if sessionManager.currentUser == nil {
-                                showingLoginView.toggle()
+                                loginNavigationManager.showLoginView = true
                             } else {
                                 print("User is logged in already")
                             }
@@ -143,9 +144,12 @@ struct loggedOutView: View {
                 
                 
             }
-            
-            .fullScreenCover(isPresented: $showingLoginView) {
-                LoginView()
+//            .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+//                LoginView(loginNavigationManager: loginNavigationManager)
+//            })
+
+            .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
+                LoginView(loginNavigationManager: loginNavigationManager)
             }
             
             

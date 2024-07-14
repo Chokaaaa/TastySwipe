@@ -106,7 +106,7 @@ class SessionManager : NSObject, ObservableObject {
                     "email": email
                 ]
                 Firestore.firestore().collection("users").document(user.uid).setData(userInfo)
-                let userProfile = User(fullName: fullName, email: email, uid: user.uid)
+                let userProfile = User(fullName: fullName, uid: user.uid, email: email, phoneNumber: nil)
                 self.currentUser = userProfile
                 self.isOnboarding = false
                 completion(true)
@@ -200,7 +200,7 @@ extension SessionManager: ASAuthorizationControllerDelegate {
               "email": email
           ]
           Firestore.firestore().collection("users").document(user.uid).setData(userInfo)
-          let userProfile = User(fullName: fullName, email: email, uid: user.uid)
+          let userProfile = User(fullName: fullName, uid: user.uid, email: email, phoneNumber: nil)
           self.currentUser = userProfile
           self.isOnboarding = false
           self.appleSignInCompleted = true

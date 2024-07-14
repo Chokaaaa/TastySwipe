@@ -30,6 +30,7 @@ struct CardView: View, Identifiable {
     @ObservedObject var purchasesManager = PurchasesManager()
     @State private var isLoading = false
     @State private var showingLoginView = false
+    @StateObject var loginNavigationManager = LoginNavigationManager()
     private var isWishListed: Bool {
         return wishListViewModel.wishList.contains(where: { $0.id == id })
     }
@@ -140,7 +141,7 @@ struct CardView: View, Identifiable {
                                     Button {
                                         print("Did tapped button")
                                         guard let currentUserId = Auth.auth().currentUser?.uid else {
-                                            showingLoginView = true
+                                            loginNavigationManager.showLoginView = true
                                             return
                                         }
                                         print("User authenticated")
@@ -208,8 +209,16 @@ struct CardView: View, Identifiable {
                     .shadow(color: .gray.opacity(0.6), radius: 4.5,x: 0,y: 0)
             )
             
-            .fullScreenCover(isPresented: $showingLoginView) {
-                LoginView()
+//            .fullScreenCover(isPresented: $showingLoginView) {
+//                LoginView()
+//            }
+            
+//            .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+//                LoginView(loginNavigationManager: loginNavigationManager)
+//            })
+            
+            .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
+                LoginView(loginNavigationManager: loginNavigationManager)
             }
             
             //            .padding(.bottom,-380)
