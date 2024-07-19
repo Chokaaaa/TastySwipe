@@ -28,6 +28,7 @@ struct SettingsView: View {
     @State private var isShowingPayWall = false
     @State private var showingAlert = false
     @State private var customAlert = false
+    @State private var schemeAlert = false
     @State private var isLoginSheetPresented = false
     @State private var showingLoginView = false
     @State private var showPrivacyPolicy: Bool = false
@@ -367,7 +368,7 @@ struct SettingsView: View {
                             //MARK: - Apperance
                             
                             Button {
-                                
+                                schemeAlert = true
                             } label: {
                                 HStack {
                                     Image("sunIcon")
@@ -401,6 +402,14 @@ struct SettingsView: View {
                             }
                             .padding([.trailing, .leading], 10)
                             .padding(.top,30)
+                            
+                            .alert(isPresented: $schemeAlert) {
+                                Alert(
+                                    title: Text("Coming Soon "),
+                                    message: Text("Light Mode is on the way")
+                                )
+                            }
+                            
                             
                             //                Section {
                             //                    SettingsRowWithPicker(imageName: "circle.lefthalf.filled", text: "Color Scheme", bgColor: Color.black)

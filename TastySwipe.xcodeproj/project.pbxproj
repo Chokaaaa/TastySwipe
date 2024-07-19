@@ -78,6 +78,7 @@
 		84755DEE2B51BD480057CA5F /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DED2B51BD480057CA5F /* PlanView.swift */; };
 		84755DF12B51BF1C0057CA5F /* PremiumPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84755DF02B51BF1C0057CA5F /* PremiumPackage.swift */; };
 		8476E37C2C11835300B42320 /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E37B2C11835300B42320 /* ContactUsView.swift */; };
+		8477B75B2C4B11C6007A2145 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 8477B75A2C4B11C6007A2145 /* Shimmer */; };
 		847C6B032B7E633600B0C30E /* SelectKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B022B7E633600B0C30E /* SelectKeeper.swift */; };
 		847C6B052B7E9AB800B0C30E /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B042B7E9AB800B0C30E /* HapticsManager.swift */; };
 		847C6B072B7E9D1600B0C30E /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C6B062B7E9D1600B0C30E /* UserDefaultsKey.swift */; };
@@ -279,6 +280,7 @@
 				847037B32B409BC3004C7A06 /* CardStack in Frameworks */,
 				846753662C3004E300479AC5 /* GoogleMobileAds in Frameworks */,
 				8431D78C2B4E58B9006FE611 /* GoogleSignIn in Frameworks */,
+				8477B75B2C4B11C6007A2145 /* Shimmer in Frameworks */,
 				846753842C3450E100479AC5 /* SplineRuntime in Frameworks */,
 				84DCAD4129F5F5B9007D6E4C /* FirebaseStorage in Frameworks */,
 				84227B5E2A2CA0EA001CAAD8 /* GoogleSignInSwift in Frameworks */,
@@ -927,6 +929,7 @@
 				846753962C389FE800479AC5 /* ModernSlider */,
 				846753982C3979DB00479AC5 /* RevenueCat */,
 				8467539A2C3979DB00479AC5 /* RevenueCatUI */,
+				8477B75A2C4B11C6007A2145 /* Shimmer */,
 			);
 			productName = TastySwipe;
 			productReference = 84348F3329CB33420017ED7E /* TastySwipe.app */;
@@ -1449,6 +1452,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 847037B12B409BC3004C7A06 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
 			productName = CardStack;
+		};
+		8477B75A2C4B11C6007A2145 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8407D2342B4932F600CAE616 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 		84CB7FB82B46B07D00E1CE79 /* StarRatingViewSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

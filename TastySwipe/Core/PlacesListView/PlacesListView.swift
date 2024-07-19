@@ -10,6 +10,7 @@ import RevenueCat
 import RevenueCatUI
 import StarRatingViewSwiftUI
 import SwiftData
+import Shimmer
 
 struct PlacesListView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -29,7 +30,7 @@ struct PlacesListView: View {
     @AppStorage("searchRadius") var searchRadius = 1000
       let rate = [3, 4, 5]
     
-    let columns : [GridItem] = [GridItem(.flexible()), GridItem(.flexible(), spacing: 10)]
+    let columns : [GridItem] = [GridItem(.flexible(), spacing: 30), GridItem(.flexible(),spacing: 30), GridItem(.flexible(), spacing: 30)]
     
     
     
@@ -38,7 +39,7 @@ struct PlacesListView: View {
 //            Color.black.ignoresSafeArea()
         
             VStack {
-                HStack(spacing: 80) {
+                HStack(spacing: 90) {
                     
                     //MARK: - AI Button
                     if purchasesManager.isSubscriptionActive == false {
@@ -152,41 +153,42 @@ struct PlacesListView: View {
                                         Image(tag.emoji)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .frame(width: 50, height: 50, alignment: .center)
                                         
                                         Text(tag.title)
                                             .fontWeight(.medium)
-                                            .font(.system(size: 13))
-//                                            .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color.black)
-                                            .foregroundStyle(Color("SystemTextColor"))
-                                        //                                        .foregroundStyle(!viewModel.selectedTags.contains(tag) ? Color("SystemTextColor") : Color("SystemTextColor"))
+                                            .font(.system(size: 12))
                                         
+                                            .foregroundStyle(Color("SystemTextColor"))
                                     }
-                                    .frame(width: 130, height: 120)
+                                    .frame(width: 80, height: 90)
                                     .padding(.horizontal, 15)
                                     .padding(.vertical, 10)
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(getStatusColor(tag: tag, index: index))
                                         
+                                           
                                     )
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 10)
                                             .stroke(viewModel.selectedTags.contains(tag) ? Color.accentColor : Color.clear, lineWidth: 1.0)
                                     }
+                                    .shimmering(active: !purchasesManager.isSubscriptionActive && index > 2)
                                 })
                                 .overlay(alignment: .topTrailing, content: {
                                     if index > 2 && !purchasesManager.isSubscriptionActive {
                                         Text("PRO")
-                                            .font(.system(size: 15))
+                                            .font(.system(size: 11.5))
                                             .foregroundStyle(.white)
-                                            .padding(.horizontal, 8)
+                                            .padding(.horizontal, 7)
                                             .background {
-                                                Capsule()
-                                                    .fill(Color.darkOrange)
+                                            RoundedRectangle(cornerRadius: 6)
+                                                    .fill(Color("MainColor"))
                                             }
-                                            .padding(.top, 10)
-                                            .padding(.trailing, 10)
+                                            .padding(.top, 5)
+                                            .padding(.trailing, 5)
+                                            .shimmering(active: viewModel.selectedTags.contains(tag) ? false : true)
                                     }
                                 })
                                 

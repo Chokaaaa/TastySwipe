@@ -30,7 +30,7 @@ struct WishListView: View {
             
             VStack {
                 
-                HStack(spacing: 69) {
+                HStack(spacing: 79) {
                     
                     //MARK: - Profile Icon
                     

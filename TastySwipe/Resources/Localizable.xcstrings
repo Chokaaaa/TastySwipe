@@ -160,6 +160,9 @@
     "Collor Scheme" : {
 
     },
+    "Coming Soon " : {
+
+    },
     "Contact us" : {
 
     },
@@ -237,10 +240,16 @@
     "Enter the 6-digit that we have sent via the phone number %@" : {
 
     },
+    "Enter your email" : {
+
+    },
     "Enter your Email" : {
 
     },
     "Enter your Full Name" : {
+
+    },
+    "Enter your password" : {
 
     },
     "Enter your Password" : {
@@ -351,6 +360,9 @@
 
     },
     "Light" : {
+
+    },
+    "Light Mode is on the way" : {
 
     },
     "Loading..." : {

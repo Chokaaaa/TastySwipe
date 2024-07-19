@@ -22,11 +22,12 @@ struct RegistrationView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Image(systemName: "arrow.left")
-                        .font(.title)
-                        .imageScale(.medium)
-                        .padding()
-                    
+                    Image(systemName: "arrow.backward")
+                        .resizable()
+                        .foregroundStyle(.white)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .padding(.leading, 15)
                 }
                 
                 Text("Create new account")
@@ -76,12 +77,8 @@ struct RegistrationView: View {
                             CustomInputField(text: $password, title: "Password", image: "password", placeHolder: "Please enter your password", isSecured: true)
                         }
                     }
-                    .padding([.leading,.trailing])
                     
-                    Spacer()
-                    
-                   
-                    
+                    .padding(.horizontal, 15)
                     
                     Button {
                         viewModel.registerUser(withEmail: email, password: password, fullName: fullName) { user in
@@ -99,6 +96,10 @@ struct RegistrationView: View {
                     }
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.accentColor))
                     .padding(.top,30)
+                    
+                    Spacer()
+                    
+                    
                 }
             }
         }
