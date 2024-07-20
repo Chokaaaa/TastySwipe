@@ -302,7 +302,7 @@ struct SplitCardView: View {
 //                LoginView(loginNavigationManager: loginNavigationManager)
 //            })
             .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
-                LoginView(loginNavigationManager: loginNavigationManager)
+                LoginView(loginNavigationManager: loginNavigationManager, didPresentFromSettings: true)
             }
             
 //            .fullScreenCover(isPresented: $showingLoginView) {

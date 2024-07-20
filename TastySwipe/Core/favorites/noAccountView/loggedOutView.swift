@@ -149,7 +149,7 @@ struct loggedOutView: View {
 //            })
 
             .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
-                LoginView(loginNavigationManager: loginNavigationManager)
+                LoginView(loginNavigationManager: loginNavigationManager, didPresentFromSettings: false)
             }
             
             

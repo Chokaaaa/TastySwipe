@@ -41,12 +41,12 @@ struct MainTabbedView: View {
     
 //    @State var selectedTab = 0
     @EnvironmentObject var tabManager : TabManager
-    @AppStorage("isOnboarding") var isOnboarding : Bool = false
+    @AppStorage("isOnboarding") var isOnboarding : Bool = true
     
     var body: some View {
         
         ZStack(alignment: .bottom){
-                        if tabManager.showHiddenTab {
+                        if tabManager.showHiddenTab && !isOnboarding {
                             ZStack{
                                 HStack{
                                     ForEach((TabbedItems.allCases), id: \.self){ item in
@@ -99,7 +99,7 @@ struct MainTabbedView: View {
                     .tag(2)
             }
 
-            if !tabManager.showHiddenTab || !isOnboarding {
+            if !tabManager.showHiddenTab && !isOnboarding {
                 ZStack{
                     HStack{
                         ForEach((TabbedItems.allCases), id: \.self){ item in

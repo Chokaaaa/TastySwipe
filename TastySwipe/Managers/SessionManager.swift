@@ -200,12 +200,21 @@ extension SessionManager: ASAuthorizationControllerDelegate {
               "fullName": fullName,
               "email": email
           ]
-          Firestore.firestore().collection("users").document(user.uid).setData(userInfo)
-          let userProfile = User(fullName: fullName, uid: user.uid, email: email, phoneNumber: nil)
-          self.currentUser = userProfile
+          Firestore.firestore().collection("users").document(user.uid).setData(userInfo) { error in
+              if let error = error {
+                  print("Error for apple \(error.localizedDescription)")
+                  return
+              }
+              let userProfile = User(fullName: fullName, uid: user.uid, email: email, phoneNumber: nil)
+              
+              self.currentUser = userProfile
+              self.isOnboarding = false
+              self.appleSignInCompleted = true
+              self.appleLoginCompletionHandler?(true)
+              
+              
+          }
           
-          self.appleSignInCompleted = true
-          self.appleLoginCompletionHandler?(true)
       }
     }
   }

@@ -13,14 +13,15 @@ struct LoginPasswordView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager: SessionManager
+    @EnvironmentObject var tabManager : TabManager
     @ObservedObject var loginNavigationManager: LoginNavigationManager
-    @State var email: String    
+    @State var email: String
     @State var password = ""
     @State private var isSecure: Bool = true
     @State private var alertMessage = ""
     @State private var alertTitle = ""
     @State private var showAlert = false
-    
+    let didPresentFromSettings: Bool
     
     var body: some View {
         VStack {
@@ -158,13 +159,12 @@ struct LoginPasswordView: View {
                 Button {
                     viewModel.signIn(withEmail: email, password: password) { user in
                         if let user = user {
-                            
+                            tabManager.showHiddenTab = didPresentFromSettings ? true : false
                             sessionManager.currentUser = user
                             loginNavigationManager.showEmailView = false
                             loginNavigationManager.showLoginView = false
                             
                         } else {
-                            
                             
                             if email == "" {
                                 alertTitle = "Sorry"
@@ -202,5 +202,5 @@ struct LoginPasswordView: View {
 }
 
 #Preview {
-    LoginPasswordView(loginNavigationManager: LoginNavigationManager(), email: "")
+    LoginPasswordView(loginNavigationManager: LoginNavigationManager(), email: "", didPresentFromSettings: false)
 }

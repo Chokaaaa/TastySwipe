@@ -42,7 +42,9 @@ struct LoginView: View {
     @AppStorage("isOnboarding") var isOnboarding = true
     @EnvironmentObject var viewModel : AuthViewModel
     @EnvironmentObject var sessionManager : SessionManager
+    @EnvironmentObject var tabManager : TabManager
     @Environment(\.dismiss) private var dismiss
+    let didPresentFromSettings: Bool
     
     var body: some View {
             
@@ -173,6 +175,7 @@ struct LoginView: View {
                                 Button {
                                     sessionManager.googleSignIn { success in
                                         if success {
+                                            tabManager.showHiddenTab = didPresentFromSettings ? true : false
                                             dismiss()
                                         }
                                     }
@@ -203,6 +206,8 @@ struct LoginView: View {
                                 Button {
                                     sessionManager.startSignInWithAppleFlow(appleLoginCompletionHandler: { success in
                                         if success {
+                                            tabManager.showHiddenTab = didPresentFromSettings ? true : false
+                                            isOnboarding = false
                                             dismiss()
                                         }
                                     })
@@ -247,7 +252,7 @@ struct LoginView: View {
             
             
             .navigationDestination(isPresented: $loginNavigationManager.showEmailView) {
-                LoginPasswordView(loginNavigationManager: loginNavigationManager, email: phoneNumber)
+                LoginPasswordView(loginNavigationManager: loginNavigationManager, email: phoneNumber, didPresentFromSettings: didPresentFromSettings)
             }
             
             
@@ -277,7 +282,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(loginNavigationManager: LoginNavigationManager())
+        LoginView(loginNavigationManager: LoginNavigationManager(), didPresentFromSettings: false)
             .environmentObject(SessionManager())
     }
 }

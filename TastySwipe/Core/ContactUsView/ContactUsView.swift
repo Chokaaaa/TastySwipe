@@ -23,40 +23,36 @@ struct ContactUsView: View {
             
                
             HStack(spacing: 85) {
-                
-                    //MARK: - Back Button
-                    Button {
-                        dismiss()
-                    } label: {
-                        VStack {
-                            
-                            Image("backButton")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundStyle(.white)
-                                .frame(width: 25, height: 25)
-                            
-                            
-                        }
-                        .frame(width: 50, height: 50)
-                        .padding(.leading, 0)
-                        .foregroundColor(Color.black.opacity(0.8))
-                        .background(Color("smallCirclebg"), in: Circle())
-                    }
-                    
-                
-//                Spacer()
-                
                     Text("Contact us")
                         .bold()
-                
-                    Spacer()
-                    
                 }
             .padding([.leading, .trailing])
             .frame(maxWidth: .infinity)
-            .padding(.top, -60)
+            .padding(.bottom, 60)
                 
+            .overlay(alignment: .leading) {
+                //MARK: - Back Button
+                Button {
+                    dismiss()
+                } label: {
+                    VStack {
+                        
+                        Image("backButton")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(.white)
+                            .frame(width: 25, height: 25)
+                        
+                        
+                    }
+                    .frame(width: 50, height: 50)
+                    .padding(.leading, 10)
+                    .foregroundColor(Color.black.opacity(0.8))
+                    .background(Color("smallCirclebg"), in: Circle())
+                }
+                .padding(.bottom, 60)
+            }
+            
             
         }
         VStack(alignment: .center, spacing: 10) {
@@ -73,22 +69,7 @@ struct ContactUsView: View {
                 .fontWeight(.semibold)
                 .padding([.leading, .trailing], 15)
             
-            Button {
-                EmailController.shared.sendEmail(subject: "Support",
-                                                                     body: """
-                  Please describe your issue below
-              
-              
-              
-                ---------------------------------------
-                Application Name: \(Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Unknown")
-                iOS Version: \(UIDevice.current.systemVersion)
-                Device Model: \(UIDevice.current.model)
-                App Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "no app version")
-                App Build: \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "no app build version")
-              """,
-                                                                     to: "NY@nykdevs.com")
-            } label: {
+            VStack {
                 HStack(spacing: 15) {
                     Image("envelopeIcon")
                         .resizable()
@@ -97,9 +78,9 @@ struct ContactUsView: View {
                         .padding(.leading, -10)
                     
                     
-                    Text("info@nykdevs.com")
+                    Text("Contact Support")
                         .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(Color("bgButton"))
+                        .foregroundStyle(.white)
                         .padding(.leading, 5)
                     
                     Spacer()
@@ -115,6 +96,22 @@ struct ContactUsView: View {
                 
             }
             .padding(.top, 30)
+            .onTapGesture {
+                EmailController.shared.sendEmail(subject: "Support",
+                                                                     body: """
+                  Please describe your issue below
+              
+              
+              
+                ---------------------------------------
+                Application Name: \(Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Unknown")
+                iOS Version: \(UIDevice.current.systemVersion)
+                Device Model: \(UIDevice.current.model)
+                App Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "no app version")
+                App Build: \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "no app build version")
+              """,
+                                                                     to: "NY@nykdevs.com")
+            }
             
             Text("Social Media")
                 .font(.title)

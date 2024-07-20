@@ -245,7 +245,7 @@ struct PlacesListView: View {
         
         .onDisappear(perform: {
             print("did change selection \(tabManager.selectedTab)")
-            if tabManager.selectedTab == 0 {
+            if tabManager.selectedTab == 0 || tabManager.selectedTab == 1 {
                 if preferedPlaces.count > 0 {
                     for preferedPlace in preferedPlaces {
                         context.delete(preferedPlace)

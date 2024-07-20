@@ -28,6 +28,7 @@ class HomeViewModel : NSObject, ObservableObject {
     @Published var isFetching = false
     @Published var showNoLocationView = false
     @Published var showTopButtons = true
+    @Published var isCheckingLocationChange = false
     var didFetchLocations = false
     var currentLocation : CLLocation?
     var token : String?
@@ -163,6 +164,12 @@ class HomeViewModel : NSObject, ObservableObject {
         return Int(distance.magnitude)
     }
     
+    func checkLocationUpdate() {
+        guard let _ = currentLocation else { return }
+        isCheckingLocationChange = true
+        locationManager.requestLocation()
+    }
+    
     func fetchLocation(fetchLocationCompletion: @escaping FetchLocation) {
         self.fetchLocationCompletion = fetchLocationCompletion
         locationManager.requestLocation()
@@ -182,7 +189,6 @@ class HomeViewModel : NSObject, ObservableObject {
             print("error getting location")
         }
         
-        
     }
     
 }
@@ -197,9 +203,18 @@ extension HomeViewModel : CLLocationManagerDelegate {
         guard !didFetchLocations else { return }
         guard let location = locations.first else { return }
         print("# updateLocations")
-        didFetchLocations = true
-        fetchLocationCompletion?(.success((location.coordinate.latitude, location.coordinate.longitude)))
-        fetchPlaces(location: location)
+        if let currentLocation = currentLocation,
+            isCheckingLocationChange {
+            isCheckingLocationChange = false
+            let distance = location.distance(from: currentLocation)
+            if distance > 2000 {
+                fetchPlaces(location: location)
+            }
+        } else {
+            didFetchLocations = true
+            fetchLocationCompletion?(.success((location.coordinate.latitude, location.coordinate.longitude)))
+            fetchPlaces(location: location)
+        }
         locationManager.stopUpdatingLocation()
     }
     
