@@ -201,7 +201,11 @@ struct LoginView: View {
                                 //MARK: - Apple Sign-In
                                 
                                 Button {
-                                    sessionManager.startSignInWithAppleFlow()
+                                    sessionManager.startSignInWithAppleFlow(appleLoginCompletionHandler: { success in
+                                        if success {
+                                            dismiss()
+                                        }
+                                    })
                                 } label: {
                                     SignInWithAppleButtonRepresentable(type: .signIn, style: .white)
                                         .allowsTightening(false)
@@ -243,7 +247,7 @@ struct LoginView: View {
             
             
             .navigationDestination(isPresented: $loginNavigationManager.showEmailView) {
-                LoginPasswordView(email: phoneNumber, loginNavigationManager: loginNavigationManager)
+                LoginPasswordView(loginNavigationManager: loginNavigationManager, email: phoneNumber)
             }
             
             

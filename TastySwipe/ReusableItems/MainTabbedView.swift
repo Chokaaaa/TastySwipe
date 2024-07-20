@@ -98,26 +98,8 @@ struct MainTabbedView: View {
                 PlacesListView()
                     .tag(2)
             }
-        
-            
-//            TabView(selection: $selectedTab) {
-//                
-//         
-//                if Auth.auth().currentUser?.uid != nil {
-//                    
-//                    WishListView(tabSelection: $selectedTab)
-//                        .tag(1)
-//                    
-//                } else {
-//                    loggedOutView()
-//                        .tag(1)
-//                }
-//                    
-//                SettingsView()
-//                    .tag(2)
-//            }
-//            .background(Color.clear)
-            if !tabManager.showHiddenTab {
+
+            if !tabManager.showHiddenTab || !isOnboarding {
                 ZStack{
                     HStack{
                         ForEach((TabbedItems.allCases), id: \.self){ item in

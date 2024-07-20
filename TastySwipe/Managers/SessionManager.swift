@@ -21,7 +21,7 @@ class SessionManager : NSObject, ObservableObject {
     @Published var currentUser: User?
     @Published var appleSignInCompleted = false
     fileprivate var currentNonce: String?
-    
+    var appleLoginCompletionHandler: ((_ success: Bool) -> Void)?
     @Environment(\.dismiss) private var dismiss
     
     override init() {
@@ -114,7 +114,8 @@ class SessionManager : NSObject, ObservableObject {
 
     }
     
-    func startSignInWithAppleFlow() {
+    func startSignInWithAppleFlow(appleLoginCompletionHandler: @escaping (_ success: Bool) -> Void) {
+        self.appleLoginCompletionHandler = appleLoginCompletionHandler
       let nonce = randomNonceString()
       currentNonce = nonce
       let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -202,8 +203,9 @@ extension SessionManager: ASAuthorizationControllerDelegate {
           Firestore.firestore().collection("users").document(user.uid).setData(userInfo)
           let userProfile = User(fullName: fullName, uid: user.uid, email: email, phoneNumber: nil)
           self.currentUser = userProfile
-          self.isOnboarding = false
+          
           self.appleSignInCompleted = true
+          self.appleLoginCompletionHandler?(true)
       }
     }
   }

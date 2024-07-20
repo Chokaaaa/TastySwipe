@@ -12,8 +12,9 @@ struct LoginPasswordView: View {
     @AppStorage("isOnboarding") var isOnboarding = true
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel : AuthViewModel
-    @State var email: String
+    @EnvironmentObject var sessionManager: SessionManager
     @ObservedObject var loginNavigationManager: LoginNavigationManager
+    @State var email: String    
     @State var password = ""
     @State private var isSecure: Bool = true
     @State private var alertMessage = ""
@@ -157,9 +158,11 @@ struct LoginPasswordView: View {
                 Button {
                     viewModel.signIn(withEmail: email, password: password) { user in
                         if let user = user {
-                            //                                        sessionManager.currentUser = user
-                            isOnboarding = false
-                            dismiss()
+                            
+                            sessionManager.currentUser = user
+                            loginNavigationManager.showEmailView = false
+                            loginNavigationManager.showLoginView = false
+                            
                         } else {
                             
                             
@@ -199,5 +202,5 @@ struct LoginPasswordView: View {
 }
 
 #Preview {
-    LoginPasswordView(email: "", loginNavigationManager: LoginNavigationManager())
+    LoginPasswordView(loginNavigationManager: LoginNavigationManager(), email: "")
 }

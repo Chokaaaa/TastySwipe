@@ -188,7 +188,7 @@ struct PlacesListView: View {
                                             }
                                             .padding(.top, 5)
                                             .padding(.trailing, 5)
-                                            .shimmering(active: viewModel.selectedTags.contains(tag) ? false : true)
+//                                            .shimmering(active: viewModel.selectedTags.contains(tag) ? false : true)
                                     }
                                 })
                                 
@@ -325,7 +325,7 @@ struct PlacesListView: View {
     func getStatusColor(tag: TagModel, index: Int) -> Color {
         if !purchasesManager.isSubscriptionActive {
             if index > 2 {
-                return Color.gray.opacity(0.15)
+                return Color.gray.opacity(0.3)
             }
 //            return viewModel.selectedTags.contains(tag) ? Color.accentColor : Color("PlacesSystemColor")
             return viewModel.selectedTags.contains(tag) ? Color.accentColor.opacity(0.2) : Color("PlaceNewDarkColor").opacity(0.7)
@@ -338,6 +338,7 @@ struct PlacesListView: View {
     func disableButton(index: Int) -> Bool {
         if !purchasesManager.isSubscriptionActive {
             if index > 2 {
+                isShowingPayWall = true
                 return true
             }
             return false

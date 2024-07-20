@@ -330,6 +330,9 @@
     "Get More features" : {
 
     },
+    "Got it!" : {
+
+    },
     "Haptic" : {
 
     },
@@ -703,6 +706,9 @@
           }
         }
       }
+    },
+    "Swipe right or left to see the next place" : {
+
     },
     "System" : {
 

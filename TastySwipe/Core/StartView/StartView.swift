@@ -79,12 +79,12 @@ struct StartView: View {
     
     
     var body: some View {
-//        NavigationStack {
+        //        NavigationStack {
         
         NavigationStack {
             
             ZStack(alignment: .center) {
-
+                
                 Color.black.ignoresSafeArea()
                 
                 
@@ -138,10 +138,10 @@ struct StartView: View {
                                     .background(Color("NavBarBGColor"), in: Circle())
                                 }
                             } else {
-                                
+                                //MARK: - AI button
                                 VStack {
                                     
-                                    Image("")
+                                    Image(systemName: "waveform.badge.mic")
                                         .resizable()
                                         .foregroundStyle(Color.accentColor)
                                         .scaledToFit()
@@ -151,7 +151,8 @@ struct StartView: View {
                                 }
                                 .frame(width: 70, height: 70)
                                 .foregroundColor(Color.clear)
-                                .background(Color.clear, in: Circle())
+                                //                                .background(Color.clear, in: Circle())
+                                .background(Color("NavBarBGColor"), in: Circle())
                                 
                             }
                         }
@@ -270,160 +271,201 @@ struct StartView: View {
                     .onAppear {
                         loadInterstitialAds()
                     }
+                    
+                    
                 }
-                .fullScreenCover(isPresented: $isShowingPayWall) {
-                    PaywallView()
-                        .padding([.leading, .trailing], -100)
-    //                                .paywallFooter(condensed: false)
-                }
-            }
-        }
-            
-    
-        //MARK: - Fullscreen Cover Sheet
-        .fullScreenCover(isPresented: $viewModel.showNoLocationView, content: {
-            NoLocationSharedView()
-        })
-        .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button {
+         
+                    .fullScreenCover(isPresented: $isShowingPayWall) {
+                        PaywallView()
+                            .padding([.leading, .trailing], -100)
+                        //                                .paywallFooter(condensed: false)
+                    }
                 
-            } label: {
-                Text("Okay")
-            }
-
-        }, message: {
-            Text(alertMessage)
-        })
-        .onReceive(LocationManager.shared.$userLcoation) { location in
-            if let locaiton = location {
-                print("DEBUG: user location in home view is \(location)")
-                locationViewModel.userLocation = location
-            }
-        }
-        .onReceive(timer, perform: { _ in
-            
-        })
-        
-        //MARK: - API CALL
-        .onAppear(perform: {
-            print("# did appear")
-            //MARK: - Thats where the money spends :)
-            if preferedPlaces.count != 0 {
-                let locationName = preferedPlaces.map { $0.place.apiName }.joined(separator: " OR ")
-                viewModel.locationName = locationName
-            }
-            if !didFetchLocation {
-            
-                didFetchLocation = true
-                viewModel.fetchLocation { result in
-                    print("# did fetch location")
-                    switch result {
-                    case .success(let value):
-                        self.viewModel.showNoLocationView = false
-                        mapAnnotations.append(MapAnnotationInfo(location: CLLocationCoordinate2D(latitude: value.latitude, longitude: value.longitude)))
+                if isOnboarding {
+                    
+                    Color.black.ignoresSafeArea(edges: .all)
+                        .opacity(0.7)
+                    
+                    VStack(alignment: .center) {
                         
-                        let center = CLLocationCoordinate2D(latitude: value.latitude - 0.0035, longitude: value.longitude)
+                        Text("Swipe right or left to see the next place")
+                            .font(.title)
+                            .bold()
                         
-                        position = .region(MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)))
+                        Spacer()
                         
-                    case .failure(_):
-                        self.viewModel.showNoLocationView = true
+                        Image("tutorialCardView")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity)
+                        
+                        Spacer()
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Got it!")
+                                .background {
+                                    Capsule()
+                                        .frame(width: 80, height: 60)
+                                }
+                        }
+                        
                         
                     }
                 }
                 
+                }
+            
+            
+            
             }
             
-                        
-        })
-        
-//        .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
-//            LoginView(loginNavigationManager: loginNavigationManager)
-//        })
-//        
-        .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
-            LoginView(loginNavigationManager: loginNavigationManager)
+            
+            //MARK: - Fullscreen Cover Sheet
+            .fullScreenCover(isPresented: $viewModel.showNoLocationView, content: {
+                NoLocationSharedView()
+            })
+            .alert(alertTitle, isPresented: $showAlert, actions: {
+                Button {
+                    
+                } label: {
+                    Text("Okay")
+                }
+                
+            }, message: {
+                Text(alertMessage)
+            })
+            .onReceive(LocationManager.shared.$userLcoation) { location in
+                if let locaiton = location {
+                    print("DEBUG: user location in home view is \(location)")
+                    locationViewModel.userLocation = location
+                }
+            }
+            .onReceive(timer, perform: { _ in
+                
+            })
+            
+            //MARK: - API CALL
+            .onAppear(perform: {
+                print("# did appear")
+                //MARK: - Thats where the money spends :)
+                if preferedPlaces.count != 0 {
+                    let locationName = preferedPlaces.map { $0.place.apiName }.joined(separator: " OR ")
+                    viewModel.locationName = locationName
+                }
+                if !didFetchLocation {
+                    
+                    didFetchLocation = true
+                    viewModel.fetchLocation { result in
+                        print("# did fetch location")
+                        switch result {
+                        case .success(let value):
+                            self.viewModel.showNoLocationView = false
+                            mapAnnotations.append(MapAnnotationInfo(location: CLLocationCoordinate2D(latitude: value.latitude, longitude: value.longitude)))
+                            
+                            let center = CLLocationCoordinate2D(latitude: value.latitude - 0.0035, longitude: value.longitude)
+                            
+                            position = .region(MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)))
+                            
+                        case .failure(_):
+                            self.viewModel.showNoLocationView = true
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+            })
+            
+            //        .navigationDestination(isPresented: $loginNavigationManager.showLoginView, destination: {
+            //            LoginView(loginNavigationManager: loginNavigationManager)
+            //        })
+            //
+            .fullScreenCover(isPresented: $loginNavigationManager.showLoginView) {
+                LoginView(loginNavigationManager: loginNavigationManager)
+            }
+            
+            //        .fullScreenCover(isPresented: $showingLoginView) {
+            //            LoginView()
+            //        }
+            
         }
         
-//        .fullScreenCover(isPresented: $showingLoginView) {
-//            LoginView()
-//        }
+        //appclips:tastyswipe-c8a3d.web.app
         
-    }
-
-    //appclips:tastyswipe-c8a3d.web.app
-
-    //MARK: - SHARE BUTTON LOGIC
-    func shareButton(votingId : String) {
+        //MARK: - SHARE BUTTON LOGIC
+        func shareButton(votingId : String) {
             let url = URL(string: "https://tastyswipe-c8a3d.web.app?votingId=\(votingId)")
-//                    let url = URL(string: "https://appclip.apple.com/id?=Chokaaaa.TastySwipe&votingId=\(votingId)")
+            //                    let url = URL(string: "https://appclip.apple.com/id?=Chokaaaa.TastySwipe&votingId=\(votingId)")
             let activityController = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
-
+            
             UIApplication.shared.windows.first?.rootViewController!.present(activityController, animated: true, completion: nil)
-    }
-    
-    //MARK: - ADD by Google
-    func loadInterstitialAds() {
+        }
         
-        let request = GADRequest()
+        //MARK: - ADD by Google
+        func loadInterstitialAds() {
+            
+            let request = GADRequest()
+            
+            GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/4411468910",
+                                   //           GADInterstitialAd.load(withAdUnitID: "ca-app-pub-2127236424500505/9448869160",
+                                   request: request,
+                                   completionHandler: { [self] ad, error in
+                if let error = error {
+                    print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                    return
+                }
+                interstitial = ad
+            }
+            )
+        }
+        private func checkAndShowAd() {
+            if leftSwipeCount >= swipeThreshold || rightSwipeCount >= swipeThreshold {
+                
+                if let interstitial = interstitial {
+                    let root = UIApplication.shared.windows.first?.rootViewController
+                    interstitial.present(fromRootViewController: root!)
+                } else {
+                    print("Add is not redy please try again later")
+                }
+                
+                leftSwipeCount = 0
+                rightSwipeCount = 0
+                
+            }
+        }
         
-        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/4411468910",
-//           GADInterstitialAd.load(withAdUnitID: "ca-app-pub-2127236424500505/9448869160",
-                                       request: request,
-                             completionHandler: { [self] ad, error in
-                               if let error = error {
-                                 print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-                                 return
-                               }
-                               interstitial = ad
-                             }
-           )
+        
     }
-    private func checkAndShowAd() {
-           if leftSwipeCount >= swipeThreshold || rightSwipeCount >= swipeThreshold {
-               
-               if let interstitial = interstitial {
-                   let root = UIApplication.shared.windows.first?.rootViewController
-                   interstitial.present(fromRootViewController: root!)
-               } else {
-                   print("Add is not redy please try again later")
-               }
-               
-               leftSwipeCount = 0
-               rightSwipeCount = 0
-               
-           }
+    
+    #Preview {
+        StartView()
+            .environmentObject(HomeViewModel())
     }
     
     
-}
-
-#Preview {
-    StartView()
-        .environmentObject(HomeViewModel())
-}
-
-
-
-extension AnyTransition {
-    static var customTransition: AnyTransition {
-        AnyTransition.modifier(
-            active: CustomTransitionModifier(offset: UIScreen.main.bounds.height),
-            identity: CustomTransitionModifier(offset: 0)
-        )
-    }
-}
-
-struct CustomTransitionModifier: ViewModifier, Animatable {
-    var offset: CGFloat
     
-    var animatableData: CGFloat {
-        get { offset }
-        set { offset = newValue }
+    extension AnyTransition {
+        static var customTransition: AnyTransition {
+            AnyTransition.modifier(
+                active: CustomTransitionModifier(offset: UIScreen.main.bounds.height),
+                identity: CustomTransitionModifier(offset: 0)
+            )
+        }
     }
     
-    func body(content: Content) -> some View {
-        content
-            .offset(y: offset)
+    struct CustomTransitionModifier: ViewModifier, Animatable {
+        var offset: CGFloat
+        
+        var animatableData: CGFloat {
+            get { offset }
+            set { offset = newValue }
+        }
+        
+        func body(content: Content) -> some View {
+            content
+                .offset(y: offset)
+        }
     }
-}

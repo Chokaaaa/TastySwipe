@@ -279,7 +279,8 @@ struct OtpView: View {
                         }
                         sessionManager.currentUser = user
 //                        sessionManager.fetchLoggedIn(userId: userId)
-                        loginNavigationManager.showOTPView = false
+//                        loginNavigationManager.showOTPView = false
+                        loginNavigationManager.verificationDetails = nil
                         loginNavigationManager.showLoginView = false
                     }
                 } catch {
